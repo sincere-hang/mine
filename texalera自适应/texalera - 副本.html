@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="js/jquery.js"></script>
+</head>
+<body>
+    <textarea data-adaptheight="" placeholder="请在此输入内容。" style="resize: none;">
+    </textarea><br>
+    <textarea data-adaptheight="" rows="3" cols="40" placeholder="请在此输入内容。" style="width: 100%;height: 100%; resize: none;"></textarea>
+    <textarea name="" id="" cols="30" rows="10" placeholder="1">
+        dfjadhioadocaoijcioadj<br/>
+        dfjadhioadocaoijcioadj<br/>
+        dfjadhioadocaoijcioadj<br/>
+        dfjadhioadocaoijcioadj<br/>
+        dfjadhioadocaoijcioadj<br/>
+        dfjadhioadocaoijcioadj<br/>dfjadhioadocaoijcioadj<br/>
+        dfjadhioadocaoijcioadj
+        dfjadhioadocaoijcioadj
+        dfjadhioadocaoijcioadj
+
+        dfjadhioadocaoijcioadj
+        dfjadhioadocaoijcioadj
+        dfjadhioadocaoijcioadj
+        dfjadhioadocaoijcioadj
+        dfjadhioadocaoijcioadj
+        dfjadhioadocaoijcioadj
+
+    </textarea><br>
+    <textarea name="" id="" cols="30" rows="10" placeholder="2"></textarea><br>
+    <textarea name="" id="" cols="30" rows="10" placeholder="3"></textarea><br>
+    <textarea name="" id="" cols="30" rows="10" placeholder="4" data-type="reply"></textarea>
+
+
+<script type="text/javascript">
+
+initTextAreaHeight();
+
+$(document).on('input','textarea',adjustHeight);
+
+function initTextAreaHeight(){
+    console.log($(document).find("textarea").length)
+    $(document).find("textarea").each(function(){
+        var obj = $(this);
+        adjustHeight(obj,'init');
+    });
+}
+
+function adjustHeight(currentObject = '',type = '') {
+    var obj =  $(this);
+    if(type == 'init'){
+        obj = currentObject;
+    }
+
+    console.log(obj);
+
+    $(document).find("textarea").each(function(){
+        if($(this).attr('id') == 'currentTextArea'){
+            $(this).removeAttr("id");
+        }
+        if($(this).data('type') && $(this).height() < 200){
+            $(this).css("height","200px");
+        }
+    });
+    obj.attr('id','currentTextArea');
+    var el=document.getElementById("currentTextArea");
+    el.style.boxSizing = el.style.mozBoxSizing = 'border-box';
+    el.style.overflowY = 'hidden';
+    el.style.height = "20px";
+    var outerHeight = parseInt(window.getComputedStyle(el).height);
+    var minHeight = el.scrollHeight;
+    
+    var diff = outerHeight - el.clientHeight;
+    
+    el.style.height = Math.max(minHeight, el.scrollHeight + diff) + 'px';
+    // $(document).find('textarea').each(function(){
+    //     if($(this).data('type') && $(this).height() < 200){
+    //         $(this).css("height","200px");
+    //     }
+    // });
+    window.addEventListener('input',function(){
+        $(document).find('textarea').each(function(){
+            if($(this).data('type') && $(this).height() < 200){
+                $(this).css("height","200px");
+            }
+        });
+    });
+}
+// var o=$('textarea[data-adaptheight]').keyup(function(){
+//     console.log("1111");
+//     $('textarea[data-adaptheight]').css({"box-sizing":"border-box","overflowY":"hidden"});
+//     var minHeight=$(this).scrollTop();
+//     adjustHeight($(this),minHeight)
+// });
+// console.log(o)
+// var textAreas = document.querySelectorAll('textarea[data-adaptheight]');
+// 	console.log(textAreas.length);
+// for (var i = 0, l = textAreas.length; i < l; i++) {
+//     var el = textAreas[i];
+//     el.style.boxSizing = el.style.mozBoxSizing = 'border-box';
+//     el.style.overflowY = 'hidden';
+//     var minHeight = el.scrollHeight;
+//     el.addEventListener('input', function() {
+//         adjustHeight();
+//     });
+//     // window.addEventListener('resize', function() {
+//     //     adjustHeight(minHeight);
+//     // });
+//     // adjustHeight();
+// }
+
+</script>
+</body>
+</html>

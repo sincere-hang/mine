@@ -1,0 +1,139 @@
+﻿/*
+ *  作者:helang
+ *  邮箱:helang.love@qq.com
+ *  jQuery插件库:http://www.jq22.com/mem395541
+ *  CSDN博客:https://blog.csdn.net/u013350495
+ *  微信公众号:web-7258
+*/
+
+/* 元素尺寸规则 & 删除轮廓 & 点击高亮颜色 */
+*{
+    box-sizing: border-box;
+    outline:none;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html{
+    font-size:calc(100vw/7.5);
+}
+
+/* 页面 body 设置，默认14px字体大小 */
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    font-size: 0.28rem;
+    font-family: Helvetica,"Helvetica Neue",Arial,sans-serif;
+    letter-spacing: 0;
+    word-wrap:break-word;
+    -webkit-touch-callout: none;
+}
+
+/*表单元素默认字体大小及字体*/
+input,select,textarea{
+    font-size: 0.28rem;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+/* 取消超链接默认下划线 */
+a{text-decoration: none;}
+
+/* 列式弹性盒子 */
+.flex_col {
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-box-pack: start;
+    -webkit-box-align: center;
+
+    display: -ms-flexbox;
+    -ms-flex-wrap: nowrap;
+    -ms-flex-direction: row;
+    -ms-flex-pack: start;
+    -ms-flex-align: center;
+    -ms-flex-line-pack: center;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+}
+/* 行式弹性盒子 */
+.flex_row {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-box-pack: start;
+    -webkit-box-align: start;
+
+    display: -ms-flexbox;
+    -ms-flex-direction: column;
+    -ms-flex-wrap: nowrap;
+    -ms-flex-pack: start;
+    -ms-flex-align: start;
+    -ms-flex-line-pack: start;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+/* 弹性盒子弹性容器 */
+.flex_col .flex_grow{width: 0;-webkit-box-flex: 1;-ms-flex-positive: 1;flex-grow: 1;}
+.flex_row .flex_grow{-webkit-box-flex: 1;-ms-flex-positive: 1;flex-grow: 1;}
+/* 弹性盒子允许换行 */
+.flex_col.flex_wrap{-ms-flex-wrap: wrap;flex-wrap: wrap;}
+/* 列式弹性盒子居中对齐 */
+.flex_col.flex_center{-webkit-box-pack: center;-ms-flex-pack: center;justify-content: center;}
+/* 列式弹性盒子两端对齐 */
+.flex_col.flex_space{-webkit-box-pack: justify;-ms-flex-pack: justify;justify-content: space-between;}
+/* 弹性盒子快速分栏 */
+.flex_col.flex_col_2>*{width: 50%;}
+.flex_col.flex_col_3>*{width: 33.33333%;}
+.flex_col.flex_col_4>*{width: 25%;}
+.flex_col.flex_col_5>*{width: 20%;}
+.flex_col.flex_col_6>*{width: 16.66666%;}
+
+/* 对齐方式 */
+.align_l{text-align: left;}
+.align_c{text-align: center;}
+.align_r{text-align: right;}
+
+/* 字体大小 */
+.size_12{font-size: 0.24rem;}
+.size_14{font-size: 0.28rem;}
+.size_16{font-size: 0.32rem;}
+.size_18{font-size: 0.36rem;}
+.size_20{font-size: 0.40rem;}
+
+/* 字体颜色 */
+.color_333{color: #333333;}
+.color_666{color: #666666;}
+.color_999{color: #999999;}
+.color_fff{color: #ffffff;}
+.color_6dc{color: #6dca6d;}
+.color_09f{color: #0099ff;}
+.color_ffc{color: #ffc029;}
+.color_faf{color: #fdaf2a;}
+.color_d51{color: #d51917;}
+.color_fd4{color: #fd463e;}
+.color_ea0{color: #EA0D04;}
+
+/* 背景色*/
+.bg_fff{background-color: #ffffff;}
+.bg_f3{background-color: #f3f3f3;}
+.bg_f6{background-color: #f6f6f6;}
+.bg_f9{background-color: #f9f9f9;}
+
+/* 取消长按选中-加在body元素上则全站均不可长按选择文字复制 */
+.cancel_select{-webkit-user-select: none;user-select: none;}
+
+/*
+ *  ---------------------
+ *  -----全局样式结束-----
+ *  ---------------------
+*/

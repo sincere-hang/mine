@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var number=[10,20,30,40,50];
+		function getNum(){
+			var toal=number.reduce((toal,num)=>{
+				return toal +=num;
+			});
+			console.log(toal)
+		}
+		getNum()
+	</script>
+</body>
+</html>

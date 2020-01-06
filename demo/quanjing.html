@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../swiper4/swiper-4.5.0/dist/css/swiper.css">
+    <script src="../swiper4/swiper-4.5.0/dist/js/swiper.js"></script>
+    <style>
+        .swiper-wrapper{background: url(img/demo_photo.jpg) no-repeat;}
+        .swiper-container{width: 100%;height: 600px;}
+		.swiper-wrapper{width: 100%;height: 100%;}
+		.swiper-slide{background: #ccc;height: 100px;}
+    </style>
+</head>
+<body>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">Slide 1</div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
+            <div class="swiper-slide">Slide 4</div>
+            <div class="swiper-slide">Slide 5</div>
+            <div class="swiper-slide">Slide 6</div>
+        </div>
+    </div>
+    <script>
+        var mySwiper = new Swiper ('.swiper-container', {
+			loop: true, // 循环模式选项
+            slidesPerView : 3,
+            spaceBetween : 20,
+            // on:{
+            //     tap: function(event){
+            //         // alert('你碰了Swiper');
+            //         console.log(this.activeIndex);
+            //         console.log(event);
+            //     },
+            // },
+		});
+        var sliders=document.getElementsByClassName("swiper-slide");
+        for(var i=0;i<sliders.length;i++){
+            sliders[i].onclick=function(){
+                console.log("111");
+            }
+        }
+    </script>
+</body>
+</html>

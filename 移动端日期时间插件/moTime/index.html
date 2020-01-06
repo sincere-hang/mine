@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<title>移动端时间插件</title>
+  <link rel="stylesheet" type="text/css" href="mobileTimeJSCSS/mobiletime.css">
+  <script type="text/javascript" src="mobileTimeJSCSS/mobiletime.js"></script>
+  <script type="text/javascript" src="mobileTimeJSCSS/windownFont.js"></script>
+</head>
+<body>
+     <div id="PCA3">
+        选择时间
+    </div>
+    <script type="text/javascript">
+          window.onload = function() {
+                new moTimeCJJ({
+                   domId : "PCA3", 
+                   minTime : "2010-10-22 23:22:11",
+                   maxTime : "2030-10-22 23:22:11",
+                   value:"2019-11-22", // 2018-02-02 02:34:59
+                   type : "YMD" // ["YMDHMS","YMD","HMS"]
+                })
+          
+          }
+    </script>
+    <style>
+        #PCA{
+          width:3rem;
+          min-height: 1rem;
+          line-height: 1rem;
+          text-align: center;
+          font-size: 0.4rem;
+        }
+         #PCA2{
+          width:3rem;
+          min-height: 1rem;
+          line-height: 1rem;
+          text-align: center;
+          font-size: 0.4rem;
+          margin-top: 1rem;
+        }
+          #PCA3{
+          width:3rem;
+          min-height: 1rem;
+          line-height: 1rem;
+          text-align: center;
+          font-size: 0.4rem;
+          margin-top: 1rem;
+        }
+    </style>
+</body>
+</html>

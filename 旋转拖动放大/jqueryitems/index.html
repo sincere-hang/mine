@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>移动端拖拽、旋转、放大、缩小图片</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,target-densitydpi=device-dpi,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="format-detection" content="email=no" />
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
+        <link rel="stylesheet" type="text/css" href="css/common.css" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+    </head>
+    <body>
+		<!-- <h2 style="color: aliceblue;text-align: center;font-size: 18px">注意，只支持移动端手势操作</h2> -->
+        <article style="opacity: 0;" class="preventDefault">
+            <section class="myphoto ">
+                <div class="imgbox"></div>
+                <div class="btnbox">
+                    <span class="btn-choose"></span>
+                </div>
+            </section>
+
+            <section class="congratulate hide">
+                <div class="congratulatetitle">
+                    <div class="choosetitle"></div>
+                    <p class="title1" data-id="1"><img src="images/photo/bless-txt1.png" ></p>
+                    <p class="title2" data-id="2"><img src="images/photo/bless-txt2.png" ></p>
+                    <p class="title3" data-id="3"><img src="images/photo/bless-txt3.png" ></p>
+                </div>
+            </section>
+        </article>
+        <script src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
+       <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+        <script src="js/transit.js"></script>
+        <script src="js/index.js"></script>
+    </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<title>calendar插件</title>
+
+<!--日历样式-->
+<link rel="stylesheet" href="css/calendar.css">
+
+<!--可无视-->
+<style>
+.row {
+	padding: 10px;
+}
+
+.row input {
+	width: 100%;
+	height: 40px;
+}
+</style>
+
+<script src="js/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+<div class="row">
+	<input type="text" class="room" id="startTime">
+</div>
+
+<div class="row">
+	<input type="text" class="room" id="endTime">
+</div>
+
+
+
+<!--日期日历插件-->
+<script src="js/calendar.js"></script>
+
+<!--方法调用-->
+<script>
+$('.room').datePicker({
+	okFunc: function (date) {
+		console.log(date);
+	}
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no">
+	<title>Document</title>
+	<link rel="stylesheet" href="node_modules/swiper/dist/css/swiper.css">
+	<script src="node_modules/jquery/dist/jquery.js"></script>
+	<script src="node_modules/swiper/dist/js/swiper.js"></script>
+	<script src="js/transit.js"></script>
+	<style type="text/css">
+		*{margin: 0;padding: 0;}
+		.myBox{width: 100vw;position: relative;}
+		.swiper-main{width: 100%;}
+		.swiper-container{width: 94%;margin: 0 auto;}
+		.swiper-main img{width: 100%;}
+
+
+		.imgWallList{width: 100px;position: absolute;padding: 16px;}
+		.imgWallList img{width: 100%;}
+		.delete{display: block;width: 16px;height: 16px;position: absolute;top: 0;left: 0;}
+		.scale{display: block;width: 16px;height: 16px;position: absolute;right: 0;bottom: 0;}
+	</style>
+</head>
+<body>
+	<div class="myBox"></div>
+
+	<div class="swiper-main">
+		<div class="swiper-container">
+            <div class="swiper-wrapper"></div>
+        </div>
+	</div>
+
+	<script type="text/javascript">
+
+
+
+		var swiperObj = [
+			{
+				id: 1,
+				imgSrc: 'images/1.jpg'
+			},
+			{
+				id: 2,
+				imgSrc: 'images/2.jpg'
+			},
+			{
+				id: 3,
+				imgSrc: 'images/3.jpg'
+			},
+			{
+				id: 4,
+				imgSrc: 'images/4.jpg'
+			},
+			{
+				id: 5,
+				imgSrc: 'images/5.jpg'
+			},
+			{
+				id: 6,
+				imgSrc: 'images/6.jpg'
+			},
+			{
+				id: 7,
+				imgSrc: 'images/7.jpg'
+			},
+			{
+				id: 8,
+				imgSrc: 'images/8.jpg'
+			},
+			{
+				id: 9,
+				imgSrc: 'images/9.jpg'
+			},
+			{
+				id: 10,
+				imgSrc: 'images/10.jpg'
+			},
+			{
+				id: 11,
+				imgSrc: 'images/11.jpg'
+			},
+			{
+				id: 12,
+				imgSrc: 'images/12.jpg'
+			},
+		];
+
+		function swiperMain(){
+			for(var i=0;i<swiperObj.length;i++){
+				$(".swiper-wrapper").append(`<div class="swiper-slide"  data-id="${swiperObj[i].id}"><img src="${swiperObj[i].imgSrc}" alt=""></div>`)
+			}
+		};
+		swiperMain();
+
+		var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 3,
+            // slidesPerColumn: 2,
+            spaceBetween: 10,
+            loop: true,
+            // navigation: {
+            //     nextEl: '.swiper-button-next',
+            //     prevEl: '.swiper-button-prev',
+            // },
+        });
+
+        setTimeout(function(){
+        	$(".myBox").css({"height": $(window).height()-$(".swiper-main").height()+"px"})
+        },1);
+
+        $(document).ready(function(){
+        	var jQueryEventFix = $.event.fix;
+        	// console.log(jQueryEventFix)
+        	$.event.fix = function (event) {
+				var offset, originalEvent, touches;
+				event = jQueryEventFix.call($.event, event);
+				originalEvent = event.originalEvent;
+				var jcanvasScale = 1;
+				// console.log(originalEvent)
+				// originalEvent does not exist for manually-triggered events
+				if (originalEvent) {
+					//判断是否是手指在屏幕上滑动时
+					if(originalEvent.type == 'touchmove') originalEvent.preventDefault();//防止阻止ios屏幕滑动失效
+					var target = originalEvent.target;
+					// console.log(target);
+					// console.log(target.tagName);
+					if(target.tagName == 'CANVAS' && target.getAttribute('jcanvasScale')){
+						jcanvasScale = parseInt(target.getAttribute('jcanvasScale'));
+					}//edn if
+					touches = originalEvent.changedTouches;
+					// If offsetX and offsetY are not supported, define them
+					if (event.pageX !== undefined && event.offsetX === undefined) {
+						offset = $(event.currentTarget).offset();
+						try {
+							if (offset) {
+								event.offsetX = (event.pageX - offset.left)*jcanvasScale;
+								event.offsetY = (event.pageY - offset.top)*jcanvasScale;
+							}
+						} catch (error) {
+							// Fail silently
+						}
+					} else if (touches) {
+						try {
+							// Enable offsetX and offsetY for mobile devices
+							offset = $(event.currentTarget).offset();
+							if (offset) {
+								event.offsetX = (touches[0].pageX - offset.left)*jcanvasScale;
+								event.offsetY = (touches[0].pageY - offset.top)*jcanvasScale;
+							}
+						} catch (error) {
+							// Fail silently
+						}
+					}
+
+				}
+				return event;
+			};
+        });
+
+        $(".swiper-wrapper").on("click",".swiper-slide",swiperImg);
+
+        var imgWallId = 0;
+        var widthOrg,heightOrg;
+        var itemList = [];
+        var selectId = 0;//当前选取的id
+        var item = {};
+        function swiperImg(){
+        	var top,left;
+        	imgWallId++;
+        	var imgWallList_l = Math.abs(parseInt(Math.random()*($(window).width()*0.94-100)));
+        	var imgWallList_T = Math.abs(parseInt(Math.random()*$(".myBox").height()-180));
+        	top=imgWallList_T;
+        	left=imgWallList_l;
+        	// console.log(imgWallList_l)
+        	var swiperImgSrc=$(this).find("img").attr("src")
+        	$(".myBox").append(`<div class="imgWallList" style="left: ${imgWallList_l}px;top: ${imgWallList_T}px" data-id="${imgWallId}">
+        		<span class="delete"><img src="images/delete.png"></span>
+        		<img class="imgItem" src="${swiperImgSrc}">
+        		<span class="scale"><img src="images/scale1.png"></span>
+        		</div>`);
+
+        	$(".delete").hide();
+        	$(".scale").hide();
+        	$(".imgWallList:last .delete").show();
+        	$(".imgWallList:last .scale").show();
+
+        	widthOrg=$(".imgWallList").width();
+        	heightOrg=$(".imgWallList").height();
+
+        	var data = {
+        		id: imgWallId,
+        		width: widthOrg,
+        		height: heightOrg,
+        		tx: 0, //move触摸点
+        		ty: 0,
+        		_tx: 0, // 触摸距离
+        		_ty: 0,
+        		rx: 0,  //rotate触摸点
+        		ry: 0,
+        		_rx: 0,  //触摸距离
+        		_ry: 0,
+        		disPtoO: 0, //触摸点到圆心的距离
+        		scale: 1,  //缩放比例
+        		left: left,
+        		top: top,
+        		anglePre: 0,  //角度
+        		angleNext: 0,
+        		rotate: 0,  //计算真正的旋转角度
+        		ox: left+widthOrg/2,  //圆心坐标
+        		oy: top+heightOrg/2,
+        		r: Math.sqrt(widthOrg * widthOrg + heightOrg * heightOrg)/2  //对角线的半
+        		startTouchX: 0,  //双指触摸开始坐标
+        		startTouchY: 0,
+        		endTouchX: 0,   //双指触摸移动坐标
+        		endTouchY: 0,
+        	}
+
+        	itemList[itemList.length] = data;
+        	// console.log(itemList);
+        };
+
+        $(".myBox").on("touchstart",".scale",function(e){
+        	selectId = $(this).parent().attr('data-id');
+        	itemList.forEach(function(currentValue){
+        		// console.log(currentValue)
+        		if(selectId==currentValue.id){
+        			item=currentValue;
+        			// console.log(item);
+        		}
+        	});
+        	// console.log(e);
+        	item.rx=e.offsetX;
+        	item.ry=e.offsetY;
+        	item.anglePre=getAngle(item.ox,item.oy,e.offsetX,e.offsetY);
+        });
+
+        $(".myBox").on("touchmove",".scale",function(e){
+        	item.disPtoO = getDistancs(item.ox,item.oy,e.offsetX,e.offsetY);
+        	item.scale = (item.disPtoO/item.r).toFixed(2);//保留两位小数
+
+        	item.angleNext = getAngle(item.ox,item.oy,e.offsetX,e.offsetY);
+        	item.rotate+=item.angleNext - item.anglePre;
+
+        	$(this).parent().css({
+        		scale: item.scale,
+        		rotate: item.rotate
+        	});
+        	$(this).css({
+        		scale: 1/item.scale,
+        	}).parent().find(".delete").css({
+        		scale: 1/item.scale
+        	});
+        	item.anglePre=item.angleNext;
+
+        	e.preventDefault();
+        });
+
+        $(".myBox").on("touchstart",".imgItem",function(e){
+
+        	console.log(e);
+        	if(e.originalEvent.targetTouches.length==2){
+                // drag.downC=getC(e);
+                alert(e.offsetX);
+                alert(e.originalEvent.targetTouches[0].pageX);
+
+                item.startTouchX = e.originalEvent.targetTouches[0].pageX;
+                item.startTouchY = e.originalEvent.targetTouches[0].pageY;
+            }
+
+
+        	$(".delete").hide();
+        	$(".scale").hide();
+        	$(this).parent().find(".delete").show();
+        	$(this).parent().find(".scale").show();
+
+        	selectId = $(this).parent().attr('data-id');
+        	itemList.forEach(function(currentValue){
+        		if(selectId==currentValue.id){
+        			item = currentValue;
+        		}
+        	});
+        	item.tx = e.offsetX;
+        	item.ty = e.offsetY;
+        });
+
+        $(".myBox").on("touchmove",".imgItem",function(e){
+        	item._tx = e.offsetX - item.tx;
+        	item._ty = e.offsetY - item.ty;
+        	item.left+=item._tx;
+        	item.top+=item._ty;
+        	// item.left=item.left<0?0:item.left;
+        	$(this).parent().css({
+        		left: item.left,
+        		top: item.top
+        	});
+        	item.ox = +item.left+item.width/2;
+        	item.oy= +item.top + item.height/2;
+        	item.tx=e.offsetX;
+        	item.ty=e.offsetY;
+        });
+
+        $(".myBox").on("touchend",".imgItem",function(e){
+        	itemList.forEach(function(currentValue){
+        		if(selectId===currentValue.id){
+        			currentValue=item;
+        		}
+        	})
+        })
+		
+
+
+
+        function getAngle(px, py, mx, my) {
+			// console.log(px, py, mx, my)
+			var x = px - mx;
+			var y = py - my;
+			// console.log(x);
+			// console.log(y);
+			var angle = Math.atan2(y, x) * 360 / Math.PI;
+			return angle;
+		};
+
+		function getDistancs(cx, cy, pointer_x, pointer_y) {
+			var ox = pointer_x - cx;
+			var oy = pointer_y - cy;
+			return Math.sqrt(
+				ox * ox + oy * oy
+			);
+		}
+		
+	</script>
+</body>
+</html>

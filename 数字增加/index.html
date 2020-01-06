@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>jquery结合GASP数字动画插件</title>
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="css/demo.css">
+
+<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="js/TweenLite.min.js"></script>
+<script type="text/javascript" src="js/lem_counter.js"></script>
+
+<style type="text/css">
+body{background:#fff;color: #333;}
+.box{
+	font-size: 40px;
+}
+.btn-container{
+	line-height: 50px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+	<div class="row" style="padding:2em 0;">
+			<h1>示例</h1>
+			<h3>Animate to</h3>
+			<pre>
+$('.counter-demo-1').lemCounter({
+value_to: 100
+});						
+			</pre>
+			<div class="col-md-2">
+				<div class="counter-demo-1 box">100</div>
+			</div>
+			<div class="col-md-10 btn-container">
+				<button class="btn btn-info" id="btn1">点击开始执行</button>
+			</div>
+			
+			<script type="text/javascript">
+				$("#btn1").click(function(){
+					$('.counter-demo-1').lemCounter({
+					  value_to: 10000
+					});	
+				})
+			</script>
+	</div>
+
+	<hr>
+	<div class="row">
+		<h3>Animate from to</h3>
+	<pre>
+$('.counter-demo-2').lemCounter({
+value_to: 100,
+value_from: 200
+});						
+	</pre>
+	<div class="col-md-2">
+		<div class="counter-demo-2 box">100</div>
+	</div>
+	<div class="col-md-10 btn-container">
+		<button class="btn btn-info" id="btn2">点击开始执行</button>
+	</div>
+	
+	<script type="text/javascript">
+		$("#btn2").click(function(){
+			$('.counter-demo-2').lemCounter({
+			  value_to: 100,
+					value_from: 200
+			});	
+		})
+	</script>
+	</div>
+
+	<hr>
+
+	<div class="row">
+		<h3>Value to from content</h3>
+		<pre>
+$('.counter-demo-3').lemCounter({
+value_to_from_content: true
+});					
+		</pre>
+		<div class="col-md-2">
+			<div class="counter-demo-3 box">100</div>
+		</div>
+		<div class="col-md-10 btn-container">
+			<button class="btn btn-info" id="btn3">点击开始执行</button>
+		</div>
+		<script type="text/javascript">
+			$("#btn3").click(function(){
+				$('.counter-demo-3').lemCounter({
+					value_to_from_content: true
+				});	
+			})
+		</script>
+	</div>
+
+	<hr>
+
+	<div class="row">
+		<h3>Settings from data attribute</h3>
+		<pre>
+$('.counter-demo-4').lemCounter();
+
+&lt;div
+class="counter-demo-4"
+data-lem-counter='{"value_from": 100000, "value_to": 1000, "animate_duration": 3, "locale": "en-US"}'&gt;1,000
+&lt;/div&gt;				
+		</pre>
+		<div class="col-md-2">
+			<div
+class="counter-demo-4 box"
+data-lem-counter='{"value_from": 100000, "value_to": 1000, "animate_duration": 2, "locale": "en-US"}'>1,000
+</div>
+		</div>
+		<div class="col-md-10 btn-container">
+			<button class="btn btn-info" id="btn4">点击开始执行</button>
+		</div>
+		<script type="text/javascript">
+			$("#btn4").click(function(){
+				$('.counter-demo-4').lemCounter();	
+			})
+		</script>
+	</div>
+
+	<hr>
+
+	<div class="row" style="padding:2em 0;">
+		<h3>事件：onComplete</h3>
+		<pre>
+$('.counter-event-demo-5').lemCounter({
+value_to: 100
+});
+$('.counter-event-demo-5').on('onComplete.lc', function () {
+$(this).css('color', 'red');
+});				
+		</pre>
+		<div class="col-md-2">
+			<div class="counter-demo-5 box">100</div>
+		</div>
+		<div class="col-md-10 btn-container">
+			<button class="btn btn-info" id="btn5">点击开始执行</button>
+		</div>
+		<script type="text/javascript">
+			$("#btn5").click(function(){
+				$('.counter-demo-5').lemCounter({
+				  value_to: 100
+				});
+				$('.counter-demo-5').on('onComplete.lc', function () {
+				  $(this).css('color', 'red');
+				});	
+			})
+		</script>
+	</div>
+
+		
+</div>
+	
+	
+</body>
+</html>

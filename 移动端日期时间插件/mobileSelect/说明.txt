@@ -1,0 +1,28 @@
+﻿使用方式：
+1、引用文件：<script type="text/javascript" src="selectDate.js"></script>
+2、方法调用：
+	$.selectDate("#select_1",{
+        	start:1994,
+        	end:2018,
+        	select:[2012,5,6],
+        	title:'这个选择器很秀'
+    	},function (data) {
+       		console.log(data);
+    	});
+3、参数详解：
+	("选择器",{
+		start(开始年份),
+		end(结束年份),
+		select[](默认选择的年月日),
+		title(展开时选择器时的标题)
+	},function(){}——回调函数)
+4、回调函数详解：
+	year——年份
+	month——月份
+	day——日期
+
+------------------------
+新增——选择日期（年月版）
+	$.selectDateSimple();
+	使用方式与 $.selectDate() 一致
+	select[]的长度为2,例:select[2016,6]

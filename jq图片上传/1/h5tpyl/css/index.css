@@ -1,0 +1,46 @@
+
+.select_file{
+    height: 4rem;
+    background-color: #f3f3f3;
+    font-weight: normal;
+    position: relative;
+    margin: 0.2rem;
+}
+
+.select_file>div{
+    padding-top: 1.5rem;
+    background-size: auto 1.2rem;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-image: url(../img/addFile.png);
+    color: #666;
+}
+
+.select_file input[type="file"]{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+#preview-img{
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.t1{
+    padding: 0.2rem 0;
+    border-bottom: #e5e5e5 solid 1px;
+    margin-bottom: 0.2rem;
+}
+
+.b1{
+    padding: 0.2rem;
+    border: #e5e5e5 solid 1px;
+    margin-bottom: 0.2rem;
+}
+
+.copy{
+    padding-bottom: 0.2rem;
+}

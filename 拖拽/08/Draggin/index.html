@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/bulma.css"/>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+    <div class="container has-text-centered">
+        <h1 class="is-title is-size-2 has-big-margin-top draggable">Features <span id="small">(用鼠标拖动我！)</span></h1>
+        <p>下面的文字和图标都是可以拖动的哦！</p>
+        <div class="columns has-text-centered is-desktop has-margin-top">
+            <div class="column">
+                <img class="img has-big-margin-top draggable" src="img/files.svg"/>
+                <h1 class="card-title draggable">Reposition items without interrupting the flow of the page</h1>
+                <p class="is-size-5 has-margin-top has-big-margin-bottom draggable">Using the CSS3
+                    <code>transform</code> property, the layout of the webpage will not be altered while you drag.</p>
+            </div>
+            <div class="column">
+                <img class="img has-big-margin-top draggable" src="img/compass.svg"/><br>
+                <h1 class="card-title draggable">Ridiculously easy to use</h1>
+                <p class="is-size-5 has-margin-top has-big-margin-bottom draggable">Draggin.js has incredibly simple
+                    syntax: just give an element the <code>draggable</code> classname to render an instantly draggable
+                    element.</p>
+            </div>
+            <div class="column">
+                <img class="img has-big-margin-top draggable" src="img/save.svg"/>
+                <br>
+                <h1 class="card-title draggable text">Editable text!</h1>
+                <p class="is-size-5 draggable text">Draggin.js provides user-editable text elements that are also easily
+                    dragged around to help you craft the ultimate user interface. Double click on this paragraph to see
+                    for yourself, and click anywhere outside of the text to stop editing.</p>
+            </div>
+        </div>
+        <hr/>
+        <h1 class="is-title is-size-2 has-big-margin-top has-big-margin-bottom">示例演示</h1>
+        <div class="columns is-multiline has-big-margin-top">
+            <div class="column is-half-desktop is-12-mobile">
+                <div class="highlight has-margin-bottom">
+                    <figure class="highlight has-text-centered">
+                        <h1 class="title is-size-3 ">Simple Draggable Element</h1>
+                        <code class="html">
+                            &lt;img class="draggable" src="img/cursor.svg" alt="Cursor Icon"&gt;
+                        </code><br>
+                        <img class="has-big-margin-top image is-128x128 draggable" src="img/cursor.svg"
+                             alt="Cursor Icon"/>
+                    </figure>
+                </div>
+            </div>
+            <div class="column is-half-desktop is-12-mobile">
+                <div class="highlight has-margin-bottom">
+                    <figure class="highlight has-text-centered">
+                        <h1 class="title is-size-3 ">Simple Editable & Draggable Text</h1>
+                        <code class="html">
+                            &lt;h1 class="draggable text"&gt;Hello, World!&lt;/h1&gt;
+                        </code>
+                        <br/>
+                        <h1 class="card-title draggable text has-big-margin-top">Hello, World!</h1>
+                    </figure>
+                </div>
+            </div>
+            <div class="column is-half-desktop is-12-mobile">
+                <div class="highlight has-big-margin-bottom">
+                    <figure class="highlight has-text-centered">
+                        <h1 class="title is-size-3">Dragging a List with Undraggable Contents</h1>
+                        <div class="left-align">
+                            <code class="html">
+                                &lt;ul class="draggable"&gt;<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Hello,&lt;/li&gt;<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;World!&lt;/li&gt;<br>
+                                &lt;/ul&gt;<br>
+                            </code>
+                        </div>
+                        <br>
+                        <ul class="draggable demo-ul has-big-margin-top">
+                            <li>Hello,</li>
+                            <li>World!</li>
+                            <li>Drag</li>
+                            <li>My</li>
+                            <li>Border!</li>
+                        </ul>
+                    </figure>
+                </div>
+            </div>
+            <div class="column is-half-desktop is-12-mobile">
+                <div class="highlight has-margin-bottom">
+                    <figure class="highlight has-text-centered">
+                        <h1 class="title is-size-3 ">Editable & Undraggable Text</h1>
+                        <code class="html">
+                            &lt;h1 class="draggable text"&gt;Hello, World!&lt;/h1&gt;
+                        </code>
+                        <div class="text-wrapper has-big-margin-top">
+                            <h1 class="card-title text">Hello, World!</h1>
+                        </div>
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript" src="js/dragScript.js"></script>
+</body>
+</html>

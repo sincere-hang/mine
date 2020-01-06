@@ -1,0 +1,61 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>进度条</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/schedule.css">
+</head>
+<body>
+<div class="content">
+
+    <!--横向进度条-->
+    <div id="scheduleX"></div>
+
+
+    <div style="width: 100%; padding: 50px 0;">===================</div>
+
+
+    <!--纵向进度条-->
+    <div id="scheduleY"></div>
+
+</div>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="js/schedule.js"></script>
+<script>
+    $(function () {
+
+        /*纵向进度条*/
+        // scheduleY({
+        //     fulfill: 55,   //选择数
+        //     listAll: 100,  //总数
+        //     speed: 25,     //动画速度，可选，默认25,越小越快
+        //     again: false,  //选择数改变动画是否从零开始，默认true
+        //     bgColor: "#828282",    //底部颜色
+        //     listColor: "#5bcde7",  //伸缩条颜色，默认原谅绿
+        //     scWidth: "25",        //进度条宽度
+        //     scHeight: "300"         //进度条高度
+        // });
+
+        /*横向进度条*/
+        scheduleX({
+            fulfill: 20,   //选择数
+            listAll: 100,  //总数
+            speed: 25,     //动画速度，可选，默认25,越小越快
+            again: false,  //选择数改变动画是否从零开始，默认true从零开始
+            bgColor: "#7a7a7a",    //底部颜色
+            listColor: "#fe4e42",  //伸缩条颜色，默认原谅绿
+            scWidth: "400",        //进度条宽度
+            scHeight: "10"         //进度条高度
+        });
+
+        $(".xNum").hide();
+
+    });
+
+</script>
+</body>
+</html>

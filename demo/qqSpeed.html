@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/qqSpeed.css">
+    <link rel="stylesheet" href="../swiper4/swiper-4.5.0/dist/css/swiper.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <script src="js/jquery.js"></script>
+    <script src="../swiper4/swiper-4.5.0/dist/js/swiper.js"></script>
+
+    <style type="text/css">
+        /* animate  { infinite(动画无限次播放)  } */
+
+        .box{width: 100%;height: 100%;background: url(img/1.bg.png) no-repeat;background-size: 100% 100%;}
+        .boxOnce{width: 100vw;height: 100vh;position: relative;}
+        .once-top{width: 100px;position: absolute;top: 50px;left: 20px;}/*animation: once-top 5s infinite alternate;*/
+        .once-top img{width: 100%;}
+        .once-center{width: 80%;height: 355px;margin: 0 auto;background: url(img/1.3.png) no-repeat,#ccc;background-size: 100%;box-sizing: border-box;}
+        .once-bom{width: 100px;position: absolute;bottom: 100px;right: 20px;}
+        .once-bom img{width: 100%;}
+        .once-center-list{width: 100%;height: 40px;display: flex;align-items: center;margin-top: 10px;opacity: 0;}
+        .once-center-listImg{width: 40px;height: 40px;display: flex;align-items: center;}
+        .once-center-listImg img{width: 100%;}
+        .once-center-listText{margin-left: 10px;background: url(img/1.3.1.png) no-repeat;background-size: 100% 100%;width: 50px;height: 45px;text-align: center;line-height: 35px;font-size: 13px;margin-top: 5px;position: relative;}
+        .listText-hand{width: 42px;height: 42px;position: absolute;top: 30px;left: 60px;animation: listText-hand 0.8s infinite;}
+        .listText-hand img{width: 100%;}
+        .listText-round{width: 30px;height: 30px;border-radius: 50%;border: 1px solid coral;position: absolute;top: 25px;left: 67px;animation: listText-round 0.8s infinite;/*animation: listText-round 1s infinite;animation-delay:1s;*/}
+
+        @media screen and (max-width: 414px) {
+            .once-top{width: 110px;top: 95px;}
+            .once-center{height: 355px;padding: 35px 20px 30px 20px}
+            .once-bom{width: 110px;bottom: 105px;}
+            
+        }
+
+        @media screen and (max-width: 375px) {
+            .once-top{top: 80px;}
+            .once-center{height: 325px;padding: 35px 20px 30px 20px}
+            
+        }
+        @media screen and (max-width: 320px) {
+            .once-top{width: 90px;top: 65px;}
+            .once-bom{width: 90px;bottom: 80px;}
+            .once-center{height: 275px;padding: 35px 20px 30px 20px}
+        }        
+            @keyframes once-top{
+                from{
+                    transform: scale3d(1,1,1);
+                }
+                to{
+                    transform: scale3d(1.1,1.1,1.1);
+                }
+            }
+            @keyframes once-bom{
+                from{
+                    transform: translate(0px,0px)
+                }
+                to{
+                    transform: translate(-10px,10px)
+                }
+            }
+            @keyframes listText-hand{
+                from{
+                    transform: translate(0px,0px)
+                }
+                to{
+                    transform: translate(2px,5px)
+                }
+            }
+            @keyframes listText-round{
+                from{
+                    transform: scale3d(0,0,0)
+                }
+                to{
+                    transform: scale3d(2,2,2);
+                    opacity: 0.5;
+                }
+            }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="boxOnce" style="display: flex;justify-content: center;align-items: center;">
+            <div class="once-top animated bounceInUp">
+                <img src="img/1.png" alt="">
+            </div>
+            <div class="once-center animated bounceInDown">
+                <div class="once-center-list">
+                    <div class="once-center-listImg"><img src="img/1.1.4.png" alt=""></div>
+                    <div class="once-center-listText">在吗?</div>
+                </div>
+                <div class="once-center-list" style="justify-content: flex-end">
+                    <div class="once-center-listText">在</div>
+                    <div class="once-center-listImg"><img src="img/1.1.4.png" alt=""></div>
+                    
+                </div>
+                <div class="once-center-list">
+                    <div class="once-center-listImg"><img src="img/1.1.4.png" alt=""></div>
+                    <div class="once-center-listText" style="width: 115px;height: 60px;line-height: 20px;">
+                        <a href="#" class="onceA" style="padding: 5px 10px 0 10px;text-align: left;font-size: 13px;">qq20周年 <br>时倾.的个人轨迹</a>
+                        <div class="listText-hand"><img src="img/shou.png" alt=""></div>
+                        <div class="listText-round"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="once-bom animated bounceInUp">
+                <img src="img/1.1.png" alt="">
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        resize();
+        function resize(){
+            if($(window).height()>800&&$(window).height()<820){
+                $(".once-top").css({"top": "145px"});
+                $(".once-bom").css({"bottom": "160px"});
+            }
+        }
+        setTimeout(function(){
+            $(".once-top").css({"animation": "once-top 5s infinite ease-in alternate"});
+            $(".once-bom").css({"animation": "once-bom 8s infinite alternate"});
+            $(".once-center-list").eq(0).addClass("animated fadeIn");
+        },1000)
+        setTimeout(function(){
+            $(".once-center-list").eq(1).addClass("animated fadeIn");
+        },2000);
+        setTimeout(function(){
+            $(".once-center-list").eq(2).addClass("animated fadeIn");
+        },3000);
+        $(".onceA").click(function(){
+            console.log("aaaaa");
+        })
+    </script>
+</body>
+</html>

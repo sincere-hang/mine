@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Document</title>
+
+		<style>
+			html,
+			body {
+				height: 100%;
+			}
+			
+			body {
+				margin: 0;
+			}
+			
+			img {
+				width: 640px;
+				height: 378px;
+				position: absolute;
+				left: 50% top: 50%;
+				margin-top: 120px;
+				margin-left: 320px;
+			}
+		</style>
+
+		<script>
+			window.onload = function() {
+
+				var x = 0;
+				var oImg = document.getElementById('img1');
+				document.onmousedown = function(ev) {
+					var ev = ev || enent;
+					var disX = ev.clientX - x;
+
+					document.onmousemove = function(ev) {
+						var ev = ev || event;
+						x = ev.clientX - disX;
+
+						var l = parseInt(-x / 15);
+
+						if(l > 0) {
+							l = l % 72 + 1;
+						} else {
+							l = (l + -72 * (Math.floor(l / 72))) + 1;
+						}
+
+						oImg.src = "images/1" + ".png"
+
+						return false;
+					};
+
+					document.onmouseup = function() {
+						document.onmouseup = null;
+						document.onmousemove = null;
+					}
+
+					return false;
+				}
+
+			}
+		</script>
+
+	</head>
+
+	<body>
+
+		<div class="img_wrap">
+			<img id="img1" src="images/head.png">
+		</div>
+
+	</body>
+
+</html>

@@ -1,0 +1,30 @@
+body 
+{
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.queue
+{
+	font-size: 0;
+    -webkit-text-size-adjust:none;
+	margin-top: 20px;
+	border: 1px solid #2db9c7;
+	width: 80%;
+}
+
+.dragger
+{
+	display: inline-block;
+	margin: 5px 10px 5px 0px;
+	width: 150px;
+	height: 40px;
+	background: white;
+	border: 1px solid #000000;
+	border-radius: 40px;
+	text-align: center;
+	font-size: 10px;
+	cursor: move;
+}

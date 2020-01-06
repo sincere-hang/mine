@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>H5 图片预览(解决拍照图片被旋转问题)</title>
+    <link rel="stylesheet" href="lib/helang-mobile.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<label class="select_file flex_col flex_center">
+    <div>
+        <div id="pickerFile" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;"></div>
+        <div class="color_999">点击选择照片</div>
+        <input type="file" id="preview-file" name="file" accept="image/*" style="opacity: 0" multiple="multiple">
+    </div>
+</label>
+
+
+<div style="padding: 0 0.2rem;">
+    <div class="t1">图片预览：</div>
+    <div class="b1">
+        <img src="" id="preview-img">
+    </div>
+    <canvas id="preview-canvas" style="display: none;"></canvas>
+</div>
+
+<div class="align_c color_999 size_12 copy">
+    <div>helang.love@qq.com</div>
+    <div>&copy; 2019</div>
+</div>
+
+<script type="text/javascript" src="lib/exif.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>
