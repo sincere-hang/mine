@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>变换的背景颜色</title>
+</head>
+
+<body>
+
+<script language="JavaScript">
+var COLOR = 999999						//设定初始背景色
+var BASECOLOR='#336699'						//给定一个固定的颜色,这个颜色可以变化定一个基础颜色
+
+function stopchange()						//用于停止改变背景色的函数
+{
+	document.bgColor = BASECOLOR;				//固定背景色
+	clearTimeout(looptimer);				//停止时钟
+}
+
+function changebgcolor()					//用于改变背景颜色的主函数
+{
+	if (COLOR > 0)
+	{
+		document.bgColor = '#' + COLOR			//改变当前颜色属性
+		COLOR -= 111111					//计算下一次的颜色
+		looptimer = setTimeout("changebgcolor()",1)	//设定改变延时
+	}
+	else							//如果颜色值超出范围
+	{
+		COLOR = 999999					//则重新设定到999999
+		document.bgColor = BASECOLOR;
+		looptimer = setTimeout("changebgcolor()",1)
+  }
+}
+</script> 
+
+<input type="button" value="开始变换背景颜色" onClick="changebgcolor()"><p>
+<input type="button" value="停止变换背景颜色" onClick="stopchange()">
+</body>
+</html>
+
+

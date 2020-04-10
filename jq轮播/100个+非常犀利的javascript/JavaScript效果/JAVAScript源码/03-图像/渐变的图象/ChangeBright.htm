@@ -1,0 +1,35 @@
+<html>
+<head>
+<script language="JavaScript1.2">
+function high(image) //高亮显示
+{
+theobject=image
+highlighting=setInterval("highlightit(theobject)",50)
+}
+function low(image) //模糊显示
+{
+clearInterval(highlighting)
+image.filters.alpha.opacity=20
+}
+function highlightit(cur2) //改变图像光照效果
+{
+if (cur2.filters.alpha.opacity<100)
+cur2.filters.alpha.opacity+=5
+else if (window.highlighting)
+clearInterval(highlighting)
+}
+</script>
+</head>
+<body>
+<center>
+  <a href=#><img border="0" src="77.jpg" width="219" height="176" style="filter:alpha(opacity=40)" 
+     onMouseOver="high(this)" onMouseOut="low(this)"></a><br>
+  <br>
+<img src=018.gif><br><br>
+  <font size="20" color="#0000FF" face="方正魏碑繁体">鼠标移到<br>
+  模糊的图上，<br>
+  图慢慢地变清晰,<br>
+  移走鼠标，图又变模糊。</font><font size=20 color=red face=方正魏碑繁体> </font>
+</center>
+</body>
+</html>

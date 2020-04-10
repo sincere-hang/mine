@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>精确计时器</title>
+</head>
+<body onLoad="display()" bgcolor="#C0C0C0">
+
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Begin
+var ms = 0;				//以毫秒为单位的计数值
+var state = 0;				//状态，如果为1表示正在计时。
+
+function startstop() {			//启动，停止计时的主程序
+if (state == 0) {			//如果当前处于停止状态
+state = 1;				//则设定当前状态为"正在计时"
+then = new Date();			//创建"then"这个日期/时间对像
+then.setTime(then.getTime() - ms);	//为这个对象赋值
+}
+else{					//否则(当前正在计时)
+state = 0;				//设定状态为“停止”
+now = new Date();			//取当前事件
+ms = now.getTime() - then.getTime();	//取和开始时间的差值
+document.stpw.time.value = ms;		//显示这个差值
+   }
+}
+
+function swreset() {
+state = 0;				//清除状态标志
+ms = 0;					//清除已记录时间
+document.stpw.time.value = ms;		//显示已经清除的时间
+}
+
+function display() {
+setTimeout("display();", 50);		//设定50毫秒刷新显示一次
+if (state == 1)  {			//如果正在计时
+now = new Date();			//取当前时间
+ms = now.getTime() - then.getTime();	//取经过的毫秒数
+document.stpw.time.value = ms;		//显示这个差值
+   }
+}
+// End -->
+</SCRIPT>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+ <td width="100%" colspan="2" height="40" valign="top">
+  <FORM NAME="stpw">
+  逝去时间:   
+  <INPUT TYPE="text" Name="time" size="20" value="0">　<font size=2>单位：毫秒</font>
+ </td> 
+</tr> 
+<tr> 
+ <td width="18%">   
+  <INPUT TYPE="BUTTON" Name="ssbutton" VALUE="起始开关" onClick="startstop()" style="background-color: #FFFFFF; border: 1 solid #000000">   
+ </td> 
+ <td width="82%">   
+  <INPUT TYPE="BUTTON" NAME="reset" VALUE="归　零" onClick="swreset()" style="background-color: #FFFFFF; border: 1 solid #000000">   
+ </td> 
+</tr> 
+</table> 
+</FORM>  
+</body>   
+</html>   

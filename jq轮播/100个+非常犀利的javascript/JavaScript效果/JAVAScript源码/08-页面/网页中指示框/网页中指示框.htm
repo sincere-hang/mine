@@ -1,0 +1,126 @@
+<html>
+<head>
+<title>网页中指示框</title>
+<style  type="text/css">
+<!--
+a {color:000000;TEXT-DECORATION: none;font-size:10pt;}
+a:hover{color=ffff80;}
+-->
+</style>
+</head>
+<body>
+
+<script language="javascript">
+//显示的信息，可以使用HTML语法，注意引号用法，单套双。
+var message='<table border=1 width=100 bordercolorlight=000000 cellspacing= 0 cellpadding= 0 bordercolor=FFFFFF><tr><td width=100><font face="Arial"><b>News!</b></font></td></tr><tr><td width=100><a href=#><nobr>本站的在线语音聊天功能已经开放。</a><a href=#><br>中青队四国邀请赛表现不俗。</a><a href=#><br>javascript新世界——点击这里</a></td></tr></table>'
+//背景色
+var backgroundcolor="#a0a0ff"
+//0 代表信息永远显示，1 代表信息只显示一段时间，2为随机显示模式；
+var displaymode=1
+//如果显示模式为在指定时间内显示，输入时间段(1000为1秒)；
+var displayduration=10000
+//1代表闪烁，0代表不闪烁；
+var flashmode=1
+//如果设置了闪烁，输入闪烁的颜色；
+var flashtocolor="e0e0ff"
+////下面不必修改////
+var which=0				//状态标志
+
+function regenerate(){
+window.location.reload()		//刷新页面
+}
+
+function regenerate2(){
+if (document.layers)
+setTimeout("window.onresize=regenerate",400)	//每400毫秒设定一次onresize属性，以便在窗口改变大小时及时刷新
+}
+
+function display2(){
+if (document.layers){			//如果浏览器是NS
+if (topmsg.visibility=="show")		//如果浮动层当前可见
+topmsg.visibility="hide"		//则将其隐藏
+else					//否则
+topmsg.visibility="show"		//将其显示出来
+}
+else if (document.all){			//如果浏览器是IE
+if (topmsg.style.visibility=="visible")	//如果浮动层当前可见
+topmsg.style.visibility="hidden"	//则将其隐藏
+else					//否则
+topmsg.style.visibility="visible"	//将其显示出来
+//在10秒到20秒之间的随机延时后重新执行，交替显示和隐藏，形成闪烁效果。
+setTimeout("display2()",Math.round(Math.random()*10000)+10000)
+}
+}
+
+function flash(){				//形成闪烁效果
+if (which==0){					//根据状态标志决定操作，如果需要改变背景色
+if (document.layers)				//如果是NS
+topmsg.bgColor=flashtocolor			//则利用bgColor改变背景色到flashtocolor
+else						//如果是IE
+topmsg.style.backgroundColor=flashtocolor	//则利用style.backgroundColor改变背景色到flashtocolor
+which=1						//切换状态标志，下一次操作为恢复背景色
+}
+else{						//如果本次操作需要恢复背景色
+if (document.layers)				//如果是NS
+topmsg.bgColor=backgroundcolor			//则利用bgColor恢复背景色到backgroundcolor
+else						//如果是IE
+topmsg.style.backgroundColor=backgroundcolor	//则利用style.backgroundColor恢复背景色到backgroundcolor
+which=0						//切换状态标志，下一次操作为改变背景色
+}
+}
+
+if (document.all){		//如果是IE，则写入显示所需要的浮动层.
+document.write('<span id="topmsg" style="position:absolute;visibility:hidden">'+message+'</span>')
+}
+
+function logoit(){							//以IE兼容方式调整浮动层位置
+document.all.topmsg.style.left=document.body.scrollLeft+document.body.clientWidth/2-document.all.topmsg.offsetWidth/2
+document.all.topmsg.style.top=document.body.scrollTop+document.body.clientHeight-document.all.topmsg.offsetHeight-4
+}
+
+function logoit2(){							//以NS兼容方式调整浮动层位置
+topmsg.left=pageXOffset+window.innerWidth/2-topmsg.document.width/2	//将浮动层调到页面中部
+topmsg.top=pageYOffset+window.innerHeight-topmsg.document.height-5	//将浮动层调到页面底部
+setTimeout("logoit2()",90)						//90毫秒后再次调整位置，以保持其始终居于页面底部中间
+}
+
+function setmessage(){
+document.all.topmsg.style.left=document.body.scrollLeft+document.body.clientWidth/2-document.all.topmsg.offsetWidth/2	//设定浮动层在页面中间
+document.all.topmsg.style.top=document.body.scrollTop+document.body.clientHeight-document.all.topmsg.offsetHeight-4	//设定浮动层在页面底部
+document.all.topmsg.style.backgroundColor=backgroundcolor			//设定浮动层背景颜色
+document.all.topmsg.style.visibility="visible"					//将浮动层设为可见
+if (displaymode==1)								//如果只需要显示一段时间
+setTimeout("topmsg.style.visibility='hidden'",displayduration)			//则用setTimeout设定超时，让浮动层在一端时间后隐藏
+else if (displaymode==2)							//如果需要闪烁显示
+display2()									//则调用display2过程进行随即消隐显示
+if (flashmode==1)								//如果需要闪烁
+setInterval("flash()",1000)							//设定每一秒进行一次闪烁
+window.onscroll=logoit								//当进行页面卷动的时候重新调整层的位置
+window.onresize=new Function("window.location.reload()")			//当窗口改变大小时则刷新本页
+}
+
+function setmessage2(){
+topmsg=new Layer(window.innerWidth)						//利用new Layer生成浮动层
+topmsg.bgColor=backgroundcolor							//设定浮动层的背景颜色
+regenerate2()									//调用regenerate2，以便在必要的时候刷新页面
+topmsg.document.write(message)							//将消息内容以文本流形式写进浮动层
+topmsg.document.close()								//关闭文本流
+logoit2()									//调整浮动层位置
+topmsg.visibility="show"							//使浮动层可见
+if (displaymode==1)								//如果只显示一次
+setTimeout("topmsg.visibility='hide'",displayduration)				//则在延时displayduration毫秒后消隐浮动层
+else if (displaymode==2)							//如果是设定是随机显示
+display2()									//则调用display2进行随机显示
+if (flashmode==1)								//如果需要闪烁
+setInterval("flash()",1000)							//则设定闪烁时钟
+}
+
+if (document.layers)		//如果是NS
+window.onload=setmessage2	//在页面装入的时候，启动setmessage2
+else if (document.all)		//如果是IE
+window.onload=setmessage	//则在页面装入的时候启动setmessage
+</script>
+
+<font size=5><b>欢迎光临我的网页</b></font>
+</body>
+</html>

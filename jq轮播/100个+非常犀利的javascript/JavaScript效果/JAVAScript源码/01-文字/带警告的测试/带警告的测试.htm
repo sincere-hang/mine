@@ -1,0 +1,37 @@
+<html>
+<head>
+<title>带警告的测试</title>
+
+<script language=javascript>
+<!--
+function answer(sourceobj){
+msg=sourceobj.value		//得到提示的内容
+alert(msg)			//弹出提示窗口
+}
+-->
+</script>
+
+</head>
+
+<body>
+<table border="1" width="100%" bordercolorlight="#000000" cellspacing="0" cellpadding="0" bordercolor="#FFFFFF">
+  <tr>
+    <td width="100%" colspan="3">日本的首都是哪里？答案是：</td>
+  </tr>
+  <tr>
+    <td width="34%">
+    <FORM>
+<INPUT TYPE="radio" NAME="radio" value="说的好像是英国的首都吧？你答错了……" onClick="answer(this)">伦敦 
+    </td>
+    <td width="33%">
+    <INPUT TYPE="radio" NAME="radio" value="恭喜你！答对了！你将获得“地理博士称号” ：）" onClick="answer(this)">东京 
+    </td>
+    <td width="33%">
+    <INPUT TYPE="radio" NAME="radio" value="嗯……这个答案和正确答案接近了一点。还需要加油！" onClick="answer(this)">巴格达 
+    </td>
+  </tr>
+</table>
+</form> 
+</body> 
+</html> 
+

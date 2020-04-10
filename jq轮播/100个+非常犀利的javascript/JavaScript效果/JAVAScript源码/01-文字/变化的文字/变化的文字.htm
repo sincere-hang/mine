@@ -1,0 +1,78 @@
+<html>
+<head>
+</head>
+<body>
+<SCRIPT language=JavaScript>
+<!-- Begin
+//以下内容可以自己定义
+var speed = 20;						//每次改变字体的时间间隔，越小变化越快
+var cycledelay = 1000;					//字体变化到极限(最大或最小)的时候保持不变的时间，以毫秒记
+var maxsize = 48;					//字体大小的上限
+var thismsg2 = new initArray(				//这里建立一个数组，里面存放需要显示的各项内容。
+"从小变大……<br>还会从大变小……",
+"<a href=#><b><i>可以加粗加斜加链接……</i></b></a>",
+"<img src=images/left.gif>还可以加图片:)<img src=images/right.gif>",
+"嘿嘿……酷吧？"
+//这里还可以继续加需要显示的条目
+);
+//以下内容不要随意改变
+var x = 0;
+var y = 0;
+var thismsg, size;
+var esize = "";
+function initArray() {					//定义初始化数组的函数
+this.length = initArray.arguments.length;		
+for (var i = 0; i < this.length; i++) {
+this[i] = initArray.arguments[i];
+   }
+}
+if(navigator.appName == "Netscape")			//如果是NS
+document.write('<layer id="msgblk"></layer><br>');	//利用layer作为容器
+if (navigator.appVersion.indexOf("MSIE") != -1)		//如果是IE
+document.write('<span id="msgblk"></span><br>');	//则用span作为容器
+
+function big(){						//将字体变大的主函数
+thismsg = thismsg2[y];					//取当前应该显示的内容
+if (x < maxsize) {					//如果字体大小没有达到最大值
+x++;							//则将字体加大一号
+setTimeout("big()",speed);				//设定下一次加大字体的延时
+}
+else setTimeout("small()",cycledelay);			//否则(字体已经最大)则设定下一次操作为减小字体
+if(navigator.appName == "Netscape") {			//如果是NS
+size = "<font point-size='"+x+"pt'>";			//则利用font标签的point-size参数设定字符大小。
+document.msgblk.document.write(size+"<center>"+thismsg+"</center>"+esize);//将需显示的内容以文本流方式写入容器
+document.msgblk.document.close();			//关闭文本流。
+}
+if (navigator.appVersion.indexOf("MSIE") != -1){	//如果是IE
+msgblk.innerHTML = "<center>"+thismsg+"</center>";	//则利用修改容器innerHTML属性的方法先定义需显示内容
+msgblk.style.fontSize=x+'px'				//再修改其fontsize的style属性以改变字体大小
+   }
+}
+function small(){					//将字体变小的主函数
+if (x > 1) {						//如果如果字体大小大于1(表明还可以再减小)
+x--;							//则将字体减小一级
+setTimeout("small()",speed);				//设定下一次减小字体的延时
+}
+else {							//否则(字体已经最小)
+setTimeout("big()",cycledelay);				//则设定下一次操作为加大字体
+y++;							//利用字体最小的时候切换显示内容为下一条
+if (y > thismsg2.length - 1) y = 0;			//如果刚刚显示的已经是最后一条信息，则重新回到第一条
+}
+if(navigator.appName == "Netscape") {			//如果是NS
+size = "<font point-size='"+x+"pt'>";			//写入需要显示的文本
+document.msgblk.document.write(size+"<center>"+thismsg+"</center>"+esize);
+document.msgblk.document.close();			//关闭文本流
+}
+if (navigator.appVersion.indexOf("MSIE") != -1){	//如果是IE
+msgblk.innerHTML = "<center>"+thismsg+"</center>";	//切换需要显示的文本
+msgblk.style.fontSize=x+'px'				//改变文字大小为当前值
+   }
+}
+setTimeout("big()",speed);				//设定下一次将字体变大的延时
+//  End -->
+</SCRIPT>
+
+</body>
+</html>
+
+

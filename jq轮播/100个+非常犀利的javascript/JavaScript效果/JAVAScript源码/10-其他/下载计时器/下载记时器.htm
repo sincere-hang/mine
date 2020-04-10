@@ -1,0 +1,179 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>下载记时器</title>
+
+<script LANGUAGE="JavaScript">
+<!-- Begin
+
+function MakeArray(n) {			//创建数组
+this.length = n;			//定义数组长度
+for (var i = 1; i <= n; i++) { 		//给每个元素赋初值
+this[i] = 0
+}
+return this				//返回创建好的数组
+}
+
+speedVar = new MakeArray(7);		//这里定义不同的网速计算时所需要的基准数据。
+speedVar[1] = "1.1719"			//9.6k
+speedVar[2] = "1.7578"			//14.4k
+speedVar[3] = "3.5156"			//28.8k
+speedVar[4] = "4.1016"			//33.6k
+speedVar[5] = "6.8359"			//56k
+speedVar[6] = "7.8125"			//64k
+speedVar[7] = "16.6250"			//128k
+
+function compute(form, mult){
+for (i=1; i < 8; i++){
+if (form.size.value==null||form.size.value.length==0){	//如果大小栏没有填入文字
+form.size.value=0;					//则设定文件大小为0
+}
+if (form[i+"hour"].value==null||form[i+"hour"].value.length==0){	//如果当前行的“小时”为空
+form[i+"hour"].value=0;							//则补填进“0”
+}       
+if (form[i+"minute"].value==null||form[i+"minute"].value.length==0){	//如果当前行的“分”为空
+form[i+"minute"].value=0;						//则补填进“0”
+}
+if (form[i+"second"].value==null||form[i+"second"].value.length==0){	//如果当前行的“秒”为空
+form[i+"second"].value=0;						//则补填进“0”
+}
+if (mult != 0 && form.size.value != 0){		//如果文件大小不为0
+with (Math){					//默认对象改为Math以便于接下来的数学计算
+var speed = speedVar[i];			//取当前行对应的速度基值
+var TotalTime = ((form.size.value*mult)/speed);	//需要的总时间(秒)
+var TotalHours = floor((TotalTime/3600));	//所需的小时数
+var TotalHoursMod = (TotalTime%3600);		//除去小时后的余数
+var TotalMin = floor(TotalHoursMod/60);		//所需时间除去小时后剩下的分钟数
+var TotalMinMod = (TotalHoursMod%60);		//除去分钟后的余数(也就是秒数)
+var TotalSec = floor(TotalMinMod);		//所需时间除去小时及分钟后剩下的秒数
+form[i+"hour"].value=TotalHours;		//将“小时”写入对应的表格
+form[i+"minute"].value=TotalMin;		//将“分”写入对应的表格
+form[i+"second"].value=TotalSec;		//将“秒”写入对应的表格
+      }
+   }
+}
+return;
+}
+// End -->
+</script>
+
+<meta name="description" content="下载记时器，可以计算软件的下载时间。">
+</head>
+
+<body>
+<br>
+<form METHOD="POST" name="s"> 
+ <table BORDER="1" bordercolorlight="#000000" bordercolor="#FFFFFF" bgcolor="#C0C0C0"> 
+  <tr> 
+   <td>文件大小 
+    <input TYPE="TEXT" NAME="size" SIZE="10"> 
+    <input TYPE="BUTTON" OnClick="compute(this.form, 1)" VALUE="KB" style="font-family: Arial; border: 1 solid #000000"> 
+    <input TYPE="BUTTON" OnClick="compute(this.form, 1024)" VALUE="MB" style="font-family: Arial; border: 1 solid #000000"> 
+   </td> 
+<script language="JavaScript"> 
+<!-- 
+document.s.size.focus(); 
+ // --> 
+</script> 
+   <td colspan="3"> 
+    <div align="center"> 
+     <center> 
+      需要下载时间(理想值)  
+     </center> 
+    </div> 
+   </td> 
+  </tr> 
+  <tr align="center">  
+   <td>调制解调器速率...</td> 
+   <td>小时</td> 
+   <td>分钟</td> 
+   <td>秒</td> 
+  </tr> 
+  <tr align="center">  
+   <td>9.6 Kb</td>   
+   <td>   
+    <input NAME="1hour" SIZE="6" style="border: 1 solid #000000">   
+   </td>   
+   <td>   
+    <input TYPE="TEXT" NAME="1minute" SIZE="6" style="border: 1 solid #000000">   
+   </td>   
+   <td>   
+    <input TYPE="TEXT" NAME="1second" SIZE="6" style="border: 1 solid #000000">   
+   </td>   
+  </tr>   
+  <tr align="center">    
+   <td>14.4 Kb</td>   
+   <td>   
+    <input TYPE="TEXT" NAME="2hour" SIZE="6" style="border: 1 solid #000000">   
+   </td>   
+   <td>   
+    <input TYPE="TEXT" NAME="2minute" SIZE="6" style="border: 1 solid #000000">   
+   </td>   
+   <td>   
+    <input TYPE="TEXT" NAME="2second" SIZE="6" style="border: 1 solid #000000">   
+   </td>   
+  </tr>   
+  <tr align="center">    
+   <td>28.8 Kb</td>   
+   <td>   
+    <input TYPE="TEXT" NAME="3hour" SIZE="6" style="border: 1 solid #000000">   
+   </td>   
+   <td>   
+    <input TYPE="TEXT" NAME="3minute" SIZE="6" style="border: 1 solid #000000">   
+   </td>   
+   <td>   
+    <input TYPE="TEXT" NAME="3second" SIZE="6" style="border: 1 solid #000000">   
+   </td>   
+  </tr>   
+  <tr align="center">   
+   <td>33.6K</td>   
+   <td>   
+    <input type="TEXT" name="4hour" size="6" style="border: 1 solid #000000">   
+   </td>   
+   <td>   
+    <input type="TEXT" name="4minute" size="6" style="border: 1 solid #000000">   
+   </td>   
+   <td>   
+    <input type="TEXT" name="4second" size="6" style="border: 1 solid #000000">   
+   </td>   
+  </tr>   
+  <tr align="center">    
+   <td>56 Kb</td>   
+   <td>   
+    <input TYPE="TEXT" NAME="5hour" SIZE="6" style="border: 1 solid #000000">   
+   </td>   
+   <td>   
+    <input TYPE="TEXT" NAME="5minute" SIZE="6" style="border: 1 solid #000000">   
+   </td>   
+   <td>   
+    <input TYPE="TEXT" NAME="5second" SIZE="6" style="border: 1 solid #000000">   
+   </td>   
+  </tr>   
+  <tr align="center">    
+   <td>ISDN (64 Kb)</td>   
+   <td>   
+    <input TYPE="TEXT" NAME="6hour" SIZE="6" style="border: 1 solid #000000">   
+   </td>   
+   <td>   
+    <input TYPE="TEXT" NAME="6minute" SIZE="6" style="border: 1 solid #000000">   
+   </td>   
+   <td>   
+    <input TYPE="TEXT" NAME="6second" SIZE="6" style="border: 1 solid #000000">   
+   </td>   
+  </tr>   
+  <tr align="center">    
+   <td>ISDN (128 Kb)</td>   
+   <td>   
+    <input TYPE="TEXT" NAME="7hour" SIZE="6" style="border: 1 solid #000000">   
+   </td>   
+   <td>   
+    <input TYPE="TEXT" NAME="7minute" SIZE="6" style="border: 1 solid #000000">   
+   </td>   
+   <td>   
+    <input TYPE="TEXT" NAME="7second" SIZE="6" style="border: 1 solid #000000">   
+   </td>   
+  </tr>   
+ </table>   
+</form>   
+</body>   
+</html>   

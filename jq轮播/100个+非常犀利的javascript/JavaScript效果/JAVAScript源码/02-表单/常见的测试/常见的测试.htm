@@ -1,0 +1,50 @@
+<html>
+<head>
+
+<SCRIPT language=JavaScript>
+<!--
+function processForm(form){	//处理选项
+//根据c1选项组的值来改变文本框的内容。
+if (form.c1[0].checked==1) form.answer.value="把双手放在胸口前往往给人一种害羞、紧张、自我保护的感觉。选择这个姿势的男性就是喜欢这种含羞答答、在紧张时不自觉会手足无措，稍具气质及矜持的女性。";
+if (form.c1[1].checked==1) form.answer.value="两手垂下给人一种自然、顺从的感觉。选择这个姿势的男性会喜欢不造作、不刻意掩饰自己及带点天真的女性。";
+if (form.c1[2].checked==1) form.answer.value="两手张开给人一种接纳、包容的感觉。选择这个姿势的男性会倾向喜欢较年长、或是能给予他像母亲的爱般温暖的女性。";
+}
+//-->
+</SCRIPT>
+
+<title>常见的测试</title>
+</head>
+
+<body>
+<FORM name=see>
+<DIV align=left>
+<TABLE border=0 cellPadding=2 cellSpacing=0 height=223 width=461>
+ <TBODY>
+  <TR>
+   <TD height=1 width=461>
+    <b>
+    测试——你喜欢哪类型的女性？<br>
+    </b>
+   </TD>
+  </TR>
+  <TR>
+   <TD height=0 width=461>
+    <DIV align=left>
+     <P>假如圣母玛莉亚赤裸站在你面前，你认为她的双手会放在那儿?</P></DIV>
+    <DIV align=left>
+     <P><INPUT name=c1 type=radio value=1 checked>放在胸口前。<BR><INPUT name=c1 type=radio value=3>两手垂下。<BR><INPUT name=c1 type=radio value=V>两手张开成V字形。</P></DIV>
+    </TD>
+   </TR>
+   <TR>
+    <TD align=middle height=27 width=461><INPUT onclick=processForm(this.form) style="font-size: 9pt; background-color: #FFFFFF; border: 1 solid #000000" type=button value=选好了></TD></TR>
+   <TR>
+    <TD align=middle height=-12 width=461><TEXTAREA cols=47 name=answer rows=5 style="OVERFLOW:auto;color: rgb(80,80,255);font-size: 9pt; line-height: 15px; border: 1 solid #000000"></TEXTAREA></TD></TR>
+ </TBODY>
+</TABLE>
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,67 @@
+<html>
+<HEAD>
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Begin
+var max=0;
+msgkeeptime=2000;				//每条信息保持时间
+typeinterval=50;
+//定义需要显示的条目
+tl = new msglist( 
+"今有邑方不知大小，各开中门，出北门二十步有木，出南门一十四步，折西行一千七百七十五步见木。问邑方几何？《详解九章算法》",
+"今有鸡翁一，值五文；鸡母一，值三文；鸡雏三，值一文。凡一百文，买鸡百只，问鸡翁、母、雏各几何？《续古摘奇算法》",
+"今有邑方不知大小，各开中门，出北门二十步有木，出南门一十四步，折西行一千七百七十五步见木。问邑方几何？《详解九章算法》",
+"中国的《详解九章算法》和《续古摘奇算法》是相当不错的文献",
+"现在我们用Netscape(网景)公司最先推出的JavaScript来做中国古代题目的演示"
+
+//这里还可以根据需要增加条目
+);
+
+function msglist() {
+max=msglist.arguments.length;
+for (i=0; i<max; i++)
+this[i]=msglist.arguments[i];
+}
+
+var x = 0; pos = 0;				//初始化变量
+var l = tl[0].length;				//取得第一条消息的长度
+
+function msgtyper() {				//依次显示消息的主函数
+document.tickform.msgbox.value = tl[x].substring(0, pos) + "_";	//显示第x条信息的前pos个字符，并在最后面加类似光标的下划线。
+if(pos++ == l) {				//将需显示结束部分后移一个字符，如果超出了信息最大长度，则表明本条信息已经显示完整。
+pos = 0; 					//恢复指针，准备从第一个字符开始显示
+if(++x == max) x = 0; 				//轮换需要显示的信息条目
+l = tl[x].length;				//取得下一次需要显示那条信息的长度
+setTimeout("msgtyper()", msgkeeptime); 		//将信息保持msgkeeptime毫秒后，显示下一条
+}
+else						//如果本条信息没有显示完
+setTimeout("msgtyper()", typeinterval);		//则设定显示下一个字的延时为typeinterval毫秒
+}
+//  End -->
+</script>
+
+<title>打字文本框</title>
+</HEAD>
+<body OnLoad="msgtyper()" text="#FFFFFF">
+<table border="1" width="38%" cellspacing="0" cellpadding="0" bordercolorlight="#000000" bgcolor="#808080" height="0">
+  <tr>
+    <td width="100%"><b>打字文本框效果演示</b></td>
+  </tr>
+  <tr>
+    <td width="100%" height="110">
+      <form name=tickform>
+<p align="center">
+<textarea name=msgbox rows=5 cols=31  style="background-color: #000000; color: #FFFFFF;overflow:auto">初始信息</textarea>
+</td>
+  </tr></form>
+  <tr>
+    <td width="100%">
+      <p align="right"><b>&gt;&gt;&gt;</b>
+    </td>
+  </tr>
+</table>
+</body>
+</html>
+
+
+
+

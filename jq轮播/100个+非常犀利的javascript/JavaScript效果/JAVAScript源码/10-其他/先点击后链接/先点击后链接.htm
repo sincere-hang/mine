@@ -1,0 +1,46 @@
+<html>
+<head>
+<script language="JavaScript">
+var num = 3;  								//链接总数
+var mypage = 'http://www.263.net'; 					//目标链接地址
+var pissoff = ' 请先从上面进入网易163之后，才能够从这里进入首都在线';	//这里是提示信息
+allow = Array();							//开辟数组
+allow[num] = 2;								//最后一链接为最终需要点击的
+function gotoit(link){							//记录点击状态
+	if (link != num){						//如果点击的不是最后一个
+		allow[link] = 2;					//则记录当前已经点击的链接
+	} else {							//否则(做后一个链接需要作检查)
+		for (i=1;i<=num;i++){					//检查前面每一个链接的点击状况
+			if (allow[i] != 2){				//如果某一链接没有被点击过
+				i = num + 1;				//准备退出循环
+				lemmeIn = 0;				//设定标志，不允许链接
+			} else {					//否则(前面每一个都被点击过了)
+				lemmeIn = 1;				//设定允许标志
+			}
+		}
+		if (lemmeIn == 1){					//如果允许链接
+			window.location = mypage;			//则通过改变窗口location的方法进行导航。
+		} else {						//否则
+			alert(pissoff);					//弹出提示信息
+		}
+	}
+}
+//--->
+</script>
+
+<style type="text/css">
+<!--
+A {color:000000;font-size:11pt; TEXT-DECORATION: none}
+A:hover	{color: a0a0a0}
+-->
+</style>
+<title>先点击后链接</title>
+</head>
+
+<body>
+<p><b><a href="http://www.163.com" onClick="gotoit(1)" target="_blank">要进入首都在线，必须先点击这里进入网易</u></a><br></b>
+<p><b><a href="http://century.scit.edu.cn" onClick="gotoit(2)" target="_blank">还要进入世纪学苑</u></a><br></b>
+<p>
+<b><a href="javascript:gotoit(num)">最后才能从这里进入首都在线</a></b>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>显示鼠标坐标</title>
+</head>
+
+<body onMousemove="ieMouseMove()" bgcolor="#FFFFFF">
+
+<SCRIPT LANGUAGE="JavaScript">
+if (navigator.appName == 'Netscape')			//如果浏览器是NS
+ {
+	document.captureEvents(Event.MOUSEMOVE);	//捕获鼠标移动事件
+	document.onmousemove = netscapeMouseMove;	//交由netscapeMouseMove处理
+}
+
+function netscapeMouseMove(e) {
+if (e.screenX != document.test.x.value && e.screenY != document.test.y.value)	//如果鼠标位置有改变
+ {
+	document.test.x.value = e.screenX;	//刷新x坐标显示
+	document.test.y.value = e.screenY;	//刷新y坐标显示
+} 
+}
+
+function ieMouseMove() {
+if (window.event.x != document.test.x.value && window.event.y != document.test.y.value)	//如果鼠标位置有改变
+ {
+	document.test.x.value = window.event.x;		//刷新x坐标显示
+	document.test.y.value = window.event.y;		//刷新y坐标显示
+}
+}
+</SCRIPT>
+
+<FORM NAME="test">
+<table border="1" width=200 bordercolorlight="#000000" cellspacing="0" cellpadding="0" bordercolor="#FFFFFF" bgcolor="#C0C0C0" height="77">
+  <tr>
+    <td width="100%" height="16"><b>请注意鼠标坐标</b></td>
+  </tr>
+  <tr>
+    <td width="100%" height="57">
+      <p align="center"><b>
+	X:<INPUT TYPE="TEXT" NAME="x" SIZE="3">
+	Y:<INPUT TYPE="TEXT" NAME="y" SIZE="3">
+      </b> 
+    </td>
+  </tr>
+</table>
+</FORM>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<html>
+<head>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Begin
+var Message="  欢迎光临，请多多提出你的建议!!! ";	//这里可自定义显示内容
+var place=1;
+function scrollIn() {					//这个函数用来显示消息
+window.status=Message.substring(0, place);		//根据place的值取当前需显示的字符串
+if (place >= Message.length) {				//如果全部信息已经显示完毕
+place=1;						//则将place重置
+window.setTimeout("scrollOut()",300); 			//准备在300毫秒后收起显示
+} else {						//否则(信息还没有显示完)
+place++;						//将需取的字符串长度计数器加一
+window.setTimeout("scrollIn()",50); 			//准备下一次显示
+   } 
+}
+function scrollOut() {					//这个函数用来消隐消息
+window.status=Message.substring(place, Message.length);	//取Message右边的一定长度的字符串
+if (place >= Message.length) {				//如果已经无字符可取(信息已经完全消隐)
+place=1;						//则初始化place
+window.setTimeout("scrollIn()", 100);			//设定下一次操作是显示信息
+} else {						//否则(信息还没有消隐完毕)
+place++;						//计数器加一
+window.setTimeout("scrollOut()", 50);			//设定消隐下一个字符的延时
+   }
+}
+// End -->
+</SCRIPT>
+
+<title>来回出现文字的状态栏特效</title>
+</head>
+<body onLoad="scrollIn()">
+<b>请注意页面左下角的状态栏</b>
+</body>
+

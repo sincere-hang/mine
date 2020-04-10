@@ -1,0 +1,82 @@
+<HTML>
+<HEAD>
+<TITLE>
+UFO MOVING
+</TITLE>
+<STYLE>
+.30PT{font-size:60pt;color:red;font-family:方正行楷繁体}
+</STYLE>
+<SCRIPT LANGUAGE="JavaScript">
+var isNS = ((navigator.appName == "Netscape") && (parseInt(navigator.appVersion) >= 4));
+var _all = '';
+var _style = '';
+var wwidth, wheight;
+var ydir = '++';
+var xdir = '++';
+var id1, id2, id3;
+var x = 1;
+var y = 1;
+var x1, y1;
+if(!isNS) {
+_all='all.';
+_style='.style';
+}
+function getwindowsize() {
+clearTimeout(id1);
+clearTimeout(id2);
+clearTimeout(id3);
+if (isNS) {
+wwidth = window.innerWidth - 55;
+wheight = window.innerHeight - 50;
+} else {
+wwidth = document.body.clientWidth - 55;
+wheight = document.body.clientHeight - 50;
+}
+id3 = setTimeout('randomdir()', 20000);
+animate();
+}
+function randomdir() {
+if (Math.floor(Math.random()*2)) {
+(Math.floor(Math.random()*2)) ? xdir='--': xdir='++';
+} else {
+(Math.floor(Math.random()*2)) ? ydir='--': ydir='++';
+}
+id2 = setTimeout('randomdir()', 20000);
+}
+function animate() {
+eval('x'+xdir);
+eval('y'+ydir);
+if (isNS) {
+pic1.moveTo((x+pageXOffset),(y+pageYOffset))
+} else {
+pic1.pixelLeft = x+document.body.scrollLeft;
+pic1.pixelTop = y+document.body.scrollTop;
+}
+if (isNS) {
+if (pic1.top <= 5+pageYOffset) ydir = '++';
+if (pic1.top >= wheight+pageYOffset) ydir = '--';
+if (pic1.left >= wwidth+pageXOffset) xdir = '--';
+if (pic1.left <= 5+pageXOffset) xdir = '++';
+} else {
+if (pic1.pixelTop <= 5+document.body.scrollTop) ydir = '++';
+if (pic1.pixelTop >= wheight+document.body.scrollTop) ydir = '--';
+if (pic1.pixelLeft >= wwidth+document.body.scrollLeft) xdir = '--';
+if (pic1.pixelLeft <= 5+document.body.scrollLeft) xdir = '++';
+}
+id1 = setTimeout('animate()', 30);
+}
+</script>
+</HEAD>
+<BODY OnLoad="getwindowsize()" OnResize="getwindowsize()" background="0001.jpg">
+<div id="pic1" style="position:absolute; visibility:visible; left:0px; top:0px; z-index:-1"> 
+  <img src="001.gif" border="0" width="60" height="60"></div>
+<script language="javascript">
+var pic1=eval('document.'+_all+'pic1'+_style);
+</script>
+<p><center>
+<font class=30pt><br>
+    <font color="#3366FF">想去踢球吗？</font></font><br>
+<br><br><br><br>
+  </center></p>
+</BODY>
+</HTML>

@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>显示在线时间</title>
+</head>
+<body>
+<center>
+<div align=center>
+<p>您在本站逗留了
+<input type=text id=input1 size=13 style="border: 1 solid #000000">
+</div>
+</center>
+
+<SCRIPT language=javascript>
+<!--
+var sec=0;
+var min=0;
+var hou=0;
+var msglist=new Array()
+msglist[0]="最后一条弹出的消息"
+msglist[1]="本站会不断更新。希望你能够玩得愉快"
+//这里可以继续追加信息。
+flag=msglist.length;				//计算需显示的条目数
+idt=window.setTimeout("updatedisplay();",1000);	//设定改变显示的计时器
+
+function updatedisplay(){
+sec++;						//秒数加一
+if(sec==60){					//若满一分钟
+sec=0;						//秒数恢复到0
+min+=1;						//分钟数加一
+}
+if(min==60){
+min=0;
+hou+=1;
+}
+if((sec==59) && (flag>0)){
+alert(msglist[flag-1]);				//弹出信息
+flag--;						//取下一条弹出式信息
+}
+input1.value=hou+"小时"+min+"分"+sec+"秒";	//显示时间
+idt=window.setTimeout("updatedisplay();",1000);
+}
+//-->
+</SCRIPT>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>下拉菜单改变背景图片</title>
+</head>
+
+<body>
+<SELECT onChange="changebg(this)"> 
+<OPTION SELECTED>没有背景
+<OPTION VALUE="url('images/back1.jpg')">雪花背景 
+<OPTION VALUE="url('images/back2.jpg')"> 五星背景 
+<OPTION VALUE="url('images/back3.jpg')"> 叶子背景
+</select>
+</body>
+</html>
+
+
+<script language=javascript>
+function changebg(obj){
+selindex=obj.selectedIndex		//取得选定选项的序号
+bgsrc=obj.options[selindex].value	//取得背景图片的路径
+document.body.style.background=bgsrc	//设定style.background属性，改变页面背景
+}
+</script>

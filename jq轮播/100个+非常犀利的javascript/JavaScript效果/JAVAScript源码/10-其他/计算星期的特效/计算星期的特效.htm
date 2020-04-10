@@ -1,0 +1,104 @@
+<html>
+<head>
+<title>计算星期的特效</title>
+</head>
+<body>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+function mod(x, x_div){    			//一个有用的函数，得到两数相除的余数
+        for (var i=x; i>=x_div; i -= x_div);    
+                return i;
+}
+
+function checkNum(str, min, max) {    		//检查输入内容是否正确
+        if (str == "") {        		//如果输入为空
+                alert("请输入你的选择");        
+                return false;    		//取消计算
+        }    
+        for (var i = 0; i < str.length; i++) {
+                var ch = str.substring(i, i + 1);        
+                if (ch < "0" || ch > "9") {	//如果输入的内容不是1~9的数字         
+                        alert("请你输入数字");            
+                        return false;        
+                }    
+        }    
+        var val = parseInt(str, 10);    	//将输入内容按十进制转换成数值
+        if ((val < min) || (val > max)) {       //检查输入数值是否超出允许范围
+                alert("请注意你输入的信息，不要超过了"+max+"。");        
+                return false;    
+        }    
+        return true;				//如果输入内容符合要求，则返回检查结果"true"
+}
+
+function jisuan(form){     
+        //检查日期的正确性
+        if ((checkNum(form.day.value,1,31)) && (checkNum(form.month.value,1,12)) && (checkNum(form.year.value,0,99))){
+                var cur_day = parseInt(form.day.value,10);      //将“日”部分由字符串转换成十进制整型数
+                var cur_month = parseInt(form.month.value,10);  //将“月”部分由字符串转换成十进制整型数
+                var cur_year = parseInt(form.year.value,10);    //将“年”部分由字符串转换成十进制整型数
+        //定义月特征值
+        var sig_val;    
+        if (cur_month == 1)             
+                sig_val = 0;    
+        else if (cur_month == 2)                
+                sig_val = 3;    
+        else if (cur_month == 3)                
+                sig_val = 3;    
+        else if (cur_month == 4)                
+                sig_val = 6;    
+        else if (cur_month == 5)                
+                sig_val = 1;    
+        else if (cur_month == 6)                
+                sig_val = 4;    
+        else if (cur_month == 7)                
+                sig_val = 6;    
+        else if (cur_month == 8)                
+                sig_val = 2;    
+        else if (cur_month == 9)                
+                sig_val = 5;    
+        else if (cur_month == 10)               
+                sig_val = 0;    
+        else if (cur_month == 11)               
+                sig_val = 3;    
+        else if (cur_month == 12)               
+                sig_val = 5; 
+		//计算“星期”数值放入val1中           
+                var val1 = mod((cur_year + parseInt(cur_year/4) + cur_day + sig_val),7);                
+
+        //根据数字格式的“星期”值显示相应表示星期的汉字。
+                if (val1 == 0)          
+                        alert("星期天");
+                else if (val1 == 1)             
+                        alert("星期一");
+                else if (val1 == 2)             
+                        alert("星期二");
+                else if (val1 == 3)             
+                        alert("星期三");
+                else if (val1 == 4)             
+                        alert("星期四");
+                else if (val1 == 5)             
+                        alert("星期五");
+                else if (val1 == 6)             
+                        alert("星期六");
+                        return true;     
+                }     
+                else    
+                return false;
+}
+//-->
+</SCRIPT>
+
+<FORM NAME = "What_Day">
+<PRE><B>请输入年份</B><font size=2>（0-99）</font>
+<INPUT TYPE="num" name="year" onChange="if (!checkNum(this.value, 0, 99)){this.focus();this.select();} else {}" size=10 value=""style="border: 1 solid #000000"> 
+<B>请输入月份</B><font size=2>（1-12）</font>
+<INPUT TYPE="num" name="month" onChange="if (!checkNum(this.value, 1, 12)){this.focus();this.select();} else {}" size=10 value=""style="border: 1 solid #000000">
+<B>请输入日期</B><font size=2>（1-31）</font>
+<INPUT TYPE="num" name="day" onChange="if (!checkNum(this.value, 1, 31)){this.focus();this.select();} else {}" size=10 value=""style="border: 1 solid #000000">
+<br>
+<INPUT TYPE="button" name="Find_Out" value=" 开 始 计 算 " onclick="jisuan(this.form)" style="border: 1 solid #000000"></PRE>
+</FORM>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>变形的图片</title>
+</head>
+
+<body onLoad="scale()">
+<a href=# target="new"><img src="images/tsg.jpg" name="u" border="0" alt="是不是很酷？"></a>
+<script language="JavaScript">
+var plus = 1;   			//变形量
+var winc = true;			//当前变形的方式，为true时代表宽度增加。
+
+function scale(){   
+if(winc == true) {   
+plus++;   
+}   
+if(plus==100) {   
+plus--;   				//减小变形量
+winc = false   
+}   
+if(plus==10) {   
+plus++;   				//增加变形量
+winc = true;   
+}   
+if(winc == false) {   
+plus--;   
+}   
+u.width=250 + plus;   		//改变图片宽度
+u.height=200 - plus;   		//改变图片高度
+setTimeout("scale()",50);   	//设定下一次变形的延时
+}
+</script>
+</body>
+</html>
+
+
+
+

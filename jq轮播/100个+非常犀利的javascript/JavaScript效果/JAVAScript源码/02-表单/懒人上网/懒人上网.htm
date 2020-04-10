@@ -1,0 +1,50 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>懒人上网</title>
+</head>
+<body>
+<div align="center">
+<SCRIPT language=JavaScript>
+<!--start stealth
+function GoToURL(j) {
+ window.status=('连接....') 					//改变状态栏提示
+ var URLis;
+ URLis = document.URLframe.Dest.value				//取输入框的内容
+  if (URLis == "" || URLis.length <= 8){ 			//大致判断内容的合法性
+   j.value = "请重新输入网址"					//如果明显不合法则给出提示
+   alert('\n请填入你需要的链接地址');
+   window.status=('输入错误，请重新输入网址')
+  } 
+  else{								//如果输入合法
+   j.value = "连接到: http://" + URLis   			//改变按钮上显示的提示
+   var location=("http://" + URLis);				//生成URL地址
+   this.location.href = location;				//转换到输入的地址去
+   window.status=('链接到' + URLis + '请稍等........');		//在状态栏给出提示
+  }
+}
+//-->
+</SCRIPT>
+
+<FORM name=URLframe>
+<div align="left">
+<TABLE border=0 cellspacing="0" cellpadding="0" width="425">
+  <TBODY>
+  <TR>
+    <TD align=middle vAlign=center colspan="3" width="423">
+      <p align="left"><font size="2">在这里输入你想去的地方的地址：</font></p>
+    </TD></TR>
+  <TR>
+    <TD align=middle vAlign=center width="30"><font face="Arial"><nobr>http://</font></TD>
+    <TD align=middle vAlign=center width="274"><INPUT 
+      maxLength=50 name=Dest size=37 style="font-family: Arial; border-left-style: solid; border-left-color: #FFFFFF; border-right-style: solid; border-right-color: #FFFFFF; border-top-style: solid; border-top-color: #FFFFFF"></TD>
+    <TD align=middle vAlign=center width="117">
+      <p><INPUT onclick=GoToURL(this) type=button value=" 连 接 " WIDTH="50" style="background-color: #FFFFFF; border: 1 solid #000000">
+    </TD></TR>
+  </TBODY>
+</TABLE>
+</div>
+</FORM>
+</div>
+</body>
+</html>

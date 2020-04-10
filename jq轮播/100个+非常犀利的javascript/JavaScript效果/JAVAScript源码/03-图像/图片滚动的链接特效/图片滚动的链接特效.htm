@@ -1,0 +1,168 @@
+<html>
+<head>
+
+<SCRIPT language="JavaScript">
+<!--
+var scrollerwidth=118		//图的宽度
+var scrollerheight=42		//图的高度
+var scrollerbgcolor='white'	//背景颜色
+var pausebetweenimages=3000	//每个图间暂停3秒。
+//编辑下面的行，如果希望logo都是带连接的，只要加上<a>标签即可。
+var slideimages=new Array()
+slideimages[0]='<A href="http://www.263.net.cn" target=_blank><IMG alt=首都在线263 src="images/263.gif" border="0"></A>'
+slideimages[1]='<A href="http://www.163.com"  target=_blank><IMG alt=网易163 src="images/163.gif" border="0"></A>'
+slideimages[2]='<A href="http://www.sina.com.cn" target=_blank><IMG alt=新浪sina src="images/sina.gif" border="0"></A>'
+slideimages[3]='<A href="http://cn.yahoo.com" target=_blank><IMG alt=雅虎yahoo src="images/yahoo.gif" border="0"></A>'
+slideimages[4]='<A href="http://www.chinaren.com" target=_blank><IMG alt=中国人chinaren src="images/chinaren.gif" border="0"></A>'
+//尽管填加更多的。
+if (slideimages.length>1)
+i=2
+else
+i=0
+//移动层(NS浏览器用)
+function nsmmovea(whichlayer){
+tlayer=eval(whichlayer)				//得到待移动的层
+if (tlayer.top>0&&tlayer.top<=5){		//如果目标层已经基本移到显示区中间
+tlayer.top=0					//将层调整到显示区中间
+setTimeout("nsmmovea(tlayer)",pausebetweenimages)//在延时后准备将目标层移出显示区
+setTimeout("nsmmoveb(document.main.document.second)",pausebetweenimages)//在延时后准备将第二层移进显示区
+return						//退出(不再上移图片)
+}
+if (tlayer.top>=tlayer.document.height*-1){	//如果目标层还没有完全移出显示区
+tlayer.top-=5					//则上移目标层
+setTimeout("nsmmovea(tlayer)",100)		//准备继续移动
+}
+else{						//否则(目标层已经移出显示区(不可见))
+tlayer.top=scrollerheight			//将目标层调整到显示区以下
+tlayer.document.write(slideimages[i])		//将第i条内容写入显示区
+tlayer.document.close()				//关闭文本流
+if (i==slideimages.length-1)			//改变i的值，准备下一次轮换成另一条预定义的内容
+i=0
+else
+i++
+}
+}
+//这个函数结构与上个相同，两个过程分别用于控制两个不同的层
+function nsmmoveb(whichlayer){
+tlayer2=eval(whichlayer)
+if (tlayer2.top>0&&tlayer2.top<=5){
+tlayer2.top=0
+setTimeout("nsmmoveb(tlayer2)",pausebetweenimages)
+setTimeout("nsmmovea(document.main.document.first)",pausebetweenimages)
+return
+}
+if (tlayer2.top>=tlayer2.document.height*-1){
+tlayer2.top-=5
+setTimeout("nsmmoveb(tlayer2)",100)
+}
+else{
+tlayer2.top=scrollerheight
+tlayer2.document.write(slideimages[i])
+tlayer2.document.close()
+if (i==slideimages.length-1)
+i=0
+else
+i++
+}
+}
+//移动层(IE浏览器用)
+function iemovea(whichdiv){
+tdiv=eval(whichdiv)					//得到待移动的层
+if (tdiv.style.pixelTop>0&&tdiv.style.pixelTop<=5){	//如果目标层已经基本移到显示区中间
+tdiv.style.pixelTop=0					//将层调整到显示区
+setTimeout("iemovea(tdiv)",pausebetweenimages)		//在延时后准备将目标层移出显示区
+setTimeout("iemoveb(second2)",pausebetweenimages)	//在延时后准备将第二层移进显示区
+return							//退出(不再上移图片)
+}
+if (tdiv.style.pixelTop>=tdiv.offsetHeight*-1){		//如果目标层还没有完全移出显示区
+tdiv.style.pixelTop-=5					//则上移目标层
+setTimeout("iemovea(tdiv)",100)				//准备继续移动
+}
+else{							//否则(目标层已经移出显示区(不可见))
+tdiv.style.pixelTop=scrollerheight			//将目标层调整到显示区以下
+tdiv.innerHTML=slideimages[i]				//将其内容替换成第i条
+if (i==slideimages.length-1)				//改变i的值，准备下一次轮换成另一条预定义的内容
+i=0
+else
+i++
+}
+}
+//这个函数结构与上个相同，两个过程分别用于控制两个不同的层
+function iemoveb(whichdiv){				
+tdiv2=eval(whichdiv)					//取的目标层
+if (tdiv2.style.pixelTop>0&&tdiv2.style.pixelTop<=5){	//如果目标层已经基本移到显示区中间
+tdiv2.style.pixelTop=0					//将目标层调整到显示区
+setTimeout("iemoveb(tdiv2)",pausebetweenimages)		//在延时后准备将目标层移出显示区
+setTimeout("iemovea(first2)",pausebetweenimages)	//在延时后准备将第二层移进显示区
+return							//退出(不再上移图片)
+}
+if (tdiv2.style.pixelTop>=tdiv2.offsetHeight*-1){	//如果目标层还没有完全移出显示区
+tdiv2.style.pixelTop-=5					//则上移目标层
+setTimeout("iemoveb(second2)",100)			//准备继续移动
+}
+else{							//否则
+tdiv2.style.pixelTop=scrollerheight			//将目标层调整到显示区以下
+tdiv2.innerHTML=slideimages[i]				//将其内容替换成第i条
+if (i==slideimages.length-1)				//改变i的值，准备下一次轮换成另一条预定义的内容
+i=0
+else
+i++
+}
+}
+
+function startscroll(){
+if (document.all){					//如果是IE
+iemovea(first2)						//调用iemovea调整层的位置，准备移动各层
+second2.style.top=scrollerheight			//将第二层移到显示区以下
+}
+else if (document.layers){				//如果是NS
+nsmmovea(document.main.document.first)			//开始移动第一层
+document.main.document.second.top=scrollerheight+5	//将第二层移到显示区以下
+document.main.document.second.visibility='show'		//显示第二层
+}
+}
+
+window.onload=startscroll
+//-->
+</SCRIPT>
+
+<title>图片滚动的链接特效</title>
+</head>
+<body>
+<ilayer id="main" width=&{scrollerwidth}; height=&{scrollerheight}; bgcolor=&{scrollerbgcolor};> 
+<layer id="first" left=0 top=1 width=&{scrollerwidth};> 
+
+<script language="JavaScript1.2">
+if (document.layers)
+document.write(slideimages[0])
+</script>
+
+</layer>
+<layer id="second" left=0 top=0 width=&{scrollerwidth}; visibility=hide> 
+<script language="JavaScript1.2">
+if (document.layers)
+document.write(slideimages[1])
+</script>
+</layer>
+</ilayer>
+<p>
+
+<SCRIPT language="JavaScript">
+<!--
+if (document.all){
+document.writeln('<span id="main2" style="position:relative;width:'+scrollerwidth+';height:'+scrollerheight+';overflow:hiden;background-color:'+scrollerbgcolor+'">')
+document.writeln('<div style="position:absolute;width:'+scrollerwidth+';height:'+scrollerheight+';clip:rect(0 '+scrollerwidth+' '+scrollerheight+' 0);left:0;top:0">')
+document.writeln('<div id="first2" style="position:absolute;width:'+scrollerwidth+';left:0;top:1;">')
+document.write(slideimages[0])
+document.writeln('</div>')
+document.writeln('<div id="second2" style="position:absolute;width:'+scrollerwidth+';left:0;top:0">')
+document.write(slideimages[1])
+document.writeln('</div>')
+document.writeln('</div>')
+document.writeln('</span>')
+}
+//-->
+</SCRIPT>
+
+</body>
+</html>

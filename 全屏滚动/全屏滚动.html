@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/jquery.fullpage.css"/>
+		<style type="text/css">
+			*{padding: 0;margin: 0;box-sizing: border-box;}
+			.section{text-align: center;}
+			.section1 { background: url(img/1.jpg) 50%; color: #000;position:relative;text-align: center;}
+			.section2 { background: url(img/2.jpg) 50%;}
+			.section3 { background: url(img/4.jpg) 50%;}
+			.section4 { background: url(img/4.jpg) 50%;}
+			.section1 .h2{font-size: 50px;position: relative;top:120px;right:-120%;font-weight: normal;text-align: center;line-height: 60px;}
+			.section1 .p1{opacity:0;font-size: 86px;font-family: "arial narrow"; font-weight:normal;letter-spacing: 20px;position: relative;top: 160px;}
+			
+			.section1 .sloder{position: relative;top: -200%;left:490px;width: 54px; height: 64px;}
+			
+			.section1 .p2{position: relative;top: 110px;opacity:0;font-size: 24px;}
+			
+			.section1 .p3{opacity:0;position: relative;top: 140px;left: 50%;transform: translateX(-50%);color: #fff;background: #2F3238;width: 100px;height: 30px;text-align:center;line-height: 30px;font-size: 18px;}
+			.section2 .solide2{ position: relative;top: 100px;opacity: 0;}
+			.section2 .p4{font-size: 24px;font-family: "arial narrow";position:relative;top: 240px;opacity: 0;}
+			.section3 .sss{ position: relative;top: 200px;}
+			.section3 .sss .mav1{float: left;position: relative;left: 100px;top: -120%;width: 366px;height: 366px;overflow: hidden;}
+			
+			.mav11{width: 366px;height: 366px;position: absolute;left: -370px;background:rgba(146,96,91,0.8);}
+			.mav11 .mask{width: 100%;height: 50px;text-align: center;line-height: 50px;background: rgba(238,237,236,0.5);box-shadow: 0 1px 3px;margin-top: 20px;font-size: 18px;}
+			.mav11 .mask1{font-size: 14px;font-family: "agency fb";margin-top: 20px;}
+			.mav11 p{font-size: 14px;margin-top: 30px;padding: 0 10px;line-height: 30px;}
+			/*.section3 .sss .mav1 img{position: absolute;}*/
+			
+			
+			
+			.section3 .sss .mav2{float: left;position: relative;left: 200px; bottom: -120%;overflow: hidden;}
+			.section3 .sss .mav3{float: left;position: relative;left: 300px;top: -120%;overflow: hidden;}
+			.section3 .sss img{width: 366px;height: 366px;}
+			.section3 .sss .tlo{float: left;position: relative;left: 100px;bottom: -120%;}
+			.section3 .sss .tzc{float: left;position: relative;left: 200px;top: -120%;}
+			.section3 .sss .tlx{float: left;position: relative;left: 300px;bottom: -120%;}
+			
+			.tlo-t{position: absolute;left: 10px;bottom: 10px;text-align: left;opacity: 0;}
+			.shadow{box-shadow: 0px 0px 20px #888;transition: all 1s;}
+			.section3 .sss .szx{float: left;position: relative;left: 100px;}
+			.section3 .sss .szx img{transform: scale(0,0);transition: all 2s;}
+			.section3 .sss .szy{float: left;position: relative;left: 200px;}
+			.section3 .sss .szy img{transform: scale(0,0);transition: all 2s;}
+			.section3 .sss .szz{float: left;position: relative;left: 300px;}
+			.section3 .sss .szz img{transform: scale(0,0);transition: all 2s;}
+			
+			.szx-t{position: absolute;top: 10px;left: 10px;z-index: 11;opacity: 0;}
+			
+			.section3 .sss .edc{float: left;position: relative;left: 100px;opacity: 0;}
+			.section3 .sss .edd{float: left;position: relative;left: 200px;display: none;}
+			.section3 .sss .ede{float: left;position: relative;left: 300px;opacity: 0;}
+			
+			
+			.section4 .sec4-1{float: left;position: relative;top: 70px;left: -120%;}
+			.section4 .sec4-2{float: left;position: relative;top: 70px;right: -120%;}
+			.section5 .sec5-1{float: left;position: relative;top: 70px;left: 100px; opacity: 0;}
+			.section5 .sec5-2{float: left;position: relative;top: 70px;right: -100px; opacity: 0;}
+			
+			
+			#menu { margin: 0; padding: 0; position: fixed; left: 10px; top: 10px; list-style-type: none; z-index: 2222222;}
+			#menu li { float: left; margin:  0 10px 0 0; font-size: 14px;}
+			#menu a { float: left; padding: 10px 20px; background-color: #fff; color: #333; text-decoration: none;}
+			#menu .active a { color: #fff; background-color: #333;}
+			.fp-controlArrow.fp-prev{left: 20px;border-style:none;background: url(img/left.png) center no-repeat;width: 64px;height: 64px;}
+			.fp-controlArrow.fp-prev:hover{color: #fff;background: url(img/left1.png) center no-repeat,rgba(0,0,0,0.5);}
+			.fp-controlArrow.fp-next{right:20px;border-style:none;background: url(img/right.png) center no-repeat;width: 64px;height: 64px;}
+			.fp-controlArrow.fp-next:hover{color: #fff;background: url(img/right1.png) center no-repeat,rgba(0,0,0,0.5);}
+			 .fp-slidesNav ul li a span{width: 16px;height:16px;background: url(img/xing2.png);border: none;}
+			 .fp-slidesNav ul li a.active span{background-image: url(img/xing1.png);}
+			 a.active span, .fp-slidesNav ul li a.active span{background: url(img/xing.png);}
+		</style>
+		<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="js/jquery.fullpage.js"></script>
+			
+		
+			
+		
+	</head>
+	<body>
+		<ul id="menu">
+			<li data-menuanchor="page1" class="active"><a href="#page1">第一屏</a></li>
+			<li data-menuanchor="page2"><a href="#page2">第二屏</a></li>
+			<li data-menuanchor="page3"><a href="#page3">第三屏</a></li>
+			<li data-menuanchor="page4"><a href="#page4">第四屏</a></li>
+			<li data-menuanchor="page5"><a href="#page5">第五屏</a></li>
+		</ul>
+		<div id="dowebok">
+		    <div class="section section1">
+		    	
+			    	<div class="h2">意大利潮牌珠宝</div>
+			    	<p class="p1">MStar Jewelry</p>
+			    	<div class="sloder"><img src="img/slider-1-1-a.png"/></div>
+			    	<p class="p2">重新定义新时代都市女性的自我认知与价值 </p>
+			   		<p class="p3">了解更多</p>
+		    	
+		    	
+		    </div>
+		    <div class="section section2">
+		    	<div class="solide2"><img src="img/slider-1-2-a.png"/></div>
+		    	<p class="p4">女皇之意</p>
+		    	
+		    </div>
+		    <div class="section section3">
+		    	
+		    	<div class="slide sss">
+		    		<div class="mav1 oop">
+		    			<div class="mav11">
+		    				<div class="mask">Mystery 谜尚</div>
+		    				<div class="mask1">缠绕层叠，谜之时尚</div>
+		    				<p>特立独行的唯一，是时尚宣言的表达，极具魅力气质的MYSTERY系列，层叠缠绕，回旋突破，引领新时代女性，发现独一无二的自己。</p>
+		    			</div>
+		    			<img src="img/MAVIS-131.jpg"/>
+		    		</div>
+		    		<div class="mav2 oop">
+		    			<div class="mav11">
+		    				<div class="mask">Meet Love 遇见</div>
+		    				<div class="mask1">Fall in Love 初见 · 一见钟情</div>
+		    				<p>初见，灿若惊鸿，前一刻清澈平缓，后一刻轰鸣澎湃，爱是如此丰盛，令人久久为之沉醉。</p>
+		    			</div>
+		    			<img src="img/MAVIS-132.jpg"/>
+		    		</div>
+		    		<div class="mav3 oop">
+		    			<div class="mav11">
+		    				<div class="mask">Surge 迸发</div>
+		    				<div class="mask1">灵感与力量的折射</div>
+		    				<p>线条和棱角充满力量，而又不失优雅，丰富流畅的造型，轻松驾驭金、银、钻石等不同材质，折射活力、包容、乐观与创意。</p>
+		    			</div>
+		    			<img src="img/MAVIS-133.jpg"/>
+		    		</div>
+		    	</div>
+		    	<div class="slide sss">
+		    		<div class="tlo oop1">
+		    			<div class="tlo-t">项链 Chase Dream 逐梦<br /> TLOS0003</div>
+		    			<img src="img/TLO.jpg"/>
+		    		</div>
+		    		<div class="tzc  oop1">
+		    			<div class="tlo-t">项链 Chase Dream 逐梦<br /> TZCL0003X</div>
+		    			<img src="img/TZC.jpg"/>
+		    		</div>
+		    		<div class="tlx oop1">
+		    			<div class="tlo-t">项链 Choker 原宿<br /> TLXX0015</div>
+		    			<img src="img/TLX.jpg"/>
+		    		</div>
+		    	</div>
+		    	<div class="slide sss">
+		    		<div class="szx oop2">
+		    			<div class="szx-t">手镯 Delight 欢沁 <br />SZXX0001</div>
+		    			<img src="img/SZX.jpg"/>
+		    		</div>
+		    		<div class="szy oop2">
+		    			<div class="szx-t">手镯 Delight 欢沁 <br />SZXX0001</div>
+		    			<img src="img/SZY.jpg"/>
+		    		</div>
+		    		<div class="szz oop2">
+		    			<div class="szx-t">手镯 Delight 欢沁 <br />SZXX0001</div>
+		    			<img src="img/SZZ.jpg"/>
+		    		</div>
+		    	</div>
+		    	<div class="slide sss">
+		    		<div class="edc"><img src="img/EDC.jpg"/></div>
+		    		<div class="edd"><img src="img/EDD.jpg"/></div>
+		    		<div class="ede"><img src="img/EDE.jpg"/></div>
+		    	</div>
+		    	
+		    </div>
+		    <div class="section section4">
+		    	<div class="sec4-1"><img src="img/index1.jpg"/></div>
+		    	<div class="sec4-2"><img src="img/index2.jpg"/></div>
+		
+		    </div>
+		    <div class="section section5">
+		    	<div class="sec5-1"><img src="img/index3.jpg"/></div>
+		    	<div class="sec5-2"><img src="img/index4.jpg"/></div>
+		
+		    </div>
+		</div>
+		<script type="text/javascript">
+			
+			$(".oop").hover(function(){
+
+				$(this).find(".mav11").stop().animate({left: "0"},1000);;
+				
+			},function(){
+				$(".mav11").stop().animate({left: "-370"},1000);
+			});
+			
+			$(".oop1").hover(function(){
+				$(this).find(".tlo-t").stop().animate({opacity: "1"},1000);
+				$(this).find("img").addClass("shadow")
+			},function(){
+				$(this).find(".tlo-t").stop().animate({opacity: "0"},1000);
+				$(this).find("img").removeClass("shadow");
+			});
+			$(".oop2").hover(function(){
+				$(this).find(".szx-t").animate({opacity: "1"},1000);
+			},function(){
+				$(this).find(".szx-t").animate({opacity: "0"},1000);
+			});
+			
+			
+			
+			$("#dowebok").fullpage({
+				//垂直居中
+				verticalCentered: false,
+				/*//是否显示垂直项目导航，（圆点）
+				navigation: true,*/
+				/*//鼠标放到圆点上的提示信息
+				navigationTooltips: ["首页","案例","项目","关于"],*/
+//				sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', '#f90'],
+				//是否循环滚动
+				continuousVertical: true,
+				//左右滑块项目导航
+				slidesNavigation: true,
+				navigationColor: "#000",
+				//菜单
+				menu: '#menu',
+				//菜单对应的页数
+				anchors: ['page1', 'page2', 'page3', 'page4','page5'],
+				//页面加载时的回调函数
+				afterRender: function(){
+					$(".section1").find(".h2").delay(500).animate({right: "0"},1000);
+					$(".section1").find(".p1").delay(1200).animate({"opacity": "1"},1000);
+					$(".section1").find(".sloder").delay(1500).animate({top: "85"},1000);
+					$(".section1").find(".p2").delay(2000).animate({"opacity": "1"},1000);
+					$(".section1").find(".p3").delay(2500).animate({"opacity": "1"},1000);
+					
+				},
+				//向下滚动的回调函数              向下滚动的动画
+				afterLoad: function(anchorLink, index){
+					if(index==1){
+						$(".section1").find(".h2").delay(500).animate({right: "0"},1000);
+						$(".section1").find(".p1").delay(1200).animate({"opacity": "1"},1000);
+						$(".section1").find(".sloder").delay(1500).animate({top: "85"},1000);
+						$(".section1").find(".p2").delay(2000).animate({"opacity": "1"},1000);
+						$(".section1").find(".p3").delay(2500).animate({"opacity": "1"},1000);
+					}
+					if(index == 2){
+						$('.section2').find('.solide2').delay(500).animate({top: '240',"opacity": "1"}, 500);
+						$('.section2').find('.p4').delay(1000).animate({"opacity": "1"}, 1000);
+					}
+					if(index == 3){
+						$('.section3').find('.sss').delay(500).animate({top: '200'}, 1500);
+						$('.section3 .slide:eq(0)').delay(200).find('.mav1').animate({top: "0%"}, 1000);
+						$('.section3 .slide:eq(0)').delay(200).find('.mav2').animate({bottom: "0%"}, 1000);
+						$('.section3 .slide:eq(0)').delay(200).find('.mav3').animate({top: "0%"}, 1000);
+					}
+					if(index == 4){
+						$('.section4').find('.sec4-1').delay(500).animate({left: "100"},500);
+						$('.section4').find('.sec4-2').delay(500).animate({right: "-100"},500);
+					}
+					if(index==5){
+						$('.section5').find('.sec5-1').delay(500).animate({opacity: "1"},2000);
+						$('.section5').find('.sec5-2').delay(500).animate({opacity: "1"},2000);
+					}
+				},
+				//向上滚动的动画               向上滚动p的动画
+				onLeave: function(index, direction){
+					if(index==1){
+						$(".section1").find(".h2").animate({right: "-120%"},100);
+						$(".section1").find(".p1").animate({"opacity": "0"},100);
+						$(".section1").find(".sloder").animate({top: "-200%"},100);
+						$(".section1").find(".p2").animate({"opacity":"0"},100);
+						$(".section1").find(".p3").animate({"opacity":"0"},100);
+					}
+					if(index == '2'){
+						$('.section2').find('.solide2').animate({top: '100',"opacity": "0"}, 100);
+						$('.section2').find('.p4').animate({"opacity": "0"}, 100);
+					}
+					if(index == '3'){
+//						$('.section3').find('.sss1').animate({opacity: '1',bottom: ""}, 1000);
+						$('.section3 .slide:eq(0)').find('.mav1').animate({top: "-120%"}, 1000);
+						$('.section3 .slide:eq(0)').find('.mav2').animate({bottom: "-120%"}, 1000);
+						$('.section3 .slide:eq(0)').find('.mav3').animate({top: "-120%"}, 1000);
+					}
+					if(index == '4'){
+						$('.section4').find('.sec4-1').animate({left: "-120%"},100);
+						$('.section4').find('.sec4-2').animate({right: "-120%"},100);
+					}
+					if(index=="5"){
+						$('.section5').find('.sec5-1').animate({opacity: "0"},100);
+						$('.section5').find('.sec5-2').animate({opacity: "0"},100);
+					}
+				},
+				afterSlideLoad: function(anchorLink,index,slideIndex,direction){
+					//滚动页面索引值
+					if(index==3){
+						//页面slide索引值（从0开始）
+						if(slideIndex==0){
+							$(".section3 .slide").find(".mav1").delay(200).animate({top: "0"},500);
+							$(".section3 .slide").find(".mav2").delay(200).animate({bottom: "0"},500);
+							$(".section3 .slide").find(".mav3").delay(200).animate({top: "0"},500);
+						}
+						if(slideIndex==1){
+							$(".section3 .slide").find(".tlo").delay(200).animate({bottom: "0"},500);
+							$(".section3 .slide").find(".tzc").delay(200).animate({top: "0"},500);
+							$(".section3 .slide").find(".tlx").delay(200).animate({bottom: "0"},500);
+						}
+						if(slideIndex==2){
+							$(".section3 .slide").find(".szx").find("img").delay(200).css({"transform": "scale(1,1)"});
+							$(".section3 .slide").find(".szy").find("img").delay(200).css({"transform": "scale(1,1)"});
+							$(".section3 .slide").find(".szz").find("img").delay(200).css({"transform": "scale(1,1)"});
+						}
+						if(slideIndex==3){
+							$(".section3 .slide").find(".edc").delay(200).animate({opacity: "1"},1000);
+							$(".section3 .slide").find(".edd").delay(200).slideDown(1000);
+							$(".section3 .slide").find(".ede").delay(200).animate({opacity: "1"},1000);
+						}
+						
+					}
+				},
+				 onSlideLeave: function(anchorLink,index,slideIndex,direction){
+				 	//滚动页面索引值
+					if(index==3){
+						//页面slide索引值（从0开始）
+						if(slideIndex==0){
+							$(".section3 .slide").find(".mav1").animate({top: "-120%"},500);
+							$(".section3 .slide").find(".mav2").animate({bottom: "-120%"},500);
+							$(".section3 .slide").find(".mav3").animate({top: "-120%"},500);
+						}
+						if(slideIndex==1){
+							$(".section3 .slide").find(".tlo").delay(200).animate({bottom: "-120%"},500);
+							$(".section3 .slide").find(".tzc").delay(200).animate({top: "-120%"},500);
+							$(".section3 .slide").find(".tlx").delay(200).animate({bottom: "-120%"},500);
+						}
+						if(slideIndex==2){
+							$(".section3 .slide").find(".szx").find("img").css({"transform": "scale(0,0)"});
+							$(".section3 .slide").find(".szy").find("img").css({"transform": "scale(0,0)"});
+							$(".section3 .slide").find(".szz").find("img").css({"transform": "scale(0,0)"});
+						}
+						if(slideIndex==3){
+							$(".section3 .slide").find(".edc").delay(200).animate({opacity: "0"},1000);
+							$(".section3 .slide").find(".edd").delay(200).css("display","none");
+							$(".section3 .slide").find(".ede").delay(200).animate({opacity: "0"},1000);
+						}
+						
+					}
+				 },
+				
+			});
+			/*//自动循环
+			setInterval(function(){
+				$("#dowebok").fullpage.moveSectionDown();
+			},3000)*/
+			
+		</script>
+	</body>
+</html>

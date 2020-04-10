@@ -1,0 +1,101 @@
+<html>
+<head>
+<title>随日期播放音乐</title>
+</head>
+
+<body>
+<table border=1 bordercolor=#FFFFFF borderlight=green cellspacing="0" width="220" bordercolorlight="#000000">
+<tr><td align=center width="220"><strong>欢迎来到休闲空间</strong></td></tr>
+<tr><td align=center width="220">
+<SCRIPT language="JavaScript">
+<!--
+page=new Date();		//得到当前日期
+if (page.getDate() == 1) 	//如果“日期”为1，则播放一号曲目
+document.write("<bgsound src=midi/001.mid width=145 height=30 autostart=true loop=-1 volume=50>");
+if (page.getDate() == 2) 	/*播放曲目的代码通过js写入页面*/
+document.write("<bgsound src=midi/001.mid width=145 height=30 autostart=true loop=-1 volume=50>");
+if (page.getDate() == 3) 	/*曲目作为背景音乐存在*/
+document.write("<bgsound src=midi/001.mid width=145 height=30 autostart=true loop=-1 volume=50>");
+if (page.getDate() == 4) 	/*以midi文件存放*/
+document.write("<bgsound src=midi/002.mid width=145 height=30 autostart=true loop=-1 volume=50>");
+if (page.getDate() == 5) 
+document.write("<bgsound src=midi/002.mid width=145 height=30 autostart=true loop=-1 volume=50>");
+if (page.getDate() == 6) 
+document.write("<bgsound src=midi/002.mid width=145 height=30 autostart=true loop=-1 volume=50>");
+if (page.getDate() == 7) 
+document.write("<bgsound src=midi/003.mid width=145 height=30 autostart=true loop=-1 volume=50>");
+if (page.getDate() == 8) 
+document.write("<bgsound src=midi/003.mid width=145 height=30 autostart=true loop=-1 volume=50>");
+if (page.getDate() == 9) 
+document.write("<bgsound src=midi/pinball.mid width=145 height=30 autostart=true loop=-1 volume=50>");
+if (page.getDate() == 10) 
+document.write("<bgsound src=midi/pinball.mid width=145 height=30 autostart=true loop=-1 volume=-1>");
+if (page.getDate() == 11) 	/*为方便起见，这里就不用过多的midi文件了*/
+document.write("<bgsound src=midi/001.mid width=145 height=30 autostart=true loop=-1 volume=50>");
+if (page.getDate() == 12) 	/*事实上，这些文件名可以任意指定*/
+document.write("<bgsound src=midi/001.mid width=145 height=30 autostart=true loop=-1 volume=50>");
+if (page.getDate() == 13) 
+document.write("<bgsound src=midi/001.mid width=145 height=30 autostart=true loop=-1 volume=50>");
+if (page.getDate() == 14) 
+document.write("<bgsound src=midi/001.mid width=145 height=30 autostart=true loop=-1 volume=50>");
+if (page.getDate() == 15) 
+document.write("<bgsound src=midi/001.mid width=145 height=30 autostart=true loop=-1 volume=50>");
+if (page.getDate() == 16) 
+document.write("<bgsound src=midi/pinball.mid width=145 height=30 autostart=true loop=-1 volume=50>");
+if (page.getDate() == 17) 
+document.write("<bgsound src=midi/pinball.mid width=145 height=30 autostart=true loop=-1 volume=50>");
+if (page.getDate() == 18) 
+document.write("<bgsound src=midi/pinball.mid width=145 height=30 autostart=true loop=-1 volume=50>");
+if (page.getDate() == 19) 
+document.write("<bgsound src=midi/pinball.mid width=145 height=30 autostart=true loop=-1 volume=50>");
+if (page.getDate() == 20) 
+document.write("<bgsound src=midi/pinball.mid width=145 height=30 autostart=true loop=-1 volume=50>");
+if (page.getDate() == 21) 
+document.write("<bgsound src=midi/003.mid width=145 height=30 autostart=true loop=-1 volume=50>");
+if (page.getDate() == 22) 
+document.write("<bgsound src=midi/003.mid width=145 height=30 autostart=true loop=-1 volume=50>");
+if (page.getDate() == 23) 
+document.write("<bgsound src=midi/003.mid width=145 height=30 autostart=true loop=-1 volume=50>");
+if (page.getDate() == 24) 
+document.write("<bgsound src=midi/003.mid width=145 height=30 autostart=true loop=-1 volume=50>");
+if (page.getDate() == 25) 
+document.write("<bgsound src=midi/002.mid width=145 height=30 autostart=true loop=-1 volume=50>");
+if (page.getDate() == 26) 
+document.write("<bgsound src=midi/002.mid width=145 height=30 autostart=true loop=-1 volume=50>");
+if (page.getDate() == 27) 
+document.write("<bgsound src=midi/002.mid width=145 height=30 autostart=true loop=-1 volume=50>");
+if (page.getDate() == 28) 
+document.write("<bgsound src=midi/001.mid width=145 height=30 autostart=true loop=-1 volume=50>");
+if (page.getDate() == 29) 
+document.write("<bgsound src=midi/001.mid width=145 height=30 autostart=true loop=-1 volume=50>");
+if (page.getDate() == 30) 
+document.write("<bgsound src=midi/001.mid width=145 height=30 autostart=true loop=-1 volume=50>");
+if (page.getDate() == 31) 
+document.write("<bgsound src=midi/pinball.mid width=145 height=30 autostart=true loop=-1 volume=50>");
+
+page=new Date();		//取当前时间
+var months = new Array(13);	//建立月份描述的数组
+months[1] = "1月";
+months[2] = "2月";
+months[3] = "3月";
+months[4] = "4月";
+months[5] = "5月";
+months[6] = "6月";
+months[7] = "7月";
+months[8] = "8月";
+months[9] = "9月";
+months[10] = "10月";
+months[11] = "11月";
+months[12] = "12月";
+var dateObj = new Date()	//取当前时间
+var lmonth = months[dateObj.getMonth() + 1]	//得到月份值(如要符合习惯的月份值，则还需加一，因为js里的月份是从0开始计算的)
+var date = dateObj.getDate()			//取当前星期描述
+document.write("<br>" +"hi，你好！" +"<br>今天是"+ lmonth + date+"日,<br>"+"让我们来听听今天的音乐")	//写问候语
+//-->
+
+</SCRIPT>
+</td>
+</tr>
+</table>
+</body>
+</html>

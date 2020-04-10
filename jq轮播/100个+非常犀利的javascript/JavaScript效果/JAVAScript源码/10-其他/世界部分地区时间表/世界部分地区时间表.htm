@@ -1,0 +1,123 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>世界部分地区时间表</title>
+</head>
+<body onload="timeCheck('北京时间', -480)">
+<script language="JavaScript">
+<!-- Begin
+var timerRunning = false;
+var timezone = "格林尼治";
+var adjust = 0;
+
+function timeCheck(tzone, diff) {
+if (timerRunning) {				//如果时钟已经开始运行
+clearTimeout(updatetime);			//则暂停
+timerRunning = false; }				//设定暂停标志
+gmtOffset=eval(diff+adjust);			//设定时间修正值
+timezone = tzone;				//设定时区
+checkDateTime();				//重新开始走时
+}
+
+function checkDateTime () {
+var today = new Date();				//取当前日期时间
+var year = today.getYear() + 00;		//得到年份部分
+var month = today.getMonth()+1;			//得到月份部分，并修正成为习惯表达方式
+var date = today.getDate();			//取日部分
+var day = today.getDay();			//取星期部分
+var hour = today.getHours();			//得到小时
+var minute = today.getMinutes();		//得到分钟
+var second = today.getSeconds();		//得到秒钟
+var lastSat = date - (day+1);			//得到最后一个周六的日期
+while (lastSat < 32) lastSat+=7;		//推算到下一个月的第一个周六
+if (lastSat > 31) lastSat+=-7;			//倒推到本月最后一个周六的日期
+var firstSat = date - (day+1);			//得到最后一个周六的日期
+while (firstSat > 0) firstSat+=-7;		//倒推到上一个月的最后一个周六
+if (firstSat < 1) firstSat+=7;			//推算到本月第一个周六的日期
+if ((((month == 4) && (date >= firstSat)) || month > 4) && (month < 11 || ((month == 10) && day <= lastSat))) adjust += 60;
+yourOffset = (new Date()).getTimezoneOffset();	//返回用分钟表示的主计算机上的时间和全球标准时间 (UTC)之间的差别。
+yourOffset = yourOffset + adjust;		//加入偏移值
+var xx = navigator.appName			//取浏览器类型
+var xy = navigator.appVersion;			//取浏览器版本
+xy = xy.substring(0,1);				//取主版本号
+if ((xy == 4) && (xx == "Netscape")) yourOffset = yourOffset+adjust;			//如果浏览器是NS4则加入偏移值
+if ((((month == 4) && (date > 20)) || month > 4) && (month < 11 || ((month == 10) && day < 30))) adjust -= 60;
+ourDifference = eval(gmtOffset - yourOffset);	
+var half = eval(ourDifference % 60);
+ourDifference = Math.round(ourDifference / 60);
+hour = eval(hour - ourDifference);
+var m = new Array("","1","2","3","4","5","6","7","8","9","10","11","12");
+var leap = eval(year % 4);			//判断闰年
+if ((half == -30) || (half == 30)) minute += 30;
+if (minute > 59) minute -= 60, hour++;
+if (minute < 0) minute += 60, hour--;
+if (hour > 23) hour -= 24, date += 1;
+if (((month == 4) || (month == 6) || (month == 9) || (month == 11)) && (date==31)) date = 1, month ++;	//调整30天的月份
+if (((month == 2) && (date > 28)) && (leap != 0)) date = 1, month ++;					//修正闰年的2月
+if ((month == 2) && (date > 29)) date = 1, month++;							//闰二月的修正
+if (hour < 0) hour += 24, date --;									//修正“小时”
+if ((date == 32) && (month == 12)) month = m[1], date = 1, year++;					//修正年初的日期
+if (date == 32) date = 1, month++;									//修正“日”
+if ((date < 1) && (month == 1)) month= m[12], date = 31, year--;					//修正年底的日期
+if (date < 1) date = 31, month --;									//修正月底的日期
+if (((month == 4) || (month == 6) || (month== 9) || (month == 11)) && (date == 31)) date = 30;		//修正小月的日期
+if ((month == 2) && (date > 28)) date = 29;								//修正2月的日期
+if (((month == 2) && (date > 28)) && (leap != 0)) date=28;						//修正平年2月的日期
+for (i=1; i<13; i++) {
+if (month == i) {
+month = m[i]; break;
+   }
+}
+var dateTime = (hour >= 12) ? "下午" : "上午";			//生成时间，日期的描述
+dateTime += hour;
+dateTime = ((dateTime < 10) ? "0":"") + dateTime;
+dateTime = " " + dateTime;
+dateTime += ((minute < 10) ? ":0" : ":") + minute;
+dateTime += ((second < 10) ? ":0" : ":") + second;
+dateTime += ' ';
+dateTime += year + "年" + month + "月" + date + "日" ;
+document.clock.zonetime.value = dateTime;			//将生成的描述写进页面
+document.clock.zonename.value = timezone;			//将时区名写进页面
+updatetime=setTimeout("checkDateTime()", 900);			//900毫秒后刷新显示
+timerRunning = true;						//设定开始计时的标志
+}
+// End -->
+</script>
+<br>
+<form name="clock">
+  <table border="1" width="375" bgcolor="#808080" cellspacing="0" cellpadding="0" bordercolorlight="#808080" bordercolor="#FFFFFF" height="263">
+    <tr>
+      <td width="100%" height="39"><font size="2" color="#FFFFFF"><b>&nbsp;这里是</b></font><font size="2" color="#FFFFFF"><b>:</b></font><input type="text" name="zonename" size="10" style="border: 1 solid #C0C0C0"></td>
+    </tr>
+    <tr>
+      <td width="100%" height="64"><font size="2"><b><font color="#FFFFFF">&nbsp;当地的时间是</font></b></font><font color="#FFFFFF"> 
+        </font><br>
+        &nbsp;<input type="text" name="zonetime" size="28" style="border: 1 solid #C0C0C0"></td>
+    </tr>
+    <tr>
+      <td width="100%" align="center" height="154">
+        <table border="1" width="268" bordercolorlight="#000000" bordercolor="#FFFFFF" bgcolor="#C0C0C0" cellspacing="0" cellpadding="0" height="116">
+          <tr>
+            <td align="center" height="38" width="88"><input type="button" value="太平洋" onClick="timeCheck(this.value, +640)" name="button" style="background-color: #FFFFFF; border: 1 solid #000000"></td>
+            <td align="center" height="38" width="89"><input type="button" value="中大西洋" onClick="timeCheck(this.value, +120)" name="button" style="background-color: #FFFFFF; border: 1 solid #000000"></td>
+            <td align="center" height="38" width="89"><input type="button" value="加拿大" onClick="timeCheck(this.value, +360)" name="button" style="background-color: #FFFFFF; border: 1 solid #000000"></td>
+          </tr>
+          <tr>
+            <td align="center" height="39" width="88"><input type="button" value="夏威夷" onClick="timeCheck(this.value, +600)" name="button" style="background-color: #FFFFFF; border: 1 solid #000000"></td>
+            <td align="center" height="39" width="89"><input type="button" value="墨西哥" onClick="timeCheck(this.value, +360)" name="button" style="background-color: #FFFFFF; border: 1 solid #000000"></td>
+            <td align="center" height="39" width="89"><input type="button" value="新德里" onClick="timeCheck(this.value, -330)" name="button" style="background-color: #FFFFFF; border: 1 solid #000000"></td>
+          </tr>
+          <tr>
+            <td align="center" height="39" width="88"><input type="button" value=" 北京 " onClick="timeCheck(this.value, -480)" name="button" style="background-color: #FFFFFF; border: 1 solid #000000"></td>
+            <td align="center" height="39" width="89"><input type="button" value=" 东京 " onClick="timeCheck(this.value, -540)" name="button" style="background-color: #FFFFFF; border: 1 solid #000000"></td>
+            <td align="center" height="39" width="89"><input type="button" value=" 伦敦 " onClick="timeCheck(this.value, +0)" name="button" style="background-color: #FFFFFF; border: 1 solid #000000"></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>
+
+

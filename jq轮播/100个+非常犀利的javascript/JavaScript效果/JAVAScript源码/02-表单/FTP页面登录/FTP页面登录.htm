@@ -1,0 +1,75 @@
+<html>
+<head>
+
+<script janguage="javascript">
+<!--
+//这个简单的脚本生成了登录FTP的URL字符串
+function goFtpSite() {
+document.location.href = "ftp://" + document.ftp.login.value + ":" + document.ftp.password.value + "@" + document.ftp.url.value;
+}
+//格式:ftp://用户名:密码@站点地址
+//-->
+</script>
+
+<title>FTP页面登录</title>
+</head>
+<body>
+<form name="ftp">
+<div align="left">
+<table border="0" cellpadding="1" cellspacing="1" bgcolor="#000000">
+<tr>
+<td>
+<table border="0" cellspacing=0 cellpadding=5 align="center">
+<tr bgcolor="#bbbbbb">
+<td width="75" align="right">
+<font face="arial,helvetica" size="-1">
+Ftp://
+</font>
+</td>
+<td>
+<font face="arial,helvetica" size="-1">
+<input type="text" size=15 name="url" style="border: 1 solid #000000">
+</font>
+</td>
+</tr>
+<tr bgcolor="#dddddd">
+<td align="right">
+<font face="宋体" size="-1">
+用户名：
+</font>
+</td>
+<td>
+<font face="arial,helvetica" size="-1">
+<input type="text" size="15" name="login" maxlength="20" style="border: 1 solid #000000">
+</font>
+</td>
+</tr>
+<tr bgcolor="#bbbbbb">
+<td align="right">
+<font face="宋体" size="-1">
+密码：
+</font>
+</td>
+<td>
+<font face="arial,helvetica" size="-1"> 
+<input type="password" size="15" name="password" maxlength="20" style="border: 1 solid #000000">
+</font></td>
+</tr>
+<tr bgcolor="#ffffff">
+<td colspan="2" align="center">
+<font face="arial,helvetica" size="-2">
+<input type=button onclick="goFtpSite();" value=" 登 录 " style="background-color: #DDDDDD; border: 1 solid #000000"></font><font size="-2">　</font><font face="arial,helvetica" size="-2"><input type=reset value=" 取 消 " style="background-color: #DDDDDD; border: 1 solid #000000">
+</font>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+</form>
+</body>
+</html>
+
+
+

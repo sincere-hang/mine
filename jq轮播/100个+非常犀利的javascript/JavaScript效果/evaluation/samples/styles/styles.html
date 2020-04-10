@@ -1,0 +1,88 @@
+<HTML>
+<HEAD>
+<script>
+function navigatorCreate(objNavigator, id)
+{
+  if( id == "navigatorFrame1") {
+    objNavigator.design = "1";
+  }
+  if( id == "navigatorFrame2") {
+    objNavigator.design = "2";
+  }
+  if( id == "navigatorFrame3") {
+    objNavigator.design = "3";
+  }
+  if( id == "navigatorFrame7") {
+    objNavigator.design = "4";
+  }
+  if( id == "navigatorFrame8") {
+    objNavigator.design = "5";
+  }
+
+  if( id == "navigatorFrame4") {
+    objNavigator.displaymode = "2";
+    objNavigator.tabdesign = "1";
+  }
+  if( id == "navigatorFrame5") {
+    objNavigator.displaymode = "2";
+    objNavigator.tabdesign = "2";
+  }
+  if( id == "navigatorFrame6") {
+    objNavigator.displaymode = "2";
+    objNavigator.tabdesign = "3";
+  }
+
+	// now build the navigator
+	var item = objNavigator.createItem();
+	item.text = "Item 1";
+	item.image = "design/image/email.gif";
+	item.active = true;
+	item.visible = true;
+	item.url = "../evaluation/samples/p1tab.html"; 
+	objNavigator.add(item);
+
+	var item = objNavigator.createItem();
+	item.text = "Item 2";
+	item.image = "design/image/email.gif";
+	item.active = false;
+	item.visible = true;
+	item.url = "../evaluation/samples/p2tab.html"; 
+	objNavigator.add(item);
+
+	var item = objNavigator.createItem();
+	item.text = "Item 3";
+	item.image = "design/image/email.gif";
+	item.active = false;
+	item.visible = false;
+	item.url = "../evaluation/samples/p3tab.html"; 
+	objNavigator.add(item);
+	
+
+	objNavigator.create();
+}
+</script>
+</HEAD>
+	<body>
+			<iframe id="navigatorFrame1" src="../../../navigator/pinNavigator.html" style="Z-INDEX: 101; LEFT: 18px; POSITION: absolute; TOP: 60px;Width:180px;Height:300px"
+				frameborder=0 ></iframe>
+			<iframe id="navigatorFrame2" src="../../../navigator/pinNavigator.html" style="Z-INDEX: 102; LEFT: 218px; POSITION: absolute; TOP: 60px;Width:180px;Height:300px"
+				frameborder=0 ></iframe>
+			<iframe id="navigatorFrame3" src="../../../navigator/pinNavigator.html" style="Z-INDEX: 103; LEFT: 418px; POSITION: absolute; TOP: 60px;Width:180px;Height:300px"
+				frameborder=0 ></iframe>
+			<iframe id="navigatorFrame7" src="../../../navigator/pinNavigator.html" style="Z-INDEX: 103; LEFT: 618px; POSITION: absolute; TOP: 60px;Width:180px;Height:300px"
+				frameborder=0 ></iframe>
+			<iframe id="navigatorFrame8" src="../../../navigator/pinNavigator.html" style="Z-INDEX: 103; LEFT: 818px; POSITION: absolute; TOP: 60px;Width:180px;Height:300px"
+				frameborder=0 ></iframe>
+			<div id="Label1" style="Z-INDEX: 104; LEFT: 19px; POSITION: absolute; TOP: 20px" runat="server"
+				Width="596px" Height="23px">Outlook 2003 like style</div>
+
+			<iframe id="navigatorFrame4" src="../../../navigator/pinNavigator.html" style="Z-INDEX: 101; LEFT: 18px; POSITION: absolute; TOP: 400px;Width:162px;Height:250px"
+				frameborder=0 ></iframe>
+			<iframe id="navigatorFrame5" src="../../../navigator/pinNavigator.html" style="Z-INDEX: 102; LEFT: 218px; POSITION: absolute; TOP: 400px;Width:176px;Height:250px"
+				frameborder=0 ></iframe>
+			<iframe id="navigatorFrame6" src="../../../navigator/pinNavigator.html" style="Z-INDEX: 103; LEFT: 436px; POSITION: absolute; TOP: 400px;Width:180px;Height:250px"
+				frameborder=0 ></iframe>
+			<div id="Div1" style="Z-INDEX: 104; LEFT: 19px; POSITION: absolute; TOP: 380px" runat="server"
+				Width="596px" Height="23px">Tabbed style</div>
+	</body>
+</HTML>

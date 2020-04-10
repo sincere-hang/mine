@@ -1,0 +1,109 @@
+<html>
+<head>
+<style>
+<!--
+.skin0 {
+position:absolute;
+text-align:left;
+width:200px;
+border:2px solid black;
+background-color:menu;
+font-family:Verdana;
+line-height:20px;
+cursor:default;
+visibility:hidden;
+}
+.skin1 {
+cursor:default;
+font:menutext;
+position:absolute;
+text-align:left;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 10pt;
+width:120px;
+background-color:menu;
+border:1 solid buttonface;
+visibility:hidden;
+border:2 outset buttonhighlight;
+}
+.menuitems {
+padding-left:15px;
+padding-right:10px;
+}
+-->
+</style>
+</head>
+
+<body>
+
+<SCRIPT LANGUAGE="JavaScript1.2">
+<!-- Begin
+var menuskin = "skin1";		//这里决定菜单外观的风格，可以是skin0或者skin1
+var display_url = 1;		//这里决定是否在状态栏里显示链接的目标地址
+//显示菜单
+function showmenuie5() {
+var rightedge = document.body.clientWidth-event.clientX;		//得到鼠标位置
+var bottomedge = document.body.clientHeight-event.clientY;
+if (rightedge < ie5menu.offsetWidth)					//如果鼠标位置太靠右
+ie5menu.style.left = document.body.scrollLeft + event.clientX - ie5menu.offsetWidth;	//则在鼠标箭头左边显示菜单
+else									//否则
+ie5menu.style.left = document.body.scrollLeft + event.clientX;		//在鼠标右边显示菜单
+if (bottomedge < ie5menu.offsetHeight)					//如果鼠标位置太靠底部
+ie5menu.style.top = document.body.scrollTop + event.clientY - ie5menu.offsetHeight;	//则在鼠标箭头上边显示菜单
+else									//否则
+ie5menu.style.top = document.body.scrollTop + event.clientY;		//在鼠标箭头下面显示菜单
+ie5menu.style.visibility = "visible";					//将菜单设为可见
+return false;								//返回false值，取消本来应该显示的右键菜单
+}
+//隐藏菜单
+function hidemenuie5() {
+ie5menu.style.visibility = "hidden";					//直接将层属性设为不可见即可
+}
+//加亮菜单项
+function highlightie5() {
+if (event.srcElement.className == "menuitems") {			//如果鼠标移到选项上
+event.srcElement.style.backgroundColor = "highlight";			//设背景颜色为"highlight"
+event.srcElement.style.color = "white";					//文字颜色设为白色
+if (display_url)							//如果需要在状态栏显示目标URL
+window.status = event.srcElement.url;					//则改变状态栏文字为相应url
+   }
+}
+//恢复菜单项颜色
+function lowlightie5() {
+if (event.srcElement.className == "menuitems") {			//如果鼠标出的是选项
+event.srcElement.style.backgroundColor = "";				//设背景颜色为默认
+event.srcElement.style.color = "black";					//设定文字颜色为黑色
+window.status = "";							//清除状态栏
+   }
+}
+//链接导航
+function jumptoie5() {
+if (event.srcElement.className == "menuitems") {			//如果点击的是菜单项
+if (event.srcElement.getAttribute("target") != null)			//如果链接有目标窗口
+window.open(event.srcElement.url, event.srcElement.getAttribute("target"));	//则在目标窗口里打开新页面
+else									//否则(没有目标窗口)
+window.location = event.srcElement.url;					//则改变本窗口URL实现导航
+   }
+}
+//  End -->
+</script>
+<div id="ie5menu" class="skin0" onMouseover="highlightie5()" onMouseout="lowlightie5()" onClick="jumptoie5();">
+<div class="menuitems" url="javascript:history.back();">返回</div>
+<div class="menuitems" url="http://5dcentury.com">回首页</div>
+<hr>
+<div class="menuitems" url="http://www.163.com">网易</div>
+<div class="menuitems" url="http://www.sohu.com">搜狐</div>
+<hr>
+<div class="menuitems" url="http://www.sina.com.cn">新浪</div>
+<div class="menuitems" url="http://www.yahoo.com.cn">雅虎</div>
+</div>
+
+<script language="JavaScript1.2">
+if (document.all && window.print) {		//如果是
+ie5menu.className = menuskin;			//将模拟菜单的层class属性设为"menuskin"
+document.oncontextmenu = showmenuie5;		//当弹出菜单的时候调用showmenuie5显示自定义菜单并且取消原先应该显示的右键菜单
+document.body.onclick = hidemenuie5;		//当点击页面时隐藏菜单
+}
+</script>
+</body>
+</html>

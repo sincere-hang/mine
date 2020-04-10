@@ -106,6 +106,15 @@ function datt(nian,yue,ri){
         if(wk==6||wk==0){
             $('.date ul li').eq(k).addClass('act_wk')
         }
+        if(tt_time < td_time){
+            $('.date ul li').eq(k).click(function(){
+                var _this=$(this);
+                 _this.addClass('act_date');     //选择开始日期
+                _this.siblings('li').removeClass('act_date');
+                var dr=_this.attr('data-date');
+                console.log(dr);
+            })
+        }else
         if(tt_time > td_time){
             $('.date ul li').eq(k).click(function(){
                 var _this=$(this);
@@ -130,8 +139,10 @@ function datt(nian,yue,ri){
                 console.log(dr);
             });
         }else if(tt_time == td_time){
+
             $('.date ul li').eq(k).addClass('act_date');
             $('.date ul li').eq(k).click(function(){
+                console.log("1");
                 var _this=$(this);
                 _this.addClass('act_date');
                 _this.siblings('li').removeClass('act_date');

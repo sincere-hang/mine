@@ -1,0 +1,141 @@
+<html>
+<head>
+<title>动态说明导航栏</title>
+</head>
+<body onLoad="initiate()">
+
+<script LANGUAGE="JavaScript">
+<!-- Beginning of JavaScript
+var message=new Array()
+message[0]="新浪sina<br>http://www.sina.com.cn"
+message[1]="网易163<br>http://www.163.com"
+message[2]="首都在线263<br>http://www.263.net.cn"
+//您可以根据需要在这里增减条目
+//以下链接与上面的条目相对应
+var messageurl=new Array()
+messageurl[0]="http://www.sina.com.cn"
+messageurl[1]="http://www.163.com"
+messageurl[2]="http://www.263.net"
+//以下条目对应每条链接的目标窗口
+var messagetarget=new Array()
+messagetarget[0]="_blank"
+messagetarget[1]="_blank"
+messagetarget[2]="_blank"
+
+var linktext="点击这里进入"		//定义公用的提示语句
+var fntsize=12				//字符大小
+var fntcolor="000000"			//字符颜色
+var fntfamily="宋体"			//字体
+var fntweight=0				//字符是否加粗
+var pause=3				//每条消息停留的时间
+var backgroundcolor="ffffff"		//背景颜色
+var posleft=5				//显示框距窗口的左边距
+var postop=5				//显示框距窗口的上边距
+var scrollerwidth=250			//显示框的宽度
+var scrollerheight=110			//显示框的高度
+var scrollerborder=1			//显示框边框的宽度
+var textpadding=20
+
+//以下内容不需改变
+var textwidth=scrollerwidth-(2*textpadding)
+var htmlcontent=""
+var boxhtml=""
+var i_message=0				//当前显示的内容条目编号
+var i_stepwave=0
+var i_maxstepwave=20
+pause=pause*1000
+
+if (fntweight==1)
+{fntweight="700"}
+else
+{fntweight="100"}
+
+function initiate() {			//页面初始化
+gethtmlcontent()			//取得显示内容
+getboxhtml()				//取得边框代码
+if (document.all) {			//如果是IE
+wavemessage.innerHTML=htmlcontent	//通过改变innerHTML属性方式写入各部分代码
+wavemessagebg.innerHTML=boxhtml
+wavemessagebg.style.posLeft=posleft	//调整显示位置
+wavemessagebg.style.posTop=postop
+wavemessage.style.posLeft=posleft+textpadding
+wavemessage.style.posTop=postop+textpadding
+enlargewave()				//开始增加水波纹效果(仅IE支持)
+}
+if (document.layers) {			//如果是NS
+document.wavemessage.left=posleft+textpadding	//调整显示位置
+document.wavemessage.top=postop+textpadding
+document.wavemessagebg.document.write(boxhtml)	//通过文本流写入便框部分代码
+document.wavemessagebg.document.close()		//关闭文本流
+document.wavemessagebg.left=posleft		//调整显示位置
+document.wavemessagebg.top=postop
+changemessage()					//调用changemessage函数，写入显示内容html代码。
+}
+}
+
+function enlargewave() {
+if (i_stepwave<=i_maxstepwave) {		//如果没有超过最大波纹变形效果
+wavemessage.filters.wave.phase=i_stepwave	//改变各参数使波纹效果加强
+wavemessage.filters.wave.strength=i_stepwave
+wavemessage.filters.wave.lightstrength=i_stepwave
+wavemessage.filters.wave.freq=i_stepwave
+i_stepwave++					//增加波纹效果变量，为下一次改变效果做准备
+var timer=setTimeout("enlargewave()",50)	//设定下一次增加效果的延时
+}
+else {
+clearTimeout(timer)				//如果已经超过波纹变形的极限
+changemessage()					//趁这个机会改变显示内容。
+}
+}
+
+function reducewave() {				//减小波纹使显示看起来更清楚
+if (i_stepwave>0) {				//如果没有达到最小变形
+wavemessage.filters.wave.phase=i_stepwave	//调整各个参数使变形程度(减小)
+wavemessage.filters.wave.strength=i_stepwave
+wavemessage.filters.wave.lightstrength=i_stepwave
+wavemessage.filters.wave.freq=i_stepwave
+i_stepwave--					//减小代表效果强度的参数。
+var timer=setTimeout("reducewave()",50)		//设定下一次减小效果的延时
+}
+else {						//如果已经没有变形(已经显示正常清晰的内容)
+clearTimeout(timer)				//不再减小变形效果
+var timer=setTimeout("enlargewave()",pause)	//在保持pause毫秒后开始将显示内容便模糊，为下一次改变内容做准备。
+}
+}
+
+function changemessage() { 			//改变显示内容
+i_message++					//设定需要取的内容编号
+if (i_message>=message.length) {i_message=0}
+gethtmlcontent()				//取需显示的内容。
+
+if (document.all) { 				//如果是IE
+wavemessage.innerHTML=htmlcontent		//则利用innerHTML属性改变显示内容。
+reducewave()					//开始减小波纹效果以使内容变得清晰
+}
+
+if (document.layers) {				//如果是NS
+document.wavemessage.document.write(htmlcontent)//写入文本流以改变显示内容。
+document.wavemessage.document.close()		//关闭文本流。
+var timer=setTimeout("changemessage()",pause)	//延时pause毫秒后改变显示内容。
+}
+
+}
+
+function gethtmlcontent() {		//根据编号以及各属性生成需要显示的html代码存放在htmlcontent里
+htmlcontent="<span style='font-size:"+fntsize+"pt;font-family:"+fntfamily+";font-weight:"+fntweight+";width:"+textwidth+"px'>"
+htmlcontent+="<font color="+fntcolor+">"+message[i_message]+"</font> "
+htmlcontent+="<a href="+messageurl[i_message]+" target="+messagetarget[i_message]+">"
+htmlcontent+="<br><br><font color="+fntcolor+">"+linktext+"</font></a></span>"
+}
+
+function getboxhtml() {		//根据所定义的属性生成显示区边框的html代码
+boxhtml="<table width="+scrollerwidth+" height="+scrollerheight+" border="+scrollerborder+"><tr><td bgcolor="+backgroundcolor+">&nbsp;</td></tr></table>"
+}
+// - End of JavaScript - -->
+</script> 
+<!--边框部分-->
+<div ID="wavemessagebg" style="position:absolute;"></div>
+<!--信息发布框主体-->
+<div ID="wavemessage" style="position:absolute; filter:wave()"></div>
+</body>
+</html>

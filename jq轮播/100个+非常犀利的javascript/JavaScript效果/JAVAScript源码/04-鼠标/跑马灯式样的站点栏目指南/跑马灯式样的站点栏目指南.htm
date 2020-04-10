@@ -1,0 +1,57 @@
+<html>
+<head>
+</head>
+<body link="#000000">
+<div id="tooltip" style="position:absolute;visibility:hidden;clip:rect(0 150 50 0);width:150px;background-color:cfefcf">
+<layer name="nstip" width=1000px bgColor="ffffff"></layer>
+</div>
+
+<SCRIPT language="JavaScript">
+<!--
+if (!document.layers&&!document.all)
+event="test"
+//显示提示信息
+function showtip(current,e,text){
+if (document.all && document.readyState=="complete"){		//如果浏览器是IE,并且整个页面已经下载完毕
+document.all.tooltip.innerHTML='<marquee style="border:1px solid black">'+text+'</marquee>'	//在浮动提示层里写入滚动消息
+document.all.tooltip.style.pixelLeft=event.clientX+document.body.scrollLeft+10			/*根据鼠标位置调整层的位置*/
+document.all.tooltip.style.pixelTop=event.clientY+document.body.scrollTop+10			/*让浮动层处于鼠标附近*/
+document.all.tooltip.style.visibility="visible"							//显示提示
+}
+else if (document.layers){					//如果浏览器是NS
+document.tooltip.document.nstip.document.write('<b>'+text+'</b>')//写入消息信息
+document.tooltip.document.nstip.document.close()		//关闭文本流
+document.tooltip.document.nstip.left=0				//调整文本的位置
+currentscroll=setInterval("scrolltip()",100)			//卷动提示文本
+document.tooltip.left=e.pageX+10				/*根据鼠标位置调整层的位置*/
+document.tooltip.top=e.pageY+10
+document.tooltip.visibility="show"				//显示提示
+}
+}
+//隐藏提示
+function hidetip(){
+if (document.all)						//如果是IE
+document.all.tooltip.style.visibility="hidden"			//将层属性设为不可见
+else if (document.layers){					//如果是NS
+clearInterval(currentscroll)					//停止滚动
+document.tooltip.visibility="hidden"				//将层属性设为隐藏
+}
+}
+//在NS滚动提示信息
+function scrolltip(){						/*提示层还处于可见部分*/
+if (document.tooltip.document.nstip.left>=-document.tooltip.document.nstip.document.width)
+document.tooltip.document.nstip.left-=5				//将消息向左边滚动
+else								//否则(消息已经滚动出左边界)
+document.tooltip.document.nstip.left=150			//将消息放到右边准备重新从右边滚动出来
+}
+//-->
+</SCRIPT>
+ <table border="0">
+  <tr>
+   <td><b>
+	<a href="http://century.scit.edu.cn" onMouseOver="showtip(this,event,'鼠标等等我!')" onMouseOut="hidetip()"><font size="5">点击我</font></a>
+   </b></td>
+  </tr>
+ </table>  
+</body>
+</html>

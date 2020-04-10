@@ -1,0 +1,34 @@
+<html>
+<head>
+<title>
+浏览器窗口从天而降
+</title>
+<script>
+function drop(n) 
+ {
+  if(self.moveBy)
+   {
+    self.moveBy (0,-900);  //将浏览器窗口移到屏幕之外
+    for(i = n; i > 0; i--) 
+     {
+      self.moveBy(0,3);
+     }
+    for(j = 8; j > 0; j--) //震动效果
+     {
+      self.moveBy(0,j);
+      self.moveBy(j,0);
+      self.moveBy(0,-j);
+      self.moveBy(-j,0);
+     }
+   }
+ }
+</script>
+</head>
+<body onLoad="drop(300)" bgcolor=#99FF99>
+<br>
+<br><br><br><br><br><br>
+<center>
+  <font face="文鼎琥珀繁" size="30" color="#de3076">哈哈！我来也！</font> 
+</center>
+</body>
+</html>

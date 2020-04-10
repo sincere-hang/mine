@@ -1,0 +1,50 @@
+<html>
+<head>
+<SCRIPT language=javascript>
+<!--
+function makeArray(q){			//生成数组
+for(i=1;i<=q;i++){			//按给定的上界初始化数组的各元素
+this[i]=0
+}
+}
+Colors=new makeArray(6);		//调用makeArray函数生成数组
+Colors[1]="00";				//将从00到FF的16进制颜色代码分成6级
+Colors[2]="33";				//分别预设其值，方便后面组合颜色代码
+Colors[3]="66";
+Colors[4]="99";
+Colors[5]="CC";
+Colors[6]="FF";
+-->
+</SCRIPT>
+
+<title>背景色测试</title>
+<style type="text/css">
+<!--
+A {COLOR: black; FONT-SIZE: 9pt; FONT-WEIGHT: 400; TEXT-DECORATION: none }
+-->
+</style>
+</head>
+
+<body>
+<center>
+<table cellspacing=1 cellpadding=0>
+<SCRIPT language=javascript>
+<!--
+for(i=1;i<=6;i++){					//三层循环，分别得到RGB颜色代码的下标。
+for(j=1;j<=6;j++){
+for(k=1;k<=6;k++){
+var thiscolor=Colors[i]+Colors[j]+Colors[k];		//由三个下标从数组中查到各颜色代码，连接起来形成完整的颜色代码。
+//向文档中写入代表颜色的单元格，并由其中onmouseover事件触发改变document.bgColor的匿名函数以改变背景颜色。
+document.writeln("<tr><td height = 20 bgcolor = \"#" + thiscolor + "\" align = right><a href = ");
+document.writeln("\'\' onMouseOver = \"document.bgColor=\'"+thiscolor+"\'\">"+thiscolor+"</a></td></tr>");
+}
+}
+}
+-->
+</SCRIPT>
+</table>
+</center>
+</body>
+</html>
+
+

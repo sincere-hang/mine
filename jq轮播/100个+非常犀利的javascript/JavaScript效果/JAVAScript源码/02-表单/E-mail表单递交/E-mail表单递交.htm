@@ -1,0 +1,88 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>E-mail表单递交</title>
+</head>
+<body bgcolor="#C0C0C0">
+<script language="JavaScript">
+<!--
+function validate_form() {						//检查表单的合法性
+  validity = true;							//首先假设表单合法
+  if (!check_empty(document.form.NAME.value))				//如果“姓名栏”为空
+        { validity = false; alert('请你填入你的姓名。'); }		//给出相应提示
+  if (!check_email(document.form.EMAIL.value))				//如果email不合法
+        { validity = false; alert('请重填入对方的Email地址。'); }	//给出相应提示
+  if (!check_empty(document.form.DESCRIPTION.value))			//如果“信件内容”为空
+        { validity = false; alert('对不起!请你书写信件内容。'); }	//给出相应提示
+  if (validity)								//如果通过了上述三项
+        alert ("谢谢你");						//则显示感谢语
+  return validity; 							//根据 validity 状态决定表但是否提交
+}
+
+function check_empty(text) {						//检察字符串是否为空
+  return (text.length > 0); 
+}
+
+function check_email(address) {						//检察email是否合法
+  if ((address == "")							//应该不为空
+    || (address.indexOf ('@') == -1)					//应该包含@符号
+    || (address.indexOf ('.') == -1))					//应该包含.符号
+      return false;							//如果条件不符则返回false
+  return true;								//如果符合则返回true
+}
+// -->
+</script>
+
+<form name="form" method="post" action="mailto:test@263.net?SUBJECT=信件" enctype="text/plain" onSubmit="return validate_form()">
+              <table width="678" border="0" cellspacing="0" cellpadding="0">
+                <tr> 
+                  <td width="101"> 
+                    <div align="left"><font size="3"><b>收件人姓名:</b></font> 
+                    </div> 
+                   </td> 
+                   <td width="573"> 
+                      <input type="text" size=36 name="NAME" style="border: 1 solid #000000">  
+                    </td> 
+                 </tr> 
+                 <tr> 
+                  <td width="101"> 
+                      <b><font size="3">E-mail:&nbsp; </font></b>   
+                    </td> 
+                   <td width="573"> 
+                      <input type="text" size=36 name="EMAIL" style="border: 1 solid #000000">  
+                    </td> 
+                 </tr> 
+                 <tr> 
+                  <td width="101"> 
+                      <b><font size="3">链接地址:&nbsp;</font></b> 
+                   </td> 
+                   <td width="573"> 
+                      <input type="text" size=36 name="URL" value="http://" style="border: 1 solid #000000">  
+                    </td> 
+                 </tr> 
+                 <tr> 
+                  <td width="101"> 
+                      <b><font size="3">信件内容:</font></b> 
+                   </td> 
+                   <td width="573"> 
+                  </td> 
+                 </tr> 
+                 <tr> 
+                  <td width="676" colspan="2"> 
+                      <textarea name="DESCRIPTION" rows=8 cols=45 wrap=virtual style="border: 1 solid #000000;overflow:auto"></textarea> 
+                   </td> 
+                 </tr> 
+                 <tr>   
+                  <td colspan="2" width="676">  
+                     <div align="center"><br> 
+                       <input type="submit" name="submit" value="发送" style="background-color: #FFFFFF; border: 1 solid #000000"> 
+                       <input type="reset" value="清除" name="reset" style="background-color: #FFFFFF; border: 1 solid #000000"> 
+                     </div> 
+                   </td> 
+                 </tr> 
+               </table> 
+               </form> 
+</body> 
+</html> 
+
+

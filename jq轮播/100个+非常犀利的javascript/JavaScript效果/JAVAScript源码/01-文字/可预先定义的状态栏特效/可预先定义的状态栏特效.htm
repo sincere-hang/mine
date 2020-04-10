@@ -1,0 +1,30 @@
+<html>
+<head>
+
+<script language="JavaScript">
+//进页面开始执行前，先提示输入用户自己的消息。
+Ret = prompt('在这里输入的话可以在状态栏上看见',"欢迎光临……")
+var temp
+var f ="                                                                  "
+var f = f + (Ret)
+var speedtogo = 50					//字符滚动速度，这个可根据需要进行修改。
+var counter
+
+function scrollon() {
+   temp = f.substring(0,1);				//取字符串的第一个字符
+   f += temp						//加到字符串的末尾
+   f = f.substring(1,100);				//去掉第一个字符
+   window.status = f.substring(0,100);			//将新生成的字符串写进状态栏
+  counter    = setTimeout("scrollon()",speedtogo);	//设定下一次字符卷动的延时
+}
+
+</script>
+
+<title>可预先定义的状态栏特效</title>
+</head>
+
+<body onLoad="scrollon()">
+<!--在页面装入的时候开始卷动字符-->
+<b>请注意页面左下角的状态栏</b>
+</body>
+</html>

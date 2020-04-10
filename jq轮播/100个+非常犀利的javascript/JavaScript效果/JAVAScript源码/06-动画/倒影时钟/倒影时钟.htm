@@ -1,0 +1,48 @@
+<html>
+<head>
+<style>
+.time { font-size: 40pt; line-height: 40pt; color:blue;}
+</style>
+
+<SCRIPT language=JavaScript>
+<!-- Hiding
+var ctimer;
+
+function init(){
+if (document.all){					//如果浏览器是IE
+tim2.style.left=tim1.style.posLeft;			//根据主显示区的位置设定倒影区的位置
+tim2.style.top=tim1.style.posTop+tim1.offsetHeight-6;	
+settimes();
+}
+}
+
+function settimes(){
+var time= new Date();					//取当前时间
+hours= time.getHours();					//得到小时的数字
+mins= time.getMinutes();				//得到分钟的数字
+secs= time.getSeconds();				//得到秒钟的数字
+if (hours<10)						//十位补零以统一格式
+hours="0"+hours;
+if(mins<10)
+mins="0"+mins;
+if (secs<10)
+secs="0"+secs;
+tim1.innerHTML=hours+":"+mins+":"+secs			//改变主要显示部分的内容
+tim2.innerHTML=hours+":"+mins+":"+secs			//改变倒影区的内容
+ctimer=setTimeout('settimes()',960);			//设定下一次刷新时间的延时
+}
+// Done hiding -->
+</SCRIPT>
+
+<title>倒影时钟</title>
+</head>
+
+<body onload="init()">
+<!--这个层是主要显示区-->
+<DIV class=time id=tim1 style="HEIGHT: 50px; LEFT: 100px; POSITION: absolute; TOP: 75px; WIDTH: 10px">
+</DIV>
+<!--这个层是倒影区，注意这个层应用了IE的滤镜。一个是flipv，一个是alpha-->
+<DIV class=time id=tim2 style="FILTER: flipv() alpha(opacity=20); FONT-STYLE: italic; POSITION: absolute">
+</DIV>
+</body>
+</html>

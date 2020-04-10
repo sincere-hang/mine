@@ -1,0 +1,320 @@
+<html>
+<head>
+<style type="text/css">
+<!--
+#subtext	{ font-family:helvetica,arial; font-size:8pt; background-color:#CCCCCC; layer-background-color:#CCCCCC;}
+#title		{ font-family:helvetica,arial; font-size:13pt; font-weight:bold; }
+#red		{ position:absolute; left:54; top:100; width:256; height:10; z-index:1; visibility:visible; background-image:url(images/redback.gif); layer-background-image:url(images/redback.gif); clip:rect(0px 256px 10px 0px);}
+#green		{ position:absolute; left:54; top:120; width:256; height:10; z-index:1; visibility:visible; background-image:url(images/greenback.gif); layer-background-image:url(images/greenback.gif); clip:rect(0px 256px 10px 0px);}
+#blue		{ position:absolute; left:54; top:140; width:256; height:10; z-index:1; visibility:visible; background-image:url(images/blueback.gif); layer-background-image:url(images/blueback.gif); clip:rect(0px 256px 10px 0px);}
+#redSlider	{ position:absolute; left:50; top:98; width:8; height:14; z-index:2; visibility:visible; background-image:url(images/box.gif); layer-background-image:url(images/box.gif); clip:rect(0px 8px 14px 0px);}
+#greenSlider	{ position:absolute; left:50; top:118; width:8; height:14; z-index:2; visibility:visible; background-image:url(images/box.gif); layer-background-image:url(images/box.gif); clip:rect(0px 8px 14px 0px);}
+#blueSlider	{ position:absolute; left:50; top:138; width:8; height:14; z-index:2; visibility:visible; background-image:url(images/box.gif); layer-background-image:url(images/box.gif); clip:rect(0px 8px 14px 0px);}
+#display	{ position:absolute; left:320; top:100; width:50px; height:50px; z-index:1; visibility:visible; background-color:#000000; layer-background-color:#000000; }
+#hexValue	{ position:absolute; left:54; top:160; width:320; height:20; z-index:1; visibility:visible;}
+#titleBar	{ position:absolute; left:54; top:70; width:320; height:20; z-index:1; background-color:#DDDDDD; layer-background-color:#DDDDDD;}
+#colorTable	{ position:absolute; left:380; top:70; width:320; height:200; z-index:1; visibility:visible;}
+//-->
+</style>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Begin
+function init() {
+ns4 = (document.layers)?true:false;	//判断，记录浏览器类型
+ie4 = (document.all)?true:false;
+sliderMin = 50;
+sliderMax = 306;
+rValue=0;
+gValue=0;
+bValue=0;
+r1 = '0';
+r2 = '0';
+g1 = '0';
+g2 = '0';
+b1 = '0';
+b2 = '0';
+Rgb = '0';
+rGb = '0';
+rgB = '0';
+rActive = false;
+gActive = false;
+bActive = false;
+document.onmousedown = mouseDown		//捕获鼠标事件以便处理
+document.onmousemove = mouseMove
+document.onmouseup = mouseUp
+if (ns4) document.captureEvents(Event.MOUSEDOWN | Event.MOUSEMOVE | Event.MOUSEUP);
+if (ns4) {					//如果浏览器是NS
+domRed = document.redSlider;			//记录各对象尺寸数据以使程序调用方便
+domRed.xpos = parseInt(domRed.left);
+domRed.ypos = parseInt(domRed.top);
+domRed.w = domRed.clip.width;
+domRed.h = domRed.clip.height;
+domGreen = document.greenSlider;
+domGreen.xpos = parseInt(domGreen.left);
+domGreen.ypos = parseInt(domGreen.top);
+domGreen.w = domGreen.clip.width;
+domGreen.h = domGreen.clip.height;
+domBlue = document.blueSlider;
+domBlue.xpos = parseInt(domBlue.left);
+domBlue.ypos = parseInt(domBlue.top);
+domBlue.w = domBlue.clip.width;
+domBlue.h = domBlue.clip.height;
+domDisplay = document.display;
+domValue = document.hexValue.document.frmValue.valueDisp;
+domredValue = document.hexValue.document.frmValue.RgbDisp;
+domgreenValue = document.hexValue.document.frmValue.rGbDisp;
+domblueValue = document.hexValue.document.frmValue.rgBDisp;
+}
+else {						//如果浏览器是IE
+domRed = redSlider.style;			//记录各对象尺寸数据以使程序调用方便
+domRed.xpos = redSlider.offsetLeft;
+domRed.ypos = redSlider.offsetTop;
+domRed.w = redSlider.clientWidth;
+domRed.h = redSlider.clientHeight;
+domGreen = greenSlider.style;
+domGreen.xpos = greenSlider.offsetLeft;
+domGreen.ypos = greenSlider.offsetTop;
+domGreen.w = greenSlider.clientWidth;
+domGreen.h = greenSlider.clientHeight;
+domBlue = blueSlider.style;
+domBlue.xpos = blueSlider.offsetLeft;
+domBlue.ypos = blueSlider.offsetTop;
+domBlue.w = blueSlider.clientWidth;
+domBlue.h = blueSlider.clientHeight;
+domDisplay = display;
+domValue = frmValue.valueDisp;
+domredValue = frmValue.RgbDisp;
+domgreenValue = frmValue.rGbDisp;
+domblueValue = frmValue.rgBDisp;
+}
+//建立10TO16进制的转换数组
+hexArray = new Array('0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F');
+}
+//捕获鼠标按下的事件
+function mouseDown(e) {
+if ((ns4 && e.which!=1) || (ie4 && event.button!=1)) return true;	//如果不是左键或者浏览器不兼容则退出
+var x = (ns4)? e.pageX : event.x+document.body.scrollLeft;		//取得鼠标当前位置
+var y = (ns4)? e.pageY : event.y+document.body.scrollTop;
+//如果鼠标在红色拖动块上
+if (x > domRed.xpos && x < domRed.xpos+domRed.w && y > domRed.ypos && y < domRed.ypos+domRed.h){
+rActive = true;		//设定状态标志
+dragObject = domRed;	//记录操作对象
+}
+//如果鼠标在绿色拖动块上
+if (x > domGreen.xpos && x < domGreen.xpos+domGreen.w && y > domGreen.ypos && y < domGreen.ypos+domGreen.h){
+gActive = true;
+dragObject = domGreen;
+}
+//如果鼠标在蓝色拖动块上
+if (x > domBlue.xpos && x < domBlue.xpos+domBlue.w && y > domBlue.ypos && y < domBlue.ypos+domBlue.h){
+bActive = true;
+dragObject = domBlue;
+}
+if (rActive==true || gActive==true || bActive==true){		//如果处于拖动状态
+if (x>=dragObject.xpos && x<=dragObject.xpos+dragObject.w) {	//如果鼠标没有脱离拖动状态
+dragObject.dragOffsetX = x-dragObject.xpos			//调整滑块位置，跟着鼠标移动
+}
+return false							//返回false值
+}
+else {								//否则(不在拖动中)
+return true							//返回true
+   }
+}
+//处理鼠标拖动
+function mouseMove(e) {
+var x = (ns4)? e.pageX : event.x+document.body.scrollLeft;	//取鼠标坐标
+var y = (ns4)? e.pageY : event.y+document.body.scrollTop;
+if (rActive) {					//如果红色滑块正被拖动
+rMoveTo = x-dragObject.dragOffsetX;		//取红色滑块应该移动到的位置
+if (rMoveTo > sliderMax) rMoveTo = 306;		//如果超出边界则强制移动到边界处
+if (rMoveTo < sliderMin) rMoveTo = 50;
+domRed.xpos = rMoveTo;				//更改滑块位置
+domRed.left = domRed.xpos;
+rValue = (domRed.xpos+4)-50;			//计算红色的颜色值
+calcValue(rMoveTo-50, 'red');			//更新各项显示
+}
+if (gActive) {					//如果绿色滑块正被拖动
+gMoveTo = x-dragObject.dragOffsetX;
+if (gMoveTo > sliderMax) gMoveTo = sliderMax;
+if (gMoveTo < sliderMin) gMoveTo = sliderMin;
+domGreen.xpos = gMoveTo;
+domGreen.left = domGreen.xpos;
+gValue = (domGreen.xpos+4)-50;
+calcValue(gMoveTo-50, 'green');
+}
+if (bActive) {					//如果蓝色滑块正被拖动
+bMoveTo = x-dragObject.dragOffsetX;
+if (bMoveTo > sliderMax) bMoveTo = sliderMax;
+if (bMoveTo < sliderMin) bMoveTo = sliderMin;
+domBlue.xpos = bMoveTo;
+domBlue.left = domBlue.xpos;
+bValue = (domBlue.xpos+4)-50;
+calcValue(bMoveTo-50, 'blue');
+}
+return true					//返回true
+}
+
+function mouseUp(e) {
+var x = (ns4)? e.pageX : event.x+document.body.scrollLeft	//计算鼠标位置坐标
+var y = (ns4)? e.pageY : event.y+document.body.scrollTop
+rActive = false;						//清除拖动状态标志
+gActive = false;
+bActive = false;
+return true
+}
+
+function calcValue(base, color) {				//重新计算颜色值
+base -= 1;
+if (base < 16) { first = 0; }
+else { first = parseInt(base/16); }
+if (base < 0 ) { second = 0; base = 0; }
+else { second = parseInt(base%16); }
+c1=hexArray[first];
+c2=hexArray[second]; 
+if (color == 'red') { r1 = c1; r2 = c2; Rgb=base; }
+else if (color == 'green') { g1 = c1; g2 = c2; rGb=base; }
+else { b1 = c1; b2 = c2; rgB=base; }
+domValue.value = eval('"'+r1+r2+g1+g2+b1+b2+'"');
+domredValue.value = eval('"'+Rgb+'"');
+domgreenValue.value = eval('"'+rGb+'"');
+domblueValue.value = eval('"'+rgB+'"');
+if (ns4) { domDisplay.bgColor = eval('"#'+r1+r2+g1+g2+b1+b2+'"'); }		//为NS返回颜色值
+else { domDisplay.style.backgroundColor = eval('"#'+r1+r2+g1+g2+b1+b2+'"'); }	//为IE返回颜色值
+return true;
+}
+//反向调整
+function manualSet(value,color) {
+if (value < 0) value=0;		//检查数值是否超出范围，否则修正
+if (value > 255) value=255;
+++value;
+calcValue(value,color);		//计算相应颜色值
+if (color == 'red'){
+   domRed.xpos = value+sliderMin-4; domRed.left = domRed.xpos;
+   }else if (color == 'green'){
+	domGreen.xpos = value+sliderMin-4;
+	domGreen.left = domGreen.xpos;
+   } else { domBlue.xpos = value+sliderMin-4; domBlue.left = domBlue.xpos; 
+}
+}
+//转换到16进制
+function convertHex(hexString) {
+if(hexString == null) hexString = domValue.value;
+inputHexArray = new Array(6);
+for(i=0;i<=5;++i) {
+inputHexArray[i] = hexString.charAt(i);
+}
+for(i=0;i<=5;++i) {
+tempHexVal = inputHexArray[i];
+for(j=0;j<=15;++j) {
+if(tempHexVal == hexArray[j]) tempHexVal = j;
+}
+inputHexArray[i] = tempHexVal;
+}
+Rgb = (inputHexArray[0]*16)+inputHexArray[1]+1;
+calcValue(Rgb,'red');
+manualSet(Rgb,'red');
+rGb = (inputHexArray[2]*16)+inputHexArray[3]+1;
+calcValue(rGb,'green');
+manualSet(rGb,'green');
+rgB = (inputHexArray[4]*16)+inputHexArray[5]+1;
+calcValue(rgB,'blue');
+manualSet(rgB,'blue');
+}
+// End -->
+</script>
+
+
+<title>颜色编辑器</title>
+</head>
+
+<body OnLoad="init()">
+
+<div id="red"></div>
+<div id="green"></div>
+<div id="blue"></div>
+
+<div id="redSlider"></div>
+<div id="greenSlider"></div>
+<div id="blueSlider"></div>
+<div id="colorTable">
+<table border=1 cellpadding=0 cellspacing=0 bordercolorlight="#000000" bordercolor="#FFFFFF">
+<tr><td colspan=18 align=center id="subtext" bgcolor="#EEEEEE">216色调色板</td></tr>
+<script>
+<!--				//这段代码用于生成216色调色板
+clr = new Array('00','33','66','99','CC','FF');
+for(k=0;k<6;++k){
+for(j=0;j<6;){
+document.write('<tr>\n');
+for(m=0;m<3;++m){
+for(i=0;i<6;++i){
+document.write('<td bgcolor=#'+clr[k]+clr[j+m]+clr[i]+'>');
+document.write('<a href="javascript:void(null)" ');
+document.write('onClick="convertHex(\''+clr[k]+clr[j+m]+clr[i]+'\')\;">');
+document.write('<img src=blankgif width=10 height=10 border=0></a></td>\n');
+}
+}
+j+=3;
+document.write('</tr>\n');
+}
+}
+//-->
+</script>
+
+</table>
+
+
+
+
+
+
+
+
+
+</div>
+<div id="display"><img src="images/back.gif" width=50 height=50 border=0></div>
+<div id="titleBar">
+<table border=1 cellpadding=0 cellspacing=0 width=320 bordercolorlight="#000000" bordercolor="#FFFFFF">
+<tr>
+<td id="title" bgcolor="#EEEEEE"><font size=2>颜色编辑器</font></td>
+</tr>
+</table>
+</div>
+<div id="hexValue"><form name="frmValue">
+<table border=1 cellpadding=0 cellspacing=0 width=320 bgcolor=#EEEEEE bordercolorlight="#000000" bordercolor="#FFFFFF">
+<tr>
+<td align=center>
+<table border=1 cellpadding=0 cellspacing=0 bordercolorlight="#000000" bordercolor="#FFFFFF">
+<tr>
+<td id="subtext">红</td>
+<td id="subtext">绿</td>
+<td id="subtext">蓝</td>
+</tr>
+<tr>
+<td><input type=text size=3 maxlength=3 name="RgbDisp" value="0" onBlur="manualSet(this.value,'red');"></td>
+<td><input type=text size=3 maxlength=3 name="rGbDisp" value="0" onBlur="manualSet(this.value,'green');"></td>
+<td><input type=text size=3 maxlength=3 name="rgBDisp" value="0" onBlur="manualSet(this.value,'blue');"></td>
+</tr>
+</table>
+</td>
+<td align=center>
+<table border=1 cellpadding=0 cellspacing=0 bordercolorlight="#000000" bordercolor="#FFFFFF">
+<tr>
+<td id="subtext">颜色代码</td>
+</tr>
+<tr>
+<td><input type=text size=6 maxlength=6 name="valueDisp" value="000000" onBlur="convertHex();"></td>
+</tr>
+</table>
+</td>
+</tr>
+</table></form>
+</div>
+<div style="position: absolute; top: 213; left: 54; width: 386; height: 26">
+  <table width="320" border=1 cellpadding=0 cellspacing=0 bordercolorlight="#000000" bordercolor="#FFFFFF">
+    <tr>
+      <td width="100%" bgcolor="#EEEEEE"><font size=2><marquee  behavior="alternate" scrollamount="1">很不错的一个javascript特效吧？</marquee></font></td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

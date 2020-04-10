@@ -1,0 +1,41 @@
+<html>
+<head>
+<script language="javascript">
+<!-- Hide me
+var indexcount = 0;
+var titlestring = "  欢迎光临，请多多提出你的建议!!! ";	//这里是需要显示的标题
+var titlelength = titlestring.length;			//取字符串长度
+var TimerID;
+var stoplength = 0;
+
+function scroll(){
+scrollmain();				//显示标题
+stoplength++;				//将长度计数器加一以为下次判断长度做准备
+TimerID = setTimeout("scroll();",100)	//设定下一次更新标题栏文字的间隔
+if(stoplength > titlelength)		//如果已经显示完整
+ {
+ clearTimeout(TimerID);			//则停止程序。
+ }
+}
+
+function scrollmain()					
+{
+//取需显示的字符串，由indexcount决定长度
+var windowtitle = titlestring.substring((titlelength - indexcount - 1),titlelength);
+document.title = windowtitle;		//就是这里改变了标题栏文字
+indexcount++;				//将要取字符串的长度加一，为下一次做准备
+}
+scroll();
+//-->
+</script>
+
+<title></title>
+</head>
+<body>
+<b>请注意上面的标题栏</b>
+</body>
+</html>
+
+
+
+

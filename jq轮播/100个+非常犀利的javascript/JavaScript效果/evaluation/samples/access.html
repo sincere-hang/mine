@@ -1,0 +1,22 @@
+<html>
+<head>
+<script>
+function access() 
+{
+  var doc = parent.navigatorGetDocument();
+  doc.getElementById("text").style.color = "red";
+}
+</script>
+</head>
+<body style="MARGIN:0px; OVERFLOW:hidden">
+	<TABLE style="BORDER-RIGHT: red 1px solid; BORDER-TOP: red 1px solid; BORDER-LEFT: red 1px solid; WIDTH: 100%; BORDER-BOTTOM: red 1px solid; HEIGHT: 100%"
+		borderColor="#0" border="0">
+		<TBODY>
+			<TR>
+				<TD>
+					<P style="VERTICAL-ALIGN: middle; TEXT-ALIGN: center" align="left" noWrap="false"><INPUT id="Button1" type="button" value="Access split document" name="Button1" onclick="access()"></P>
+				</TD>
+			</TR>
+		</TBODY></TABLE>
+</body>
+</html>

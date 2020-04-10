@@ -1,0 +1,307 @@
+<html>
+<head>
+<title>动态文字特效</title>
+<meta content="text/html; charset=gb2312" http-equiv="Content-Type">
+<script language="Javascript">
+bname=navigator.appName;
+bversion=parseInt(navigator.appVersion)
+if ((bname=="Netscape" && bversion>=4) || (bname=="Microsoft Internet Explorer" && bversion>=4))
+ {
+  if (bname=="Netscape")
+   {
+    brows=true
+    dt=1
+   }
+  else
+   {
+    brows=false
+    dt=40
+   }
+var z=0;
+var msg=0;
+var rgb=0;
+var status=true;
+var updwn=false;
+var message= new Array();
+var value=0;
+var timer1;
+var timer2;
+var timer3;
+var convert = new Array()
+var hexbase= new Array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F");
+// 以下加入显示的文字,可以随意添加,
+var bgcolor="#FFFFFF"; //背景色
+var color="#ce288c";  //字符颜色
+message[0]='滚动文字特效演示'
+message[1]='超玄的效果'
+message[2]='是不是很诱人呢?</a>'
+message[4]='想试一试吗？'
+message[3]='还支持超级连接!'
+message[5]='点击进入<a href="#">联谊网站</a>!'
+for (x=0; x<16; x++)
+ {
+  for (y=0; y<16; y++)
+   {
+    convert[value]= hexbase[x] + hexbase[y];
+    value++;
+   }
+ }
+ 
+//颜色的计算
+redx=color.substring(1,3);             // redx='00'    
+greenx=color.substring(3,5);           // greenx='00'
+bluex=color.substring(5,7);            // bluex='ff'  
+hred=eval(parseInt(redx,16));          // hred=0 
+hgreen=eval(parseInt(greenx,16));      // hgreen=0 
+hblue=eval(parseInt(bluex,16));        // hblue=ff
+eredx=bgcolor.substring(1,3);          // eredx='ff'
+egreenx=bgcolor.substring(3,5);        // egreenx='ff'
+ebluex=bgcolor.substring(5,7);         // ebluex='ff'
+ered=eval(parseInt(eredx,16));         // ered=ff
+egreen=eval(parseInt(egreenx,16));     // egreen=ff
+eblue=eval(parseInt(ebluex,16));       // eblue=ff
+red=ered;                              // red=ff 
+green=egreen;                          // green=ff
+blue=eblue;                            //blue=ff
+
+function start(){
+if ((bname=="Netscape" && bversion>=4) || (bname=="Microsoft Internet Explorer" && bversion>=4)){
+if (brows)
+res=document.layers['textanim'].top
+else
+res=textanim.style.top
+updwn=true;
+timer1=window.setInterval('up()',dt)
+}
+}
+
+function stop()   //清空超时设置，释放系统资源
+{
+if ((bname=="Netscape" && bversion>=4) || (bname=="Microsoft Internet Explorer" && bversion>=4)){
+window.clearInterval(timer1);
+window.clearInterval(timer2);
+window.clearTimeout(timer3);
+}
+}
+
+function breakf()    //鼠标单击后文字停止或重新开始滚动
+{
+if (status){
+window.clearInterval(timer1);
+window.clearInterval(timer2);
+window.clearTimeout(timer3);
+status=false
+return;
+}
+else{
+if (updwn)
+timer1=window.setInterval('up()',dt)
+else
+timer2=window.setInterval('down()',dt)
+status=true;
+}
+}
+
+function up()  //文字颜色变化控制,滚动控制
+{
+if (red<hred){
+if ((red+15)<hred){
+red+=15;
+redx = convert[red]
+}
+else{
+red=hred
+redx = convert[red]
+}
+}
+
+if (red>hred){
+if ((red-15)>hred){
+red-=15;
+redx = convert[red]
+}
+else{
+red=hred
+redx = convert[red]
+}
+}
+
+if (green<hgreen){
+if ((green+15)<hgreen){
+green+=15;
+greenx = convert[green]
+}
+else{
+green=hgreen
+greenx = convert[green]
+}
+}
+
+if (green>hgreen){
+if ((green-15)>hgreen){
+green-=15;
+greenx = convert[green]
+}
+else{
+green=hgreen
+greenx = convert[green]
+}
+}
+
+if (blue<hblue){
+if ((blue+15)<hblue){
+blue+=15;
+bluex = convert[blue]
+}
+else{
+blue=hblue
+bluex = convert[blue]
+}
+}
+
+if (blue>hblue){
+if ((blue-15)>hblue){
+blue-=15;
+bluex = convert[blue]
+}
+else{
+blue=hblue
+bluex = convert[blue]
+}
+}
+
+rgb = "#"+redx+greenx+bluex;
+if (brows){
+document.layers['textanim'].document.linkColor=rgb;
+document.layers['textanim'].document.vlinkColor=rgb;
+document.layers['textanim'].document.writeln('<Pre><P Class="main" Align="Center"><font color="'+rgb+'">'+message[msg]+'</font></P></Pre>')
+document.layers['textanim'].document.close();
+}
+else{
+textanim.document.linkColor=rgb;
+textanim.document.vlinkColor=rgb;
+textanim.innerHTML='<Pre><P Class="main" Align="Center"><font color="'+rgb+'">'+message[msg]+'</font></P></Pre>'
+}
+if (z<19){
+if (brows)
+document.layers['textanim'].top-=2
+else
+textanim.style.posTop-=2
+z++
+}
+else
+{
+updwn=false;
+window.clearInterval(timer1);
+timer2=window.setInterval('down()',dt)
+}
+}
+
+function down()
+ {
+  if (red<ered)
+   {
+    if ((red+15)<ered){ red+=15;redx = convert[red];}
+    else { red=ered;redx = convert[red];}
+   }
+  if (red>ered)
+   {
+    if ((red-15)>ered){red-=15;redx = convert[red];}
+    else {red=ered;redx = convert[red];}
+   }
+  if (green<egreen)
+   {
+    if ((green+15)<egreen){green+=15;greenx = convert[green];}
+    else { green=egreen;greenx = convert[green];}
+   }
+  if (green>egreen)
+   {
+    if ((green-15)>egreen){green-=15;greenx = convert[green];}
+    else{green=egreen;greenx = convert[green];}
+   }
+  if (blue<eblue) 
+   {
+    if ((blue+15)<eblue){blue+=15;bluex = convert[blue];}
+    else { blue=eblue;bluex = convert[blue];}
+   }
+  if (blue>eblue)
+   {
+    if ((blue-15)>eblue){blue-=15;bluex = convert[blue];}
+    else {blue=eblue;bluex = convert[blue];}
+   }
+  rgb = "#"+redx+greenx+bluex;
+  if (brows)
+   {
+    document.layers['textanim'].document.linkColor=rgb;
+    document.layers['textanim'].document.vlinkColor=rgb;
+    document.layers['textanim'].document.writeln('<Pre><P Class="main" Align="Center"><font color="'+rgb+'">'+message[msg]+'</font></P></Pre>')
+    document.layers['textanim'].document.close();
+   }
+  else
+   {
+    textanim.document.linkColor=rgb;
+    textanim.document.vlinkColor=rgb;
+    textanim.innerHTML='<Pre><P Class="main" Align="Center"><font color="'+rgb+'">'+message[msg]+'</font></P></Pre>'
+   }
+  if (z<38)
+   {
+    if (brows)
+     document.layers['textanim'].top-=2
+    else
+     textanim.style.posTop-=2;
+    z++;
+   }
+  else
+   {
+    if (brows)
+    {
+     document.layers['textanim'].document.writeln('');
+     document.layers['textanim'].document.close();
+    }
+   else
+    textanim.innerHTML='';
+   window.clearInterval(timer2);
+   if(msg<message.length-1)
+    {
+     msg++;
+     z=0;
+     if (brows)
+      document.layers['textanim'].top=res;
+     else
+      textanim.style.top=res;
+     timer3=window.setTimeout('start()',100);
+    }
+   else
+    {
+     msg=0;
+     z=0;
+     if (brows)
+      document.layers['textanim'].top=res;
+     else
+      textanim.style.top=res;
+     timer3=window.setTimeout('start()',2000);
+    }
+ }
+}
+}
+
+</script>
+<style type="text/css">
+A:link {TEXT-DECORATION: line}
+A:visited {TEXT-DECORATION:line}
+P.main {FONT-FAMILY: Comic Sans Ms; FONT-SIZE: 32pt; FONT-WEIGHT: bold}
+</style>
+</head>
+<body aLink="#ffff00" bgColor="#ffffff" link="#ff0000" onload="start()" onunload="stop()"
+text="#000000" vLink="#ff0000">
+<div id="textanim" onclick="breakf()" style="LEFT: 18px; POSITION: absolute; TOP: 221px"></div>
+<LAYER top="80" left="4" name="textanim"></LAYER>
+<p>　</p>
+<p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  <font size="15" color="#DE3076" face="汉鼎繁特楷"> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp; <font color="#3399FF">可以支持超链接哦！</font></font></p>
+<p>　</p>
+<p>　</p>
+<p align="center">　</p>
+</body>
+</html>

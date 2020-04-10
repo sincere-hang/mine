@@ -1,0 +1,91 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>适时提醒</title>
+<style type="text/css">
+a {color=000000;text-decoration:none}
+a:hover{color=0000ff}
+</style>
+</head>
+<body>
+
+<SCRIPT language="JavaScript">
+<!-----------
+   var enabled = 0;
+   today = new Date();				//取当前日期
+   var day;
+   var date;
+   if(today.getDay()==0)     day = "星期日"	//根据当前日期星期部分的数字生成对应的中文说明。
+   if(today.getDay()==1)     day = "星期一"
+   if(today.getDay()==2)     day = "星期二"
+   if(today.getDay()==3)     day = "星期三"
+   if(today.getDay()==4)     day = "星期四"
+   if(today.getDay()==5)     day = "星期五"
+   if(today.getDay()==6)     day = "星期六"
+   document.fgColor = " FF0072";		//设定文字的颜色
+   //取日期部分的描述
+   date1 = "<font size=2 color=red>" + (today.getYear())  + "年" + (today.getMonth() + 1 ) + "月" + today.getDate() + "日  " + "</font>";
+   date2 = "<font size=2 color=red>" +  day + "</font>";	//取星期部分描述。
+   document.write(date1.fontsize(3) + date2.fontsize(3));	//将前面的内容写进显示区
+//----->
+</SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+document.write("<font size=2> ")
+day = new Date()				//取当前日期
+hr = day.getHours()				//取日期的“小时”部分
+if (hr ==1)					//再根据时间的不同
+document.write("过一点了，可以睡觉了！")	//向文本中写入不同的说明。
+if (hr ==2)
+document.write("都两点了，时间过的真快")	//这些问候内容都可以自己根据需要修改。
+if (hr ==3)
+document.write("<a href=#>夜深人静，只有你敲击鼠标的声音...通常说的妖怪都是这个时候出来……</a>")
+if (hr ==4)
+document.write("<a href=#>我来跟你讲个鬼故事吧！</a>")
+if (hr ==5)
+document.write("<a href=#>我知道你现在一定很饿！是不是……这里有中国菜谱大全，来看看嘛！</a>")
+if (hr ==6)
+document.write("你知道吗，此时是国内网络速度最快的时候！")
+if (hr ==7)
+document.write("天好像亮了……")
+if (hr ==8)
+document.write("新的一天又开始了，祝你过得快乐！")
+if (hr ==9)
+document.write("青年们就像现在的太阳一样……8，9点钟的哦。")
+if (hr ==10)
+document.write("上午好！今天你看上去好精神哦！")
+if (hr ==11)
+document.write("十一点过了，快下班了吧？")
+if (hr ==12)
+document.write("十二点过了，还不下班？")
+if (hr ==13)
+document.write("你这个时候上网？难道你在玩游戏？")
+if (hr==14)
+document.write("午觉睡好了吗？")
+if (hr==15)
+document.write("这个时候是比较困的时候，但是千万不要睡觉，因为我们这里有很多精彩的节目呢")
+if (hr==16)
+document.write("窗外有太阳！")
+if (hr==17)
+document.write("万岁！快要下班了！")
+if (hr==18)
+document.write("<a href=#>有没有饿？想不想看满汉全席的菜谱？我这里有。</a>")
+if (hr==19)
+document.write("有没有吃饭？没有的话，找个网友出去宰他一顿，感觉好极了")
+if (hr==20)
+document.write("现在好像电视剧要开始了")
+if (hr==21)
+document.write("这个时候追女孩子要小心。因为很加可能你的老婆看完电视了。")
+if (hr==22)
+document.write("10：00了，天那……快要睡觉了……")
+if (hr==23)
+document.write("真是越玩越精神，不打算睡了？")
+if (hr==0)
+document.write("凌晨了，还不睡？")
+document.write("</font>")
+//--->
+</SCRIPT>
+
+</body>
+</html>

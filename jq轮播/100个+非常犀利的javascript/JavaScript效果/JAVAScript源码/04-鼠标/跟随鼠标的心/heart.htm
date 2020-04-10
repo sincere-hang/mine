@@ -1,0 +1,355 @@
+<html>
+<head>
+<script LANGUAGE="JavaScript" FPTYPE="dynamicanimation">
+<!-- // In the script tag, change type="dynamicanimation" to type="mydynamicanimation"  
+     // In the first script statement, change "dynamicanimation" to "mydynamicanimation"  
+     // Throughout the HTML content, change dynamicanimation= to mydynamicanimation=  
+     // Change function dynAnimation to function mydynAnimation  
+     // In the body tag, change onload="dynAnimation()" to onload="mydynAnimation()"  
+dynamicanimAttr = "dynamicanimation"  
+animateElements = new Array()  
+currentElement = 0  
+speed = 0  
+stepsZoom = 8  
+stepsWord = 8  
+stepsFly = 12  
+stepsSpiral = 16  
+steps = stepsZoom  
+step = 0  
+outString = ""  
+function dynAnimation()  
+ {    
+  var ms = navigator.appVersion.indexOf("MSIE")    
+  ie4 = (ms>0) && (parseInt(navigator.appVersion.substring(ms+5, ms+6)) >= 4)
+  if(!ie4)    
+  {      
+   if((navigator.appName == "Netscape") &&(parseInt(navigator.appVersion.substring(0, 1)) >= 4))
+    {
+     for (index=document.layers.length-1; index >= 0; index--)        
+      {
+       layer=document.layers[index]            
+       if (layer.left==10000)                
+       layer.left=0        
+      }      
+    }      
+   return    
+  }    
+  for (index=document.all.length-1; index >= document.body.sourceIndex; index--)    
+   {      
+    el = document.all[index]      
+    animation = el.getAttribute(dynamicanimAttr, false)      
+    if(null != animation)      
+    {        
+     if(animation == "dropWord" || animation == "flyTopRightWord" || animation == "flyBottomRightWord") 
+      {          
+       ih = el.innerHTML          
+       outString = ""          
+       i1 = 0          
+       iend = ih.length          
+       while(true)          
+        {            
+         i2 = startWord(ih, i1)            
+         if(i2 == -1)              
+         i2 = iend           
+         outWord(ih, i1, i2, false, "")            
+         if(i2 == iend)              
+          break            
+         i1 = i2            
+         i2 = endWord(ih, i1)            
+         if(i2 == -1)             
+          i2 = iend            
+         outWord(ih, i1, i2, true, animation)         
+         if(i2 == iend)
+          break            
+         i1 = i2          
+        }          
+       document.all[index].innerHTML = outString          
+       document.all[index].style.posLeft = 0
+       document.all[index].setAttribute(dynamicanimAttr, null)        
+      }        
+     if(animation == "zoomIn" || animation == "zoomOut")        
+      {
+       ih = el.innerHTML
+       outString = "<SPAN " + dynamicanimAttr + "=\"" + animation + "\" style=\"position: relative; left: 10000;\">"
+       outString += ih 
+       outString += "</SPAN>" 
+       document.all[index].innerHTML = outString
+       document.all[index].style.posLeft = 0
+       document.all[index].setAttribute(dynamicanimAttr, null)
+      }
+    }   
+   }    
+  i = 0    
+  for (index=document.body.sourceIndex; index < document.all.length; index++) 
+   {
+    el = document.all[index]
+    animation = el.getAttribute(dynamicanimAttr, false)
+    if (null != animation)
+     {
+      if(animation == "flyLeft")
+       {
+        el.style.posLeft = 10000-offsetLeft(el)-el.offsetWidth
+        el.style.posTop = 0
+       }
+      else if(animation == "flyRight")
+       {
+        el.style.posLeft = 10000-offsetLeft(el)+document.body.offsetWidth
+        el.style.posTop = 0
+       }
+      else if(animation == "flyTop" || animation == "dropWord")        
+       {
+        el.style.posLeft = 0
+        el.style.posTop = document.body.scrollTop-offsetTop(el)-el.offsetHeight
+       }
+      else if(animation == "flyBottom")
+       {
+        el.style.posLeft = 0
+        el.style.posTop = document.body.scrollTop-offsetTop(el)+document.body.offsetHeight
+       }
+      else if(animation == "flyTopLeft")
+       {
+        el.style.posLeft = 10000-offsetLeft(el)-el.offsetWidth
+        el.style.posTop = document.body.scrollTop-offsetTop(el)-el.offsetHeight
+       }
+      else if(animation == "flyTopRight" || animation == "flyTopRightWord")
+       {
+        el.style.posLeft = 10000-offsetLeft(el)+document.body.offsetWidth
+        el.style.posTop = document.body.scrollTop-offsetTop(el)-el.offsetHeight
+       }
+      else if(animation == "flyBottomLeft")
+       {
+        el.style.posLeft = 10000-offsetLeft(el)-el.offsetWidth
+        el.style.posTop = document.body.scrollTop-offsetTop(el)+document.body.offsetHeight
+       }
+      else if(animation == "flyBottomRight" || animation == "flyBottomRightWord")
+       {
+        el.style.posLeft = 10000-offsetLeft(el)+document.body.offsetWidth
+        el.style.posTop = document.body.scrollTop-offsetTop(el)+document.body.offsetHeight
+       }
+      else if(animation == "spiral")
+       {
+        el.style.posLeft = 10000-offsetLeft(el)-el.offsetWidth
+        el.style.posTop = document.body.scrollTop-offsetTop(el)-el.offsetHeight
+       }
+      else if(animation == "zoomIn")
+       {
+        el.style.posLeft = 10000
+        el.style.posTop = 0
+       }
+      else if(animation == "zoomOut")
+       {
+        el.style.posLeft = 10000
+        el.style.posTop = 0
+       }
+      else
+       {
+        el.style.posLeft = 10000-offsetLeft(el)-el.offsetWidth
+        el.style.posTop = 0
+       }
+      el.initLeft = el.style.posLeft
+      el.initTop = el.style.posTop
+      animateElements[i++] = el
+     }
+    }
+   window.setTimeout("animate();", speed)  
+ }
+function offsetLeft(el)
+ {
+  x = el.offsetLeft
+  for (e = el.offsetParent; e; e = e.offsetParent)
+   x += e.offsetLeft;
+  return x  
+ }
+function offsetTop(el)
+ {
+  y = el.offsetTop
+  for (e = el.offsetParent; e; e = e.offsetParent)
+  y += e.offsetTop;
+  return y
+ }
+function startWord(ih, i)
+ {
+  for(tag = false; i < ih.length; i++)
+   {
+    c = ih.charAt(i)
+    if(c == '<')
+     tag = true
+    if(!tag)
+     return i
+    if(c == '>')
+     tag = false    }
+    return -1  
+ }  
+function endWord(ih, i)  
+ {
+  nonSpace = false
+  space = false
+  while(i < ih.length)
+   {
+    c = ih.charAt(i)
+    if(c != ' ')
+     nonSpace = true
+    if(nonSpace && c == ' ')
+     space = true
+    if(c == '<')
+     return i
+    if(space && c != ' ')
+     return i
+    i++
+   }
+  return -1
+ }
+function outWord(ih, i1, i2, dyn, anim)
+ {
+  if(dyn)
+   outString += "<SPAN " + dynamicanimAttr + "=\"" + anim + "\" style=\"position: relative; left: 10000;\">"
+  outString += ih.substring(i1, i2)
+  if(dyn)
+   outString += "</SPAN>"  
+ }
+function animate()
+ {
+  el = animateElements[currentElement]
+  animation = el.getAttribute(dynamicanimAttr, false)
+  step++
+  if(animation == "spiral")
+   {
+    steps = stepsSpiral
+    v = step/steps
+    rf = 1.0 - v 
+    t = v * 2.0*Math.PI
+    rx = Math.max(Math.abs(el.initLeft), 200)
+    ry = Math.max(Math.abs(el.initTop),  200)
+    el.style.posLeft = Math.ceil(-rf*Math.cos(t)*rx)
+    el.style.posTop  = Math.ceil(-rf*Math.sin(t)*ry)
+   }
+  else if(animation == "zoomIn")
+   {
+    steps = stepsZoom
+    el.style.fontSize = Math.ceil(50+50*step/steps) + "%"
+    el.style.posLeft = 0    }
+    else if(animation == "zoomOut")
+     {
+      steps = stepsZoom
+      el.style.fontSize = Math.ceil(100+200*(steps-step)/steps) + "%"
+      el.style.posLeft = 0
+     }
+    else
+     {
+      steps = stepsFly
+      if(animation == "dropWord" || animation == "flyTopRightWord" || animation == "flyBottomRightWord")
+       steps = stepsWord
+      dl = el.initLeft / steps
+      dt = el.initTop  / steps
+      el.style.posLeft = el.style.posLeft - dl
+      el.style.posTop = el.style.posTop - dt
+     }
+    if (step >= steps)
+     {
+      el.style.posLeft = 0
+      el.style.posTop = 0      
+      currentElement++
+      step = 0
+     }
+    if(currentElement < animateElements.length)
+    window.setTimeout("animate();", speed)  
+   }//-->
+</script>
+</head>
+<body onLoad="dynAnimation()" background=BG.JPG>
+<br>
+<br><br><br><br><br>
+<font size="4"><br>
+</font>
+<center>
+  <font face="文鼎琥珀繁" size="4" color="#CC0099"> 曾经有一段珍贵的感情放在我的面前，我没有好好珍惜，世界最后悔的事莫过于此。如果上天再给我一次机会，我会说：“我爱你”，如果非要给这个爱加一个限期的话，我希望是一万年！</font> 
+</center>
+<p dynamicanimation="dropWord" style="position: relative !important; left: 10000 !important">　</p>
+<div id="trailSprite1" style="position: absolute; height:36px; width:36px;z-index: 100; left: 600px; top: 5px; visibility: hidden">
+<dd dynamicanimation="flyTopRightWord" style="position: relative !important; left: 10000 !important">
+  <img src="images/trailgif1.gif" name="trailSprite1img" WIDTH="36" HEIGHT="36"> </dd>
+</div>
+<div id="trailSprite2" style="position: absolute; height:36px; width:36px;z-index: 10; left: 600px; top: 5px; visibility: hidden">
+<dd><img src="images/trailgif4.gif" name="trailSprite2img" WIDTH="36" HEIGHT="36"> </dd>
+</div>
+<div id="trailSprite3" style="position: absolute; height:36px; width:36px;z-index: 10; left: 600px; top: 5px; visibility: hidden">
+<dd><img src="images/trailgif5.gif" name="trailSprite3img" WIDTH="36" HEIGHT="36"> </dd>
+</div>
+<div id="trailSprite4" style="position: absolute; height:36px; width:36px;z-index: 10; left: 600px; top: 5px; visibility: hidden">
+<dd><img src="images/trailgif3.gif" name="trailSprite4img" WIDTH="36" HEIGHT="36"> </dd>
+</div>
+<div id="trailSprite5" style="position: absolute; height:36px; width:36px;z-index: 10; left: 600px; top: 5px; visibility: hidden">
+<dd><img src="images/trailgif2.gif" name="trailSprite5img" WIDTH="36" HEIGHT="36"> </dd>
+</div>
+</body>
+</html>
+<script>
+var isNS = (navigator.appName == "Netscape");
+layerRef = (isNS) ? "document" : "document.all";
+styleRef = (isNS) ? "" : ".style";
+var queue = new Array();
+var NUM_OF_TRAIL_PARTS = 5
+for (x=1; x < 6; x++) { ///////////////Image Preload
+eval("trailSpriteFrame" + x + " = new Image(36,36);");
+eval("trailSpriteFrame" + x + ".src = 'images/trailgif" + x + ".gif';"); 
+}
+
+////////////////////////////////////////////////The trail Object
+
+function trailSpriteObj(anID) {
+this.trailSpriteID = "trailSprite" + anID; //as before 
+this.imgRef = "trailSprite" + anID + "img"; //reference to the sprites image name
+this.currentFrame = 1; //the varible for looking after the frame
+this.animateTrailSprite = animateTrailSprite; //declare the objects method cycle
+}
+
+function animateTrailSprite() {
+if (this.currentFrame <6 ) { //if there are animation frames left, the change sprites the current frame
+if (isNS) { //Detect the browser and perform coresponding image switch
+eval("document." + this.trailSpriteID +".document['"+ this.imgRef + "'].src = trailSpriteFrame" + this.currentFrame + ".src");
+} else {
+eval("document['" + this.imgRef + "'].src = trailSpriteFrame" + this.currentFrame + ".src");
+}
+this.currentFrame ++; //and increase the objects current frame 
+} else { //the current frame has reached its limit so hide the sprite
+eval(layerRef + '.' + this.trailSpriteID + styleRef + '.visibility = "hidden"');
+} 
+}
+
+/////////////////////////////////////////////////////////////////
+
+function processAnim() {
+for(x=0; x < NUM_OF_TRAIL_PARTS; x++)
+queue[x].animateTrailSprite();
+}
+
+function processMouse(e) {
+currentObj = shuffleQueue();
+if (isNS) {
+eval("document." + currentObj + ".left = e.pageX - 10 ;");
+eval("document." + currentObj + ".top = e.pageY + 10;");
+} else {
+eval("document.all." + currentObj + ".style.pixelLeft = event.clientX + document.body.scrollLeft - 10 ;");
+eval("document.all." + currentObj + ".style.pixelTop = event.clientY + document.body.scrollTop + 10;");
+}
+}
+
+function shuffleQueue() {
+lastItemPos = queue.length - 1;
+lastItem = queue[lastItemPos];
+for (i = lastItemPos; i>0; i--) 
+queue[i] = queue[i-1];
+queue[0] = lastItem;
+queue[0].currentFrame = 1; //reset the objects frame number & make the sprite visible again
+eval(layerRef + '.' + queue[0].trailSpriteID + styleRef + '.visibility = "visible"'); 
+return queue[0].trailSpriteID;
+}
+function init() {
+for(x=0; x<NUM_OF_TRAIL_PARTS; x++) //fill array with trail objects
+queue[x] = new trailSpriteObj(x+1) ;
+if (isNS) { document.captureEvents(Event.MOUSEMOVE); }
+document.onmousemove = processMouse;
+setInterval("processAnim();",25);
+} 
+window.onload = init;
+</script>

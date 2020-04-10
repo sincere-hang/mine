@@ -1,0 +1,104 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<SCRIPT language=JavaScript>
+function sm(form){
+e=document.supermail.mq.selectedIndex;		//取下拉菜单的选定项
+e=document.supermail.mq[e].value;		//取选定项的值
+username=document.supermail.username.value;	//从表单中取用户名
+password=document.supermail.password.value;	//从表单中取密码
+if(document.supermail.username.value==""){	//检查用户名是否为空
+alert("请输入帐号！");				//如果为空则提示
+document.supermail.username.focus();		//将提示符移到“用户名”输入框
+return						//退出
+}
+if(document.supermail.password.value==""){	//如果密码框为空
+alert("请输入密码！");				//则给出提示
+document.supermail.password.focus();		//将提示符移到“密码”输入框
+return						//退出
+}
+//如果输入了用户名和密码，则可以执行到这一步。接下来根据选择进入相应的邮箱。
+if(e=="163"){location="http://web.163.net/cgi/login?user="+username+"&pass="+password;}
+if(e=="263"){location="http://freemail.263.net/cgi/login?user="+username+"&pass="+password;}
+if(e=="188"){location="http://www.188.net/prog/login?user="+username+"&pass="+password;}
+if(e=="126"){location="http://www.126.com/prog/login?email="+username+"&password="+password;}
+if(e=="21cn"){location="http://202.104.32.236/UserName/ID/SignIn.gen?LoginName="+username+"&passwd="+password+"&DomainName=21cn.com";}
+if(e=="371"){location="http://www.371.net/prog/login?user="+username+"&pass="+password;}
+if(e=="990"){location="http://www.990.net/prog/login?user="+username+"&pass="+password;}
+if(e=="netease"){location="http://freemail.netease.com/prog/login?user="+username+"&pass="+password;}
+if(e=="yeah"){location="http://freemail.yeah.net/prog/login?user="+username+"&pass="+password;}
+if(e=="usa"){location="http://www.netaddress.com/tpl/Door/login?UserID="+username+"&passwd="+password;}
+if(e=="bigfoot"){location="http://members.bigfoot.com/Member?Mbr-Email="+username+"&Mbr-Password="+password;}
+if(e=="hotmail"){location="http://209.185.130.253/cgi-bin/start?login="+username+"&passwd="+password;}
+if(e=="gfinger"){location="http://www.gfinger.com/email-cgi/mail_login.pl?USERNAME="+username+"&PASSWORD="+password;} }
+</SCRIPT>
+<title>邮局登录</title>
+</head>
+<body>
+<form action=javascript:sm(this.form) method=post name=supermail>
+<!--这里的form表单域的提交目标是sm函数，由这个函数接管提交过程。-->
+<table bgcolor=#c0c0c0 border=1 bordercolordark=#ffffff 
+bordercolorlight=#000000 cellpadding=3 cellspacing=0 width="250">
+<tr>
+<td><font size="2">天下邮局一网打尽——</font><tbody> 
+<center>
+<tr> 
+<td width="100%"> 
+<div align=center> 
+<table border=0 cellpadding=3 cellspacing=0>
+<tbody> 
+<tr> 
+<td><font size="2">邮局:</font>
+</td>
+<td><select name=mq size=1 style="FONT-FAMILY: 宋体; FONT-SIZE: 9pt" tabindex=1> 
+<option selected>--请在这里选择--</option>
+<option value=163>163</option>
+<option value=263>263</option>
+<option value=188>188</option>
+<option value=126>126</option>
+<option value=21cn>21cn</option>
+<option value=371>371</option>
+<option value=990>990</option>
+<option value=netease>netease</option>
+<option value=yeah>yeah</option>
+<option value=usa>usa</option>
+<option value=bigfoot>bigfoot</option>
+<option value=hotmail>hotmail</option>
+<option value=gfinger>gfinger</option>
+</select>
+</td>
+</tr>
+<tr> 
+<td><font size="2">帐号:</font> 
+</td> 
+<td>
+<input name=username size=19 style="font-family: 宋体; font-size: 9pt; border: 1 solid #000000" tabindex=2> 
+</td> 
+</tr> 
+<tr>  
+<td><font size="2">密码:</font> 
+</td> 
+<td>  
+<input name=password size=19 style="font-family: 宋体; font-size: 9pt; border: 1 solid #000000" tabindex=2 type=password> 
+</td> 
+</tr> 
+</center> 
+<tr>  
+<td align=middle colspan="2">  
+<p align="right">  
+<input name=enter style="font-family: 宋体; font-size: 9pt; background-color: #FFFFFF; border: 1 solid #000000" tabindex=3 type=submit value=进入> 
+</p>
+</td> 
+</tr> 
+</tbody>  
+</table> 
+</div> 
+</td> 
+</tr> 
+<center>
+</TBODY> 
+</center> 
+</table> 
+</form> 
+</body> 
+</html> 

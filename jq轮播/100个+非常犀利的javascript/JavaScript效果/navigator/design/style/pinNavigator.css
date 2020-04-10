@@ -1,0 +1,454 @@
+/*-----------------------------*/
+/* Style 1                     */
+/*-----------------------------*/
+.NavigatorHead1 
+{
+  height: 24px;
+  background-image: url('../image/style1/backhead.gif');
+  background-repeat: repeat-x;
+}
+
+.NavigatorHeadBorder1 
+{
+  border: 1px solid #002D96;
+}
+
+.NavigatorHeadText1
+{
+  margin-left: 4px;
+  font-family: arial;
+  color: white;
+  font-weight: bold;
+}
+
+.NavigatorArea1
+{
+  border: 0px solid #002D96;
+}
+
+.NavigatorSplit1
+{
+  background-image: url('../image/style1/splitback.gif');
+  background-repeat: repeat-x;
+  border: 0px outset;
+  font-size: 2px;
+  cursor:n-resize ;
+  width: 100%; 
+  height: 6px;
+}
+
+.NavigatorItem1
+{
+  background-image: url('../image/style1/itemback.gif');
+  background-repeat: repeat-x;
+}
+
+.NavigatorItemActive1
+{
+  background-image: url('../image/style1/itemselect.gif');
+  background-repeat: repeat-x;
+}
+
+.NavigatorItemHover1
+{
+  cursor: hand;
+  background-image: url('../image/style1/itemhover.gif');
+  background-repeat: repeat-x;
+}
+
+.NavigatorItemText1
+{
+  margin-left: 4px;
+  font-family: arial;
+  font-size: 11px;
+  color: black;
+  font-weight: bold;
+}
+
+.NavigatorItemBack1
+{
+  background-color: #002D96;
+  background-repeat: repeat-x;
+}
+
+.NavigatorBottomActive1
+{
+  background-image: url('../image/style1/bottomactive.gif');
+  background-repeat: repeat-x;
+}
+
+.NavigatorBottomHover1
+{
+  background-image: url('../image/style1/itemhover.gif');
+  background-repeat: repeat-x;
+}
+
+.NavigatorBottom1
+{
+  background-image: url('');
+  background-repeat: repeat-x;
+}
+
+
+/*-----------------------------*/
+/* Style 2                     */
+/*-----------------------------*/
+.NavigatorHead2 
+{
+  height: 24px;
+  background-image: url('../image/style2/backhead.gif');
+  background-repeat: repeat-x;
+}
+
+.NavigatorHeadBorder2
+{
+  border: 1px solid #002D96;
+}
+
+.NavigatorHeadText2
+{
+  margin-left: 4px;
+  font-family: arial;
+  color: white;
+  font-weight: bold;
+}
+
+.NavigatorArea2
+{
+  border: 1px solid #002D96;
+}
+
+.NavigatorSplit2
+{
+  background-image: url('../image/style2/splitback.gif');
+  background-repeat: repeat-x;
+  border: 0px outset;
+  font-size: 2px;
+  cursor:n-resize ;
+  width: 100%; 
+  height: 6px;
+}
+
+.NavigatorItem2
+{
+  background-image: url('../image/style2/itemback.gif');
+  background-repeat: repeat-x;
+}
+
+.NavigatorItemActive2
+{
+  background-image: url('../image/style2/itemselect.gif');
+  background-repeat: repeat-x;
+}
+
+.NavigatorItemHover2
+{
+  cursor: hand;
+  background-image: url('../image/style2/itemhover.gif');
+  background-repeat: repeat-x;
+}
+
+.NavigatorItemText2
+{
+  margin-left: 4px;
+  font-family: arial;
+  font-size: 11px;
+  color: black;
+  font-weight: bold;
+}
+
+.NavigatorItemBack2
+{
+  background-color: #002D96;
+}
+
+.NavigatorBottomActive2
+{
+  background-image: url('../image/style2/itemselect.gif');
+  background-repeat: repeat-x;
+}
+
+.NavigatorBottomHover2
+{
+  background-image: url('../image/style2/itemhover.gif');
+  background-repeat: repeat-x;
+}
+
+.NavigatorBottom2
+{
+  background-image: url('');
+}
+
+
+/*-----------------------------*/
+/* Style 3                     */
+/*-----------------------------*/
+.NavigatorHead3 
+{
+  height: 24px;
+  background-image: url('../image/style3/backhead.gif');
+  background-repeat: repeat-x;
+}
+
+.NavigatorHeadBorder3
+{
+  border: 1px solid #002D96;
+}
+
+.NavigatorHeadText3
+{
+  margin-left: 4px;
+  font-family: arial;
+  color: white;
+  font-weight: bold;
+}
+
+.NavigatorArea3
+{
+  border: 0px solid #002D96;
+}
+
+.NavigatorSplit3
+{
+  background-image: url('../image/style3/splitback.gif');
+  background-repeat: repeat-x;
+  border: 0px outset;
+  font-size: 2px;
+  cursor:n-resize ;
+  width: 100%; 
+  height: 6px;
+}
+
+.NavigatorItem3
+{
+  background-image: url('../image/style3/itemback.gif');
+  background-repeat: repeat-x;
+}
+
+.NavigatorItemActive3
+{
+  background-image: url('../image/style3/itemselect.gif');
+  background-repeat: repeat-x;
+}
+
+.NavigatorItemHover3
+{
+  cursor: hand;
+  background-image: url('../image/style3/itemhover.gif');
+  background-repeat: repeat-x;
+}
+
+.NavigatorItemText3
+{
+  margin-left: 4px;
+  font-family: arial;
+  font-size: 11px;
+  color: black;
+  font-weight: bold;
+}
+
+.NavigatorItemBack3
+{
+  background-color: #550303;
+  background-repeat: repeat-x;
+}
+
+.NavigatorBottomActive3
+{
+  background-image: url('../image/style3/itemselect.gif');
+  background-repeat: repeat-x;
+}
+
+.NavigatorBottomHover3
+{
+  background-image: url('../image/style3/itemhover.gif');
+  background-repeat: repeat-x;
+}
+
+.NavigatorBottom3
+{
+  background-image: url('');
+}
+
+
+/*-----------------------------*/
+/* Style 4                     */
+/*-----------------------------*/
+.NavigatorHead4 
+{
+  height: 24px;
+  background-image: url('../image/style4/backhead.gif');
+  background-repeat: repeat-x;
+}
+
+.NavigatorHeadBorder4 
+{
+  border: 1px solid #7c7c94;
+}
+
+.NavigatorHeadText4
+{
+  margin-left: 4px;
+  font-family: arial;
+  color: white;
+  font-weight: bold;
+}
+
+.NavigatorArea4
+{
+  border: 0px solid #002D96;
+}
+
+.NavigatorSplit4
+{
+  background-image: url('../image/style1/splitback.gif');
+  background-repeat: repeat-x;
+  border: 0px outset;
+  font-size: 2px;
+  cursor:n-resize ;
+  width: 100%; 
+  height: 6px;
+}
+
+.NavigatorItem4
+{
+  background-image: url('../image/style4/itemback.gif');
+  background-repeat: repeat-x;
+}
+
+.NavigatorItemActive4
+{
+  background-image: url('../image/style4/itemselect.gif');
+  background-repeat: repeat-x;
+}
+
+.NavigatorItemHover4
+{
+  cursor: hand;
+  background-image: url('../image/style4/itemhover.gif');
+  background-repeat: repeat-x;
+}
+
+.NavigatorItemText4
+{
+  margin-left: 4px;
+  font-family: arial;
+  font-size: 11px;
+  color: black;
+  font-weight: bold;
+}
+
+.NavigatorItemBack4
+{
+  background-color: #7c7c94;
+  background-repeat: repeat-x;
+}
+
+.NavigatorBottomActive4
+{
+  background-image: url('../image/style4/bottomactive.gif');
+  background-repeat: repeat-x;
+}
+
+.NavigatorBottomHover4
+{
+  background-image: url('../image/style4/itemhover.gif');
+  background-repeat: repeat-x;
+}
+
+.NavigatorBottom4
+{
+  background-image: url('');
+  background-repeat: repeat-x;
+}
+
+/*-----------------------------*/
+/* Style 5                     */
+/*-----------------------------*/
+.NavigatorHead5
+{
+  height: 24px;
+  background-image: url('../image/style5/backhead.gif');
+  background-repeat: repeat-x;
+}
+
+.NavigatorHeadBorder5 
+{
+  border: 1px solid #608058;
+}
+
+.NavigatorHeadText5
+{
+  margin-left: 4px;
+  font-family: arial;
+  color: white;
+  font-weight: bold;
+}
+
+.NavigatorArea5
+{
+  border: 0px solid #608058;
+}
+
+.NavigatorSplit5
+{
+  background-image: url('../image/style5/splitback.gif');
+  background-repeat: repeat-x;
+  border: 0px outset;
+  font-size: 2px;
+  cursor:n-resize ;
+  width: 100%; 
+  height: 6px;
+}
+
+.NavigatorItem5
+{
+  background-image: url('../image/style5/itemback.gif');
+  background-repeat: repeat-x;
+}
+
+.NavigatorItemActive5
+{
+  background-image: url('../image/style5/itemselect.gif');
+  background-repeat: repeat-x;
+}
+
+.NavigatorItemHover5
+{
+  cursor: hand;
+  background-image: url('../image/style5/itemhover.gif');
+  background-repeat: repeat-x;
+}
+
+.NavigatorItemText5
+{
+  margin-left: 4px;
+  font-family: arial;
+  font-size: 11px;
+  color: black;
+  font-weight: bold;
+}
+
+.NavigatorItemBack5
+{
+  background-color: #608058;
+  background-repeat: repeat-x;
+}
+
+.NavigatorBottomActive5
+{
+  background-image: url('../image/style5/bottomactive.gif');
+  background-repeat: repeat-x;
+}
+
+.NavigatorBottomHover5
+{
+  background-image: url('../image/style5/itemhover.gif');
+  background-repeat: repeat-x;
+}
+
+.NavigatorBottom5
+{
+  background-image: url('');
+  background-repeat: repeat-x;
+}

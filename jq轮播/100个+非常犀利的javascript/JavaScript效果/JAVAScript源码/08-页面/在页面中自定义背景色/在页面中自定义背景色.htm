@@ -1,0 +1,28 @@
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" Content="Microsoft Visual Studio 6.0">
+<TITLE>在页面自定义背景色</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Begin
+//以下代码将输入框及其所在的层写进窗口。
+document.writeln('<div align="center" id=bgcolortestdiv style="BACKGROUND-COLOR: gray;POSITION: absolute;width: 200; height: 70; top=100; Z-INDEX: 100" >');
+document.writeln('<p><B><font size=2>输入颜色代码<br>可以即时改变背景色</font></b></p>');
+document.writeln('<p><input type="text" name="text" onkeyup="cbgcolor(this.value)"></p>');
+document.writeln('</div>');
+
+function cbgcolor(color){			//change background color
+	if (color != '')
+	document.bgColor=(''+color+'');		//设置背景颜色
+}
+function keepdivpos(){				//keep div position
+document.all.bgcolortestdiv.style.pixelTop=parseInt(document.body.scrollTop)+100	//计算并设置层的相对位置
+}
+setInterval('keepdivpos()',100)			//设定自动改变层位置的时钟。
+// End -->
+</SCRIPT>
+
+</HEAD>
+<BODY>
+</BODY>
+</HTML>
+

@@ -1,0 +1,85 @@
+<html>
+
+<head><style type="text/css">
+.spanstyle {
+	COLOR: 000000; FONT-SIZE: 10pt; POSITION: absolute; TOP: -50px; VISIBILITY: visible
+}
+</style>
+<script>
+var x,y
+var step=18					//这里是相邻两个字之间的间隔
+var flag=0
+var message="★世纪学苑欢迎你的光临!★"		//这里放需要显示的文字
+message=message.split("")			//将字符串分解为数组
+var xpos=new Array()				//创建数组，以记录每个位置的x坐标
+for (i=0;i<=message.length-1;i++) {		//给每个元素先赋一个初始值
+	xpos[i]=-50
+}
+
+var ypos=new Array()				//创建数组，以记录每个位置的y坐标
+for (i=0;i<=message.length-1;i++) {
+	ypos[i]=-200
+}
+
+function movehandler(e){		//处理鼠标移动事件
+	x = (document.layers) ? e.pageX : document.body.scrollLeft+event.clientX	//根据浏览器的不同，记录鼠标的水平位置
+	y = (document.layers) ? e.pageY : document.body.scrollTop+event.clientY		//记录鼠标的垂直位置
+	flag=1										//鼠标位置已经改变，需要重新计算
+}
+
+function makesnake() {					//
+	if (flag==1 && document.all) {			//如果是IE
+    	for (i=message.length-1; i>=1; i--) {		//处理坐标队列
+   			xpos[i]=xpos[i-1]+step		//将每一座标数据前移一格，并加上字符间距
+			ypos[i]=ypos[i-1]
+    	}
+		xpos[0]=x+step				//将新数据写进坐标数据队列尾部
+		ypos[0]=y
+
+		for (i=0; i<message.length-1; i++) {	    		var thisspan = eval("span"+(i)+".style")//生成当前操作对象spanx.style
+    		thisspan.posLeft=xpos[i]
+		thisspan.posTop=ypos[i]
+    	}
+	}
+
+	else if (flag==1 && document.layers) {		//如果是NS
+    	for (i=message.length-1; i>=1; i--) {		//处理坐标队列
+   			xpos[i]=xpos[i-1]+step		//将每一座标数据前移一格，并加上字符间距
+			ypos[i]=ypos[i-1]
+    	}
+		xpos[0]=x+step				//将新数据写进坐标数据队列尾部
+		ypos[0]=y
+
+		for (i=0; i<message.length-1; i++) {	//根据数组的数据改变每一个字所在的层的坐标
+    		var thisspan = eval("document.span"+i)	//生成当前操作对象document.spanx
+    		thisspan.left=xpos[i]
+		thisspan.top=ypos[i]
+    	}
+	}
+		var timer=setTimeout("makesnake()",30)	//30毫秒后再次根据情况调整各字符位置
+}
+
+</script>
+</head>
+
+<body bgcolor="ffffff" onload="makesnake()">
+
+<script>
+<!-- Beginning of JavaScript -
+//这里为每个字生成一个span作为容器
+for (i=0;i<=message.length-1;i++) {
+    document.write("<span id='span"+i+"' class='spanstyle'>")
+	document.write(message[i])
+    document.write("</span>")
+}
+//规定鼠标移动事件的处理过程
+if (document.layers){
+	document.captureEvents(Event.MOUSEMOVE);
+}
+document.onmousemove = movehandler;
+// - End of JavaScript - -->
+</script>
+
+</body>
+<br><b>这种效果是不是很酷啊？</b></br>
+</html>

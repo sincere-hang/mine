@@ -1,0 +1,118 @@
+body
+{
+	background-color: white; 
+	font-size:        10 px; 
+	font-family:      Verdana, Arial, Helvetica,sans-serif; 
+	font-weight:      normal; 
+    	margin-left: 25;
+	margin-top:  40;
+}
+
+table
+{
+	border-width:	  0px;
+	empty-cells:	  show;
+}
+
+
+th           
+{ 
+	height:			  16px;
+	font-size:		  10px; 
+	font-family:      Verdana, Arial, Helvetica,sans-serif; 
+	font-weight:      bold; 
+	background-color: #CA003B;
+	color:		  #FFFFFF;
+	border-width:	  0px;
+	border-style:	  solid;
+	border-color:	  #DDDDDD;
+	border-spacing:   0px;
+	padding-left:     2px; 
+	padding-right:    3px
+}
+
+td
+{ 
+	font-size:		10px; 
+	font-family:	  Verdana, Arial, Helvetica,sans-serif;  
+	font-weight:	  normal; 
+	border-width:	  0px;
+	padding-left:     2px; 
+	background-color:   #F0F0F0;
+}
+
+/* Navi */
+.Navi {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; line-height: 9px; font-weight: normal; color: #CA003B; font-style: normal ; text-decoration: none}
+a.Navi:link {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; line-height: 9px; font-weight: normal; color: #CA003B; font-style: normal ; text-decoration: none}
+a.Navi:visited {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; line-height: 9px; font-weight: normal; color: #CA003B; font-style: normal ; text-decoration: none}
+a.Navi:active {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; line-height: 9px; font-weight: normal; color: #CA003B; font-style: normal ; text-decoration: none ; background-color: #ffffff }
+a.Navi:hover {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; line-height: 9px; font-weight: normal; color: #CA003B; font-style: normal ; text-decoration: none ; background-color: #ffffff }
+
+
+/* Content */
+
+.Headlines 
+{  
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 18px; 
+	line-height: 20px; 
+	font-weight: normal; 
+	color: #999999; 
+	font-style: normal ; 
+	text-decoration: none;
+        padding-bottom: 2px;
+        border-bottom: 1px solid #999999;
+}
+.Font1
+{
+	FONT-WEIGHT: bold;
+ 	FONT-SIZE: 11px;
+ 	COLOR: #CA003B;
+ 	FONT-FAMILY: Verdana, Arial, Helvetica
+}
+.Font2
+{
+ 	FONT-SIZE: 10px;
+ 	COLOR: #CA003B;
+ 	FONT-FAMILY: Verdana, Arial, Helvetica
+}
+.Section
+{
+	padding: 3px;
+	COLOR: black; 
+	BORDER: 1px solid #ca003b;
+	FONT-WEIGHT: bold;
+ 	FONT-SIZE: 10px;
+ 	FONT-FAMILY: Verdana, Arial, Helvetica
+}
+
+.Highlight
+{
+	color: #ff9900;
+	font-weight: bold;
+}
+
+.Livedemo
+{
+	color: #000080;
+	FONT-WEIGHT: bold;
+ 	FONT-SIZE: 10px;
+ 	FONT-FAMILY: Verdana, Arial, Helvetica;
+	text-decoration: none;
+}
+
+.Subheadlines {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; line-height: 18px; font-weight: bold; color: #000000; font-style: normal ; text-decoration: none}
+
+.Fliesstext {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; line-height: 16px; font-weight: normal; color: #000000; font-style: normal ; text-decoration: none}
+a.Fliesstext:link {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; line-height: 18px; font-weight: normal; color: #000000; font-style: normal ; text-decoration: underline}
+a.Fliesstext:visited {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; line-height: 18px; font-weight: normal; color: #000000; font-style: normal ; text-decoration: none}
+a.Fliesstext:active {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; line-height: 18px; font-weight: normal; color: #CA003B; font-style: normal ; text-decoration: none}
+a.Fliesstext:hover {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; line-height: 18px; font-weight: normal; color: #CA003B; font-style: normal ; text-decoration: none}
+
+
+/* Formular */
+
+.FormHeader {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; line-height: 9px; font-weight: bold; color: #FFFFFF; font-style: normal ; text-decoration: none}
+.FormBox { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; color: #C20032; text-decoration: none; background-color: #cccccc}
+.FormField  {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; color : #C20032; background-color: #cccccc; border-color : #cccccc; border: 1px groove #C20032}
+.FormButton  {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; color : #ffffff; background-color: #C20032; border-color : #C20032; border: 1px ridge #cccccc}

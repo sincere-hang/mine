@@ -1,0 +1,52 @@
+<html>
+<head>
+<script>
+var navigator = null;
+function navigatorCreate(objNavigator,id)
+{
+	navigator = objNavigator;
+	
+	var item = objNavigator.createItem();
+	item.text = "Common";
+  item.image = "design/image/email.gif";
+	item.active = true;
+	item.url = "../evaluation/samples/p1.html";
+	objNavigator.add(item);
+
+	var item = objNavigator.createItem();
+	item.text = "Options";
+  item.image = "design/image/email.gif";
+	item.active = false;
+	item.url = "../evaluation/samples/p2.html";
+	objNavigator.add(item);
+
+	var item = objNavigator.createItem();
+	item.text = "Misc";
+  item.image = "design/image/email.gif";
+	item.active = false;
+	item.url = "../evaluation/samples/p3.html";
+	objNavigator.add(item);
+
+	objNavigator.create();
+}
+
+function call()
+{
+	// get all tab items
+	var items = navigator.getItems();
+	// call test() in each page
+	// could also be a form submit 
+	for(var i=0;i<items.length;i++) { 
+		items[i].call("test()");
+	}
+}
+
+</script>
+</head>
+	<body>
+		<div style="font-family: arial;font-size:12px;Z-INDEX: 102; LEFT: 30px; POSITION: absolute; TOP: 25px">Calls a Javascript function on each navigator item page:</div>
+		<iframe id="tab" style="Z-INDEX: 100; LEFT: 30px; WIDTH: 300px; POSITION: absolute; TOP: 50px; HEIGHT: 340px"
+			src="../../../navigator/pinNavigator.html?id=tab" frameBorder="0"></iframe>
+		<div style="font-family: arial;font-size:12px;Z-INDEX: 102; LEFT: 30px; POSITION: absolute; TOP: 400px"><input type=button value="Call" onclick="call();"></div>
+	</body>
+</html>

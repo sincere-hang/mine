@@ -1,0 +1,48 @@
+
+<script language="JavaScript">
+<!-- Begin
+text = "¡î¤ÀÒÝµû¡ÖµÄ¿Æ»ÃÊ±¿Õ"; 
+color1 = "000000"; 	
+color2 = "00ff00";	
+fontsize = "3"; 	
+speed = 100; 		
+i = 0;
+if (navigator.appName == "Netscape") {	
+document.write("<layer id=a visibility=show></layer><br><br><br>");
+}
+else {					
+document.write("<div id=a></div>");	
+}
+
+function changeCharColor() {		
+if (navigator.appName == "Netscape") {	
+document.a.document.write("<font face=arial size =" + fontsize + "><font color=" + color1 + ">");	
+for (var j = 0; j < text.length; j++) {	
+if(j == i) {				
+document.a.document.write("<font face=arial color=" + color2 + ">" + Text.charAt(i) + "</font>");	
+}
+else {
+document.a.document.write(text.charAt(j));	
+}
+}
+document.a.document.write('</font></font>');	
+document.a.document.close();			
+}
+if (navigator.appName == "Microsoft Internet Explorer") {	
+str = "<font face=arial size=" + fontsize + "><font color=" + color1 + ">";
+for (var j = 0; j < text.length; j++) {	
+if( j == i) {				
+str += "<font face=arial color=" + color2 + ">" + text.charAt(i) + "</font>";
+}
+else {
+str += text.charAt(j);			
+}
+}
+str += "</font></font>";		
+a.innerHTML = str;			
+}
+(i == text.length) ? i=0 : i++;		
+}
+setInterval("changeCharColor()", speed);
+-->
+</script>

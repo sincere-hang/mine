@@ -1,0 +1,39 @@
+<HTML>
+<HEAD>
+<TITLE>文本框的跑马灯</TITLE>
+<style>
+.box{font-size:25pt;color:#ff66cc;font-family:汉鼎繁淡古}
+</style>
+<SCRIPT LANGUAGE=JAVASCRIPT>
+Size = 40;
+Pos = Size;
+Vel = 2;
+Dir = 2;
+Message="我跑啊跑啊！好累啊！";
+Size-=Message.length;          //字符串长度
+function Bouncer(){
+ Dir==2 ? Pos-=Vel : Pos+=Vel;
+ if (Pos < 1){
+  Dir=1;
+  Pos=1;}   
+ if (Pos > Size){
+  Dir=2;
+  Pos=Size;}   
+ Space = "";          //存放空格字符
+ for (count=1; count<Pos; count++){
+  Space+= " ";}   
+ document.PANEL.Bar.value = Space + Message;
+ setTimeout( 'Bouncer();', 100);      //设置超时,使文字反复显示
+}
+</SCRIPT>
+</HEAD>
+<BODY bgcolor="#999999"ONLOAD="Bouncer()">
+<CENTER>
+<br><br><br><br><br><br>
+  <p><font size="6" color="#0000FF" face="方正行楷繁体">看下面文本框中的文字，这就是跑马灯效果:</font></p>
+<FORM NAME=PANEL>
+<INPUT Size=50 Name=Bar class=box>
+</FORM>
+<br><br><br><br><br><br>
+</center></body>
+</html>

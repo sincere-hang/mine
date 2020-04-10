@@ -1,0 +1,51 @@
+<html>
+<head>
+
+<script>
+<!-- Beginning of JavaScript
+function scrollit_r2l(seed){
+ var m1  = "  欢迎光临，请多多提出你的建议!!! " ;//设定需要显示的信息
+ var m2  = "" ;					
+       var msg=m1+m2;				//msg为需显示内容
+       var out = " "; 				//初始化输出字符
+       var c = 1; 
+ var speed  = 120;				//定义速度
+if (seed > 100){
+	seed-=2;				//改变调用参数以供下次使用
+	var cmd="scrollit_r2l(" + seed + ")"; 	//设定下一次需要执行的命令
+	timerTwo=window.setTimeout(cmd,speed);	//设定计时器，准备执行这个指令
+	}
+	else if (seed <= 100 && seed > 0){
+	for (c=0 ; c < seed ; c++){		//为输出字符串前面增加一定数量的空格
+	out+=" ";
+	}
+	out+=msg;				//加入需显示的信息
+	seed-=2;				//改变调用参数以供下次使用
+	var cmd="scrollit_r2l(" + seed + ")";	//设定下一次需要执行的命令
+	window.status=out;         
+	timerTwo=window.setTimeout(cmd,speed);	//设定计时器，准备执行这个指令
+}
+else if (seed <= 0){				//如果调用参数小于0
+	if (-seed < msg.length){
+	out+=msg.substring(-seed,msg.length);	//直接显示右部剩余字符
+	seed-=2;
+	var cmd="scrollit_r2l(" + seed + ")";
+	window.status=out;			//输出显示内容
+	timerTwo=window.setTimeout(cmd,speed);
+	}
+	else {
+	window.status=" ";			//清除显示内容
+	timerTwo=window.setTimeout("scrollit_r2l(100)",speed);
+	}
+}
+}
+scrollit_r2l(100);
+// -- End of JavaScript code -->
+</script>
+
+<title>向左滚动的状态栏特效</title>
+</head>
+<body>
+<b>请注意页面左下角的状态栏</b>
+</body>
+</html>

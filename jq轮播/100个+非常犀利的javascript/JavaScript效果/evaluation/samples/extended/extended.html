@@ -1,0 +1,54 @@
+<HTML>
+	<HEAD>
+<script>
+function navigatorCreate(objNavigator,id)
+{
+  objNavigator.splitcolor = "#9EBEF5";
+  objNavigator.splitarea  = true;
+  objNavigator.width      = "220";
+  objNavigator.splitwidth = 4;
+  objNavigator.splittype  = 1;
+  objNavigator.url        = "http://www.pintexx-demo.de/pinEdit/editor/pinEdit.html?me=0&tb=T010203040566SE06070861SE0910SE1160121314151617625767;T20212223242526SE27282930SE31323334SE3536;B535455";
+
+  // now build the navigator
+  var item = objNavigator.createItem();
+  item.text = "Calendar";
+  item.image = "../evaluation/calendar.gif";
+  item.active = true;
+  item.visible = true;
+  item.url = "../evaluation/samples/extended/calendar.html"; 
+  objNavigator.add(item);
+
+  var item = objNavigator.createItem();
+  item.text = "Task";
+  item.image = "../evaluation/task.gif";
+  item.active = false;
+  item.visible = true;
+  item.url = "../evaluation/samples/extended/task.html"; 
+  objNavigator.add(item);
+
+  var item = objNavigator.createItem();
+  item.text = "E-Mail";
+  item.image = "../evaluation/email.gif";
+  item.active = false;
+  item.visible = false;
+  item.url = "../evaluation/samples/p1.html"; 
+  objNavigator.add(item);
+
+  var item = objNavigator.createItem();
+  item.text = "List";
+  item.image = "../evaluation/folder.gif";
+  item.active = false;
+  item.visible = false;
+  item.url = "../evaluation/samples/p2.html"; 
+  objNavigator.add(item);
+ 
+  objNavigator.create();
+}
+</script>
+	</HEAD>
+	<body>
+			<iframe id="navigator" src="../../../navigator/pinNavigator.html" style="Z-INDEX: 101; LEFT: 20px; POSITION: absolute; TOP: 52px;Width:904px;Height:460px"  frameborder=0></iframe >
+<div id="Label1" style="Z-INDEX: 102; LEFT: 20px; POSITION: absolute; TOP: 21px" runat="server"	Width="361px" Height="23px">Extended Demo (requires internet access)</div>
+	</body>
+</HTML>

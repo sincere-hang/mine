@@ -1,0 +1,46 @@
+<html>
+<head>
+<style type="text/css">
+<!--
+A {FONT-SIZE: 11pt;TEXT-DECORATION: none }
+-->
+</style>
+<title>闪烁的链接</title>
+</head>
+<body>
+
+<script language="JavaScript">
+<!-- Begin
+function initArray() {					//生成数组的函数
+for (var i = 0; i < initArray.arguments.length; i++) {	//遍历每个参数
+this[i] = initArray.arguments[i];			//将其加入数组成为一个元素
+}
+this.length = initArray.arguments.length;		//取数租长度
+}
+var colors = new initArray(				//生成颜色数组
+"ff0000",
+"800000",
+"000000",
+"008000",
+"00ff00",
+"008080",
+"0000ff");
+delay = .5;						//以秒计算的颜色变化间隔时间
+link = 0;
+vlink = 0;
+function linkDance() {
+link = (link+1)%colors.length;
+vlink = (vlink+1)%colors.length;
+document.linkColor = colors[link];
+document.vlinkColor = colors[vlink];
+setTimeout("linkDance()",delay*1000);
+}
+linkDance();
+// End -->
+</script>
+
+<a href="http://www.263.net">首都在线263</a>
+<a href="http://www.163.net">网易163</a>
+<a href="http://www.sina.com.cn">新浪sina</a>
+</body>
+</html>

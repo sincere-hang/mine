@@ -1,0 +1,52 @@
+<html>
+<head>
+<script>
+
+var cache = true;
+var navigator;
+
+function navigatorCreate(objNavigator,id)
+{
+	navigator = objNavigator;
+	
+	objNavigator.clear();
+	
+	var item = objNavigator.createItem();
+	item.text = "Common";
+  item.image = "design/image/email.gif";
+	item.active = true;
+	item.url = "../evaluation/samples/cache/tree.html";
+	item.cached = cache;
+	objNavigator.add(item);
+
+	var item = objNavigator.createItem();
+	item.text = "Options";
+  item.image = "design/image/email.gif";
+	item.active = false;
+	item.url = "../evaluation/samples/cache/tree.html";
+	item.cached = cache;
+	objNavigator.add(item);
+
+	objNavigator.create();
+}
+
+function setCache(check)
+{
+	cache = check.checked;
+	navigatorCreate(navigator,"");
+}
+
+
+</script>
+</head>
+	<body style="BACKGROUND-COLOR: #ece9d8">
+		<div style="FONT-SIZE: 12px;Z-INDEX: 102;LEFT: 30px;FONT-FAMILY: arial;POSITION: absolute;TOP: 25px">
+			Sample for internal page caching:</div>
+		<iframe id="tab" style="Z-INDEX: 100; LEFT: 30px; WIDTH: 300px; POSITION: absolute; TOP: 50px; HEIGHT: 300px"
+			src="../../../navigator/pinNavigator.html?id=tab" frameBorder="0"></iframe>
+
+		<INPUT type="checkbox" checked onclick="setCache(this)" style="Z-INDEX: 105; LEFT: 360px; POSITION: absolute; TOP: 50px" ID="Checkbox1" NAME="Checkbox1">
+		<div style="FONT-SIZE: 12px;Z-INDEX: 102;LEFT: 380px;FONT-FAMILY: arial;POSITION: absolute;TOP: 52px">Page Caching</div>
+		<div style="FONT-SIZE: 12px;Z-INDEX: 102;height: 100px;LEFT: 363px;FONT-FAMILY: arial;POSITION: absolute;TOP: 77px">If a node is opened and the cache is on, the node remains open also after changing tab.<br></div>
+	</body>
+</html>

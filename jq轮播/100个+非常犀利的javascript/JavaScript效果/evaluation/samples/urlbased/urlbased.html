@@ -1,0 +1,46 @@
+<html>
+<head>
+<script>
+
+function navigatorCreate(objNavigator,id)
+{
+	
+	var item = objNavigator.createItem();
+	item.text = "Google";
+  item.image = "design/image/email.gif";
+	item.active = true;
+	item.url = "http://www.google.com";
+	objNavigator.add(item);
+
+	var item = objNavigator.createItem();
+	item.text = "Yahoo";
+  item.image = "design/image/email.gif";
+	item.active = false;
+	item.url = "http://www.yahoo.com";
+	objNavigator.add(item);
+
+	var item = objNavigator.createItem();
+	item.text = "Amazon";
+  item.image = "design/image/email.gif";
+	item.active = false;
+	item.url = "http://www.amazon.com";
+	objNavigator.add(item);
+
+	objNavigator.create();
+}
+
+// this function is called when an item is clicked
+function tabEventTabClick(objItem)
+{
+	//alert("Item clicked: " + objItem.text);
+}
+
+
+</script>
+</head>
+	<body style="BACKGROUND-COLOR: #ece9d8">
+		<div style="font-family: arial;font-size:12px;Z-INDEX: 102; LEFT: 30px; POSITION: absolute; TOP: 25px">pinNavigator is URL based. Each static or dynamic page can be loaded into a navigator item.</div>
+		<iframe id="navigator" style="Z-INDEX: 100; LEFT: 30px; WIDTH: 700px; POSITION: absolute; TOP: 50px; HEIGHT: 500px"
+			src="../../../navigator/pinNavigator.html?id=navigator" frameBorder="0"></iframe>
+	</body>
+</html>

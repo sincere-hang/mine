@@ -1,0 +1,80 @@
+<html>
+<head>
+<title>類似于Flash製作的一個圖片展示效果</title>
+<meta name="Author" content="http://www.webjx.com">
+<meta http-equiv="imagetoolbar" content="no">
+<style type="text/css">
+ body {cursor:crosshair;margin:0; padding:0; position:absolute; overflow:hidden; background:#222; left:0; top:0; width:100%; height:100%;zIndex:-2;}
+</style>
+
+<SCRIPT language=JavaScript src="images.js"></SCRIPT>
+</head>
+
+<body>
+<div style="position:absolute;left:50%;top:50%;"><div id="center" style="position:absolute;">
+
+ <div id="imgbox" style="position:absolute;left:0;top:0;overflow:hidden;"></div>
+ <div id="txtbox" style="position:absolute;visibility:hidden;overflow:hidden;background:#333;color:#FFF;font-family:verdana;font-size:0.8em;">
+  <div style="margin:2%">
+  <h2>IMGBOX</h2>Click the thumbnails on the left for a larger image. The description connected to the clicked image is displayed here.<br>
+  <br>Note: for performance reasons, images are not resized and must be all of the same size.
+  </div>
+ </div>
+
+
+</div></div>
+
+<div id="imgsrc" style="visibility:hidden">
+ <img src="BS9097.jpg">
+ <img src="BS9092.jpg">
+ <img src="BS9084.jpg">
+ <img src="BS9064.jpg">
+ <img src="BS9050.jpg">
+ <img src="BS9070.jpg">
+ <img src="BS9079.jpg">
+ <img src="BS9068.jpg">
+ <img src="BS9039.jpg">
+</div>
+
+<div id="txtsrc" style="visibility:hidden">
+ <div>
+  <h2>the river</h2><br>Awaken from my nap by the river
+ </div>
+ <div>
+  <h2>transparency</h2><br>Its transparency was hypnotizing.
+ </div>
+ <div>
+  <h2>cold</h2><br>Currents of cold water played with light.
+ </div>
+ <div>
+  <h2>sank in</h2><br>I threw a few nuts into the river. They floated for a while, then sank in.
+ </div>
+ <div>
+  <h2>masked</h2><br>A wide stepping stone masked the water's depth.
+ </div>
+ <div>
+  <h2>a glimpse</h2><br>Later on, I had a glimpse of the river's bed.
+ </div>
+ <div>
+  <h2>forgotten</h2><br>The wheelchair made a noise. Again, I had forgotten about my legs.
+ </div>
+ <div>
+  <h2>floated</h2><br>Still, I floated in oblivion of things too real.
+ </div>
+ <div>
+  <h2>for me</h2><br>I stared fixedly at the water's open arms. The stream was singing for me.
+ </div>
+</div>
+
+<!--圖預載-->
+<span id=LB0 style="position:absolute;left:50%;top:50%;">
+<span style="position:absolute;font-family:arial;font-size:10px;color:#FFFFFF;left:-50;top:-18">Loading...</span>
+<span style="position:absolute;left:-50;top:-5;font-size:1px;width:100;height:10px;background:#333">
+<span id=LB1 style="position:absolute;left:0;top:0;font-size:1px;width:0;height:10px;background:#FFFFFF"></span></span>
+</span>
+
+<script>
+m00=document.getElementById("imgsrc").getElementsByTagName("img");m01=m00.length;function images_loading_bar(){m02=0;for(i=0;i<m01;i++)m02+=(m00[i].complete)?1:0;document.getElementById("LB1").style.width=Math.round(m02/m01*100);if(m02==m01)setTimeout("document.getElementById('LB0').style.display='none'",128); else setTimeout("images_loading_bar()", 64);};images_loading_bar();
+</script>
+</body>
+</html>

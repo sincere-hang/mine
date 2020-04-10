@@ -1,0 +1,87 @@
+<html>
+<head>
+<title>最酷的手表</title>
+</head>
+
+<BODY onload=checkTime()>
+
+<SCRIPT language=JavaScript>
+<!-- Beginning of JavaScript -
+var now
+var second
+var minute
+var hour
+var degreeSecond
+var degreeMinute
+var degreeHour
+var timer
+var stepDegree=6
+var stepDegreeHour=30
+
+function checkTime() {
+	if (document.all) {
+		now=new Date()				//取当前时间
+		second=now.getSeconds()			//得到时间的“秒”部分
+		minute=now.getMinutes()			//得到时间的“分”部分
+		hour=now.getHours()			//得到时间的“小时”部分
+		if (hour>=12) {hour=hour-12}		//将24小时的数字转换成12小时的，以便计算角度
+		spinIt()				//调整指针角度
+		timer=setTimeout("checkTime()",200)	//200毫秒以后刷新显示
+	}
+}
+
+function spinIt() {
+	window.status=hour + ':' + minute + ':' + second	//在状态栏显示辅助数字时间
+	secondObj.SetIdentity()
+	minuteObj.SetIdentity()
+	hourObj.SetIdentity()
+	
+	degreeSecond=180+stepDegree*second			//计算秒针角度
+	degreeMinute=180+stepDegree*minute			//计算分针角度
+	degreeHour=180+stepDegreeHour*hour+(Math.floor(stepDegree*minute/12))	//计算时针角度
+	
+	secondObj.Rotate(0,0,degreeSecond)			//旋转秒针
+	minuteObj.Rotate(0,0,degreeMinute)			//旋转分针
+	hourObj.Rotate(0,0,degreeHour)				//旋转时针
+}
+
+// - End of JavaScript - -->
+</SCRIPT>
+<DIV style="LEFT: 100px; POSITION: absolute; TOP: 50px">
+<DIV style="LEFT: 0px; POSITION: absolute; TOP: 0px">
+<!--接下来是表盘背景-->
+<IMG height=102 src="images/biaopan.gif" width=100> </DIV>
+<DIV style="LEFT: 0px; POSITION: absolute; TOP: 0px">
+<!--秒针-->
+<OBJECT classid=CLSID:369303C2-D7AC-11D0-89D5-00A0C90833E6 height=14 id=secondObj style="HEIGHT: 102px; WIDTH: 100px" width=14>
+<PARAM NAME="HighQuality" VALUE="1">
+<PARAM NAME="Line0001" VALUE="SetFillStyle(1)">
+<PARAM NAME="Line0002" VALUE="SetLineColor(80,20,20)">
+<PARAM NAME="Line0003" VALUE="SetFillColor(80,20,20)">
+<PARAM NAME="Line0004" VALUE="Rect(0,0,1,32)">
+</OBJECT>
+</DIV>
+<DIV style="LEFT: 0px; POSITION: absolute; TOP: 0px">
+<!--分针-->
+<OBJECT classid=CLSID:369303C2-D7AC-11D0-89D5-00A0C90833E6 height=14 id=minuteObj style="HEIGHT: 102px; WIDTH: 100px" width=14>
+<PARAM NAME="HighQuality" VALUE="1">
+<PARAM NAME="Line0001" VALUE="SetFillStyle(1)">
+<PARAM NAME="Line0002" VALUE="SetLineColor(50,50,50)">
+<PARAM NAME="Line0003" VALUE="SetFillColor(50,50,50)">
+<PARAM NAME="Line0004" VALUE="Rect(0,0,1,30)">
+</OBJECT>
+</DIV>
+<DIV style="LEFT: 0px; POSITION: absolute; TOP: 0px">
+<!--时针-->
+<OBJECT classid=CLSID:369303C2-D7AC-11D0-89D5-00A0C90833E6 height=14 id=hourObj style="HEIGHT: 102px; WIDTH: 100px" width=14>
+<PARAM NAME="HighQuality" VALUE="1">
+<PARAM NAME="Line0001" VALUE="SetFillStyle(1)">
+<PARAM NAME="Line0002" VALUE="SetLineColor(50,50,50)">
+<PARAM NAME="Line0003" VALUE="SetFillColor(50,50,50)">
+<PARAM NAME="Line0004" VALUE="Rect(0,0,1,16)">
+</OBJECT>
+</DIV>
+</DIV>
+<DIV style="COLOR: #444444; FONT-SIZE: 8pt; LEFT: 200px; LETTER-SPACING: 0.6em; LINE-HEIGHT: 200%; POSITION: absolute; TEXT-ALIGN: center; TOP: 20px; WIDTH: 200px; fomnt-family: Verdana"></DIV>
+</body>
+</html>

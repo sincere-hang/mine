@@ -1,0 +1,113 @@
+<html>
+<head>
+<style>
+<!--
+#tickertape{
+position:relative;
+layer-background-color:black;
+width:400;
+height:12;
+font-family: "宋体"; font-size: 9pt}
+#subtickertape{
+background-color:black;
+position:absolute;
+border: 1px solid black;
+width:400;
+height:12;
+font-family: "宋体"; font-size: 9pt
+}
+.subtickertapefont{
+font:bold 9pt "宋体";
+text-decoration:none;
+color:white;
+}
+.subtickertapefont a{
+color:white;
+text-decoration:none;
+font-family: "宋体"; font-size: 9pt}
+-->
+</style>
+<title>隐现导航</title>
+</head>
+
+<body onload="if (document.all||document.layers) {regenerate2();update()}">
+<div id="tickertape"> 
+
+<div id="subtickertape" class="subtickertapefont" style="width: 500; height: 15">Please wait...</div>
+
+</div>
+
+<script language="JavaScript1.2">
+//默认速度4.5秒，自己修改速度快慢。
+var speed=4500
+var news=new Array()
+news[0]="<p align='center'><a href='http://www.263.net.cn'>点击这里到首都在线263……</a>"
+news[1]="<p align='center'><a href='http://www.163.com'>从这里进入网易163</a>"
+news[2]="<p align='center'><a href='http://www.chinaren.com'>中国人，chinaren</a>"
+news[3]="<p align='center'><a href='http://cn.yahoo.com'>这里可以进入雅虎yahoo</a>"
+news[4]="<p align='center'><a href='http://www.sohu.com'>搜狐由此进入...</a>"
+news[5]="<p align='center'><a href='http://www.classover.com'>这里下课啦！</a>"
+news[6]="<p align='center'><a href='http://www.netbig.com'>来这里体会——世界不大，网大……</a>"
+//显示的信息内容可以任意按照格式添加。
+i=0
+if (document.all)
+tickerobject=document.all.subtickertape.style	//设定外观控制对象(IE)
+else
+tickerobject=document.tickertape.document	//设定外观控制对象(NS)
+//重装入页面
+function regenerate(){
+window.location.reload()
+}
+function regenerate2(){
+if (document.layers)
+setTimeout("window.onresize=regenerate",450)
+}
+function update(){
+BgFade(0xff,0xff,0xff, 0x00,0x00,0x00,10);	//开始平滑改变背景色
+if (document.layers){				//如果浏览器是NS
+//则用写文本流的方法写入需要显示的内容
+document.tickertape.document.subtickertape.document.write('<span class="subtickertapefont">'+news[i]+'</span>')
+document.tickertape.document.subtickertape.document.close()	//关闭文本流
+}
+else 						//如果浏览器是IE
+document.all.subtickertape.innerHTML=news[i]	//则用innerHTML来改变属性
+if (i<news.length-1)				//如果消息轮换指针没有到最后一条
+i++						//则消息指针轮到下一条
+else						//否则(没有消息可轮换了)
+i=0						//则恢复指针，从头开始轮换
+setTimeout("update()",speed)			//射定下一次改变的延时
+}
+//背景渐变
+function BgFade(red1, grn1, blu1, red2,grn2, blu2, steps) {
+ sred = red1; sgrn = grn1; sblu = blu1; 
+ ered = red2; egrn = grn2; eblu = blu2; 
+ inc = steps; 
+ step = 0; 				//初始化计数器
+ RunFader();
+}
+function RunFader() {
+ var epct = step/inc; 
+ var spct = 1 - epct; 
+ if (document.layers)				//如果是NS
+ //利用bgColor改变背景色
+ tickerobject.bgColor =	
+ Math.floor(sred * spct + ered *
+ epct)*256*256 +
+ Math.floor(sgrn * spct + egrn * epct)*256 +
+ Math.floor(sblu * spct + eblu * epct); 
+ else						//如果是IE
+ //利用backgroundColor改变背景色
+ tickerobject.backgroundColor=
+ Math.floor(sred * spct + ered *
+ epct)*256*256 +
+ Math.floor(sgrn * spct + egrn * epct)*256 +
+ Math.floor(sblu * spct + eblu * epct); 
+ if ( step < inc ) {				//如果还没有结束
+ setTimeout('RunFader()',50); 			//则设定下一次改变背景色的时间
+ }
+ step++;					//计数器加一
+}
+
+</script>
+</body>
+</html>

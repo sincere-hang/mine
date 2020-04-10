@@ -1,0 +1,66 @@
+<HTML>
+<HEAD>
+<script>
+// this function is called if navigator is ready
+function navigatorCreate(objNavigator,id)
+{
+  // now build the navigator
+  var item = objNavigator.createItem();
+  item.text = "Item 1";
+  item.image = "design/image/email.gif";
+  item.active = true;
+  item.visible = true;
+  item.url = "../evaluation/samples/p1.html"; 
+  objNavigator.add(item);
+
+  var item = objNavigator.createItem();
+  item.text = "Item 2";
+  item.image = "design/image/email.gif";
+  item.active = false;
+  item.visible = true;
+  item.url = "../evaluation/samples/p2.html"; 
+  objNavigator.add(item);
+
+  var item = objNavigator.createItem();
+  item.text = "Item 3";
+  item.image = "design/image/email.gif";
+  item.active = false;
+  item.visible = false;
+  item.url = "../evaluation/samples/p3.html"; 
+  objNavigator.add(item);
+ 
+  objNavigator.create();
+}
+
+// raised when alle pages have been loaded
+function navigatorEventLoaded()
+{
+  alert("All pages loaded !");
+}
+
+// raised when one page is loaded
+function navigatorEventPageLoaded(item)
+{
+  alert("Page loaded: " + item.url);
+}
+
+// this function is called after pressing a navigator item
+function navigatorEventBeforeItemClick(item,id)
+{
+	alert("Last item URL: " + item.url);
+}
+
+// this function is called after pressing a navigator item
+function navigatorEventItemClick(item,id)
+{
+	alert("New item URL: " + item.url);
+}
+
+</script>
+
+</HEAD>
+	<body>
+			<iframe id="navigatorFrame" src="../../../navigator/pinNavigator.html" style="Z-INDEX: 101; LEFT: 23px; POSITION: absolute; TOP: 57px;Width:232px;Height:367px"  frameborder=0></iframe>
+			<div id="Label1" style="Z-INDEX: 102; LEFT: 21px; POSITION: absolute; TOP: 30px" Width="564px" Height="21px">Events are rasied after page loading and activating navigator item:</div>
+	</body>
+</HTML>

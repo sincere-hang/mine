@@ -1,0 +1,48 @@
+<HTML>
+	<HEAD>
+<script>
+function navigatorCreate(objNavigator,id)
+{
+  objNavigator.splitcolor = "#C4DAFA";
+  objNavigator.splitarea  = true;
+  objNavigator.width      = "200";
+  objNavigator.splitwidth = 4;
+  objNavigator.splittype  = 0;
+  objNavigator.url        = "../evaluation/samples/p4.html"
+
+  // now build the navigator
+  var item = objNavigator.createItem();
+  item.text = "Item 1";
+  item.image = "design/image/email.gif";
+  item.active = true;
+  item.visible = true;
+  item.url = "../evaluation/samples/p1.html"; 
+  objNavigator.add(item);
+
+  var item = objNavigator.createItem();
+  item.text = "Item 2";
+  item.image = "design/image/email.gif";
+  item.active = false;
+  item.visible = true;
+  item.url = "../evaluation/samples/p2.html"; 
+  objNavigator.add(item);
+
+  var item = objNavigator.createItem();
+  item.text = "Item 3";
+  item.image = "design/image/email.gif";
+  item.active = false;
+  item.visible = false;
+  item.url = "../evaluation/samples/p3.html"; 
+  objNavigator.add(item);
+ 
+  objNavigator.create();
+}
+</script>
+	</HEAD>
+	<body>
+			<iframe id="navigator"  src="../../../navigator/pinNavigator.html" style="Z-INDEX: 101; LEFT: 35px; POSITION: absolute; TOP: 60px;Height:388px;Width:780px"  frameborder=0></iframe >
+<!--			<iframe id="navigator"  src="../../../navigator/pinNavigator.html" style="Z-INDEX: 101; Height:100%;Width:100%"  frameborder=0></iframe >-->
+<div id="Label1" style="Z-INDEX: 102; LEFT: 34px; POSITION: absolute; TOP: 29px" runat="server"
+				Height="20px" Width="686px">Simple configuration with split area:</div>
+	</body>
+</HTML>

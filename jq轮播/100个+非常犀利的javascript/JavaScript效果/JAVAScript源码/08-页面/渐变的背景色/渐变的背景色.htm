@@ -1,0 +1,29 @@
+<html>
+<head>
+<SCRIPT Language="JavaScript">
+<!-- 屏幕变色程序 -->
+
+function CBgColor(){
+var color = 0, step = 1			//color为初始颜色，step为初始步长
+while( color <= 0xffffff){		//在颜色变白(color=0xffffff)之前，不断将颜色值增加
+document.bgColor = color
+color += step				
+step <<= 8				//步长按位左移8位(乘以256)
+if( step >= 0x1000000) step = 1		//如果步长过大则将其恢复到1
+}
+}
+
+CBgColor()				//装入时调用背景变色程序
+
+</Script>
+
+<title>渐变的背景色</title>
+</head>
+<body onLoad="CBgColor()">
+<p><b>渐变的背景颜色，感觉不错吧？</b></p>
+</body>
+</html>
+
+
+
+

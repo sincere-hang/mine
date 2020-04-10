@@ -1,0 +1,36 @@
+<html>
+<head>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Begin	   
+var messages = new Array(); 
+messages[0] = "";			//这里写入每个选项对应的说明文字
+messages[1] = "http://www.263.net.cn";
+messages[2] = "http://www.163.com";	   
+messages[3] = "http://cn.yahoo.com";
+//根据需要，这里应该随着选项的改变而增减项目
+
+function messageReveal() {	
+var messageindex = document.messageForm.messagePick.selectedIndex;	//取得当前下拉菜单选定项目的序号
+helpmsg = messages[messageindex];					//根据序号取得当前选项的说明
+document.messageForm.messageField.value = helpmsg			//将说明写进文框
+}
+// End -->
+</SCRIPT>
+
+<title>下拉菜单和文本框构建的介绍栏</title>
+</head>
+
+<body>
+<form name="messageForm">
+<select name="messagePick" OnChange="messageReveal()">
+<option value="0">请在这里选择需要咨询的信息
+<option>首都在线263
+<option>网易163
+<option>中文雅虎
+</select>
+<br><br><br><br><br>
+<textarea name="messageField" rows=3 cols=25 wrap=virtual style="overflow:auto"></textarea>
+</form>
+</body>
+</html>

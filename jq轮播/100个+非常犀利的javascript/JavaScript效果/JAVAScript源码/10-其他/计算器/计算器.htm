@@ -1,0 +1,109 @@
+<html>
+<head>
+<title>计算器</title>
+
+<script>
+<!--
+willclear=false			//这个变量作为下一次输入是否先清空输入框的状态标志
+
+function backspace(){		//退格
+Calc.Input.value = Calc.Input.value.substring(0,Calc.Input.value.length-1)
+Calc.Input.title = Calc.Input.value.substring(0,Calc.Input.title.length-1)
+}//取长度为原长度减一的串，实现退格效果。
+
+function addoperator(){		//加操作符
+if (willclear){			//如果这次输入前需要清空输入框
+willclear=false			//先清除标志，避免下次再次被错误地重复清空
+clearinput()			//清除输入内容
+}
+Calc.Input.value += event.srcElement.innerText	//给用于显示的加上刚输入的运算符
+Calc.Input.title += event.srcElement.name	//给用于计算的表达式区加上刚输入的运算符
+}
+
+function clearinput(){		//清除输入
+Calc.Input.value=''		//清空显示区
+Calc.Input.title=''		//清空表达式
+}
+
+function result(){				//用于计算结果
+Calc.Input.value = eval(Calc.Input.title)	//执行表达式区的表达式，返回结果到显示区。
+willclear=true					//设定下次按键则先清除此次计算结果。
+}
+//-->
+</script>
+
+<style>
+button	{width:40; border: 1 solid #808080;background-color: #FFFFFF}
+</style>
+</head>
+<body>
+<FORM NAME="Calc">
+   <TABLE BORDER=4 bordercolorlight="#808080" bordercolor="#808080" width="250" height="38"><TR><TD width="291" height="39" bgcolor="#C0C0C0">
+    &nbsp;  
+    <INPUT TYPE="text" NAME="Input" readonly Size="21" style="background-color: #F5F5F5; font-family: Arial; border: 1 solid #000000">&nbsp
+    <button NAME="back" OnClick="backspace()">←</button>
+   </TD></TR><TR><TD width="291" height="38">  
+    <table border="0" width="100%" height="105" cellpadding="0">  
+      <tr>  
+        <td width="25%" height="31" align="center" bgcolor="#C0C0C0">  
+    <BUTTON NAME="1" OnClick="addoperator()">1</BUTTON>
+        </td>  
+        <td width="25%" height="31" align="center" bgcolor="#C0C0C0">  
+    <BUTTON NAME="2" OnClick="addoperator()">2</BUTTON>
+        </td>  
+        <td width="25%" height="31" align="center" bgcolor="#C0C0C0">  
+    <BUTTON NAME="3" OnClick="addoperator()">3</BUTTON>
+        </td>  
+        <td width="25%" height="31" align="center" bgcolor="#C0C0C0">  
+    <BUTTON NAME="+" OnClick="addoperator()">+</BUTTON>
+        </td>  
+      </tr>  
+      <tr>  
+        <td width="25%" height="31" align="center" bgcolor="#C0C0C0">  
+    <BUTTON NAME="4" OnClick="addoperator()">4</BUTTON>
+        </td>  
+        <td width="25%" height="31" align="center" bgcolor="#C0C0C0">  
+    <BUTTON NAME="5" OnClick="addoperator()">5</BUTTON>
+        </td>  
+        <td width="25%" height="31" align="center" bgcolor="#C0C0C0">  
+    <BUTTON NAME="6" OnClick="addoperator()">6</BUTTON>
+        </td>  
+        <td width="25%" height="31" align="center" bgcolor="#C0C0C0">  
+    <BUTTON NAME="-" OnClick="addoperator()">-</BUTTON>
+        </td>  
+      </tr>  
+      <tr>  
+        <td width="25%" height="31" align="center" bgcolor="#C0C0C0">  
+    <BUTTON NAME="7" OnClick="addoperator()">7</BUTTON>
+        </td>  
+        <td width="25%" height="31" align="center" bgcolor="#C0C0C0">  
+    <BUTTON NAME="8" OnClick="addoperator()">8</BUTTON>
+        </td>  
+        <td width="25%" height="31" align="center" bgcolor="#C0C0C0">  
+    <BUTTON NAME="9" OnClick="addoperator()">9</BUTTON>
+        </td>  
+        <td width="25%" height="31" align="center" bgcolor="#C0C0C0">  
+    <BUTTON NAME="*" OnClick="addoperator()">×</BUTTON>
+        </td>  
+      </tr>  
+      <tr>  
+        <td width="25%" height="31" align="center" bgcolor="#C0C0C0">  
+    <BUTTON NAME="clear" OnClick="clearinput()">C</BUTTON>
+        </td>  
+        <td width="25%" height="31" align="center" bgcolor="#C0C0C0">  
+    <BUTTON NAME="0" OnClick="addoperator()">0</BUTTON>
+        </td>  
+        <td width="25%" height="31" align="center" bgcolor="#C0C0C0">  
+    <BUTTON NAME="=" OnClick="result()">=</BUTTON>
+        </td>  
+        <td width="25%" height="31" align="center" bgcolor="#C0C0C0">  
+    <BUTTON NAME="/" OnClick="addoperator()">÷</BUTTON>
+        </td>  
+      </tr>  
+    </table>  
+   </TD></TR>  
+   </TABLE>  
+   </FORM>  
+</body>  
+</html>  
+

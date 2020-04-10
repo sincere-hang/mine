@@ -1,0 +1,57 @@
+<HTML> 
+<HEAD>
+<TITLE>扫描效果</TITLE>
+<style>
+ .30pt{font-size:30pt;font-family:方正舒体简体;color:#9999ff}
+ .40pt{font-size:40pt;font-family:方正魏碑繁体;color:#CC0099}
+</style>
+</HEAD>	 
+<BODY BGCOLOR=WHITE TOPMARGIN=15 LEFTMARGIN=20>
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=2> 
+<CENTER>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+</CENTER>
+<font class=30pt> 一个扫描框从左到右，这样的效果是不是很玄呀？， </FONT><font face="Verdana, Arial, Helvetica" size=2><font class=30pt><object id="DAControl"
+  style="position:absolute; left:1; top:300;width:850;height:200" 
+  classid="CLSID:B6FFC24C-7E13-11D0-9B47-00C04FC2F51D">
+</object></font></font><font class=30pt>
+<SCRIPT LANGUAGE="JScript">
+<!--
+  // 启用DirectAnimation库
+  m = DAControl.MeterLibrary;
+
+  fs = m.Font( "MotterFemD", 42, m.red);  // 字体设置:face=Webdings;size=42;color=black
+  textImg1 = m.StringImage("Come here! An intereting word !", fs).Transform(m.Translate2(0,-.004));
+  textImg2 = m.StringImage("Come here! An intereting word !", fs.Color(m.Blue)).Transform(m.Translate2(0,-.004));
+   
+  start = m.Point2(-.12,0);   // 路径的起点
+  end   = m.Point2(.12,0);    // 路径的终点
+  // 沿着路径每3秒扫描一次
+  mp =  m.FollowPath(m.Line(start,end), 5).RepeatForever(); 
+
+  // 沿同一条路径移动两个点
+  max = m.Point2( .008, .008).Transform(mp);
+  min = m.Point2(-.008,-.008).Transform(mp);
+
+  // 剪切在第一幅图上对应上面定义的两个点间的内容
+  cropImg = textImg1.Crop(min,max);
+
+  //画一个正方形,并让它沿着定义的路径移动
+  rectImg = m.Rect(.016,.016).Draw(m.DefaultLineStyle).Transform(mp);
+
+  // 覆盖正方形内的内容
+  finalImg = m.Overlay(m.Overlay(rectImg, cropImg), textImg2);
+
+  //设置被控制的对象
+  DAControl.Image = finalImg; 
+  //设置颜色
+  DAControl.BackgroundImage = m.SolidColorImage(m.Blue);     
+     
+  //开始动画
+  DAControl.Start()
+//-->
+</SCRIPT>
+</FONT> </font> 
+</BODY>
+</HTML>

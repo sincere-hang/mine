@@ -1,0 +1,82 @@
+<HTML>
+<HEAD>
+<TITLE>随处出现的导航条</TITLE>
+<STYLE type=text/css>
+BODY		{FONT-FAMILY: "宋体"; FONT-SIZE: 9pt; MARGIN-LEFT: 0px; MARGIN-RIGHT: 0px; MARGIN-TOP: 0px}
+A		{COLOR: black; FONT-SIZE: 9pt; FONT-WEIGHT: 400; TEXT-DECORATION: none}
+A:hover		{COLOR:00ff00; FONT-SIZE: 9pt; FONT-WEIGHT: 400; TEXT-DECORATION: underline}
+A:active	{COLOR: #ff0033; CURSOR: hand; FONT: 9pt "宋体"}
+A.cc:hover	{COLOR: #ff0033; CURSOR: hand; FONT: 9pt "宋体"}
+.box		{BACKGROUND: #fef4d9; FONT: 9pt "宋体"; POSITION: absolute}
+</STYLE>
+</head>
+
+<BODY>
+<BR>
+<SCRIPT language=javascript>
+<!--
+document.onclick = popUp				//捕获鼠标单击事件，由popUp函数做出响应
+
+function popUp() {					//弹出式菜单
+newX = window.event.x + document.body.scrollLeft	//得到鼠标的x坐标
+newY = window.event.y + document.body.scrollTop		//得到鼠标的y坐标
+menu = document.all.itemopen				//的到作为菜单的那个层
+  if ( menu.style.display == ""){			//判断层是否被显示出来了
+    menu.style.display = "none" }			//如果已经被显示则消隐
+  else {						//否则
+     menu.style.display = ""				//将其显示出来
+  }
+    menu.style.pixelLeft = newX - 50			//调整其位置到鼠标附近
+    menu.style.pixelTop = newY - 50
+}
+//-->
+</SCRIPT>
+<CENTER>
+<TABLE class=box id=itemopen style="DISPLAY: none" bgcolor="#C0C0C0" bordercolorlight="#000000" border="1" cellspacing="0" cellpadding="0" bordercolor="#FFFFFF">
+ <TBODY>
+  <TR>
+   <TD>
+	<A class=cc href="http://www.263.net.cn">首都在线</A>
+   </TD>
+  </TR>
+  <TR>
+   <TD>
+	<A class=cc href="http://www.163.com">网易163</A>
+   </TD>
+  </TR>
+  <TR>
+   <TD>
+	<A class=cc href="http://www.chinaren.com">中国人</A>
+   </TD>
+  </TR>
+  <TR>
+   <TD>
+	<A class=cc href="http://www.sohu.com">搜 狐</A>
+   </TD>
+  </TR>
+  <TR>
+   <TD>
+	<A class=cc href="http://cn.yahoo.com">中文雅虎</A>
+   </TD>
+  </TR>
+  <TR>
+   <TD>
+	<A class=cc href="http://www.netbig.com">网 大</A>
+   </TD>
+  </TR>
+  <TR>
+   <TD>
+	<A class=cc href="http://www.loveme.com">网 恋</A>
+   </TD>
+  </TR>
+  <TR>
+   <TD>
+	<A class=cc href="http://www.teh9.com">第九城市</A>
+   </TD>
+  </TR>
+ </TBODY>
+</TABLE>
+</CENTER>
+<p align=center><b>请点击鼠标左键</b></p>
+</BODY> 
+</HTML>

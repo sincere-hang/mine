@@ -1,0 +1,77 @@
+<html>
+<head>
+<style>
+<!--
+#iewrap{
+position:relative;
+height:30px
+}
+#iewrap{
+position:absolute
+}
+#dropmenu{
+filter:revealTrans(Duration=1.5,Transition=12)
+visibility:hide
+}
+a:hover	{ color: #FF0000}
+body	{ font-family: "宋体"; font-size: 9pt; text-decoration: none}
+a	{ font-family: "宋体"; font-size: 9pt; text-decoration: none}
+-->
+</style>
+<title>聚焦的菜单</title>
+</head>
+<body>
+<span id="iewrap" onClick="dropit();event.cancelBubble=true;return false">
+
+<a href="#"><b>点击这里</b></a>    
+</span> 
+
+<script language="JavaScript1.2"> 
+var enableeffect=true		//这里控制是否打开渐入效果，可设为true或false
+var selection=new Array()	//以下几条可根据需要改变
+selection[0]='<font face="宋体"><a href="http://www.263.net">263首都在线</a></font><br>';
+selection[1]='<font face="宋体"><a href="http://www.163.com">网易163</a></font><br>';
+selection[2]='<font face="宋体"><a href="http://www.sina.com.cn">新浪sina</a></font><br>';
+//selection[3]='<font face="宋体"><a href="http://www.sohu.com.cn">搜狐</a></font><br>';
+//可以像这样根据需要随意增减项目
+
+function dropit(){		//这个函数是核心
+if (document.all){		//检测浏览器兼容性
+//调整弹出菜单层的位置
+dropmenu.style.left=document.body.scrollLeft+event.clientX-event.offsetX
+dropmenu.style.top=document.body.scrollTop+event.clientY-event.offsetY+18
+if (dropmenu.style.visibility=="hidden"){	//如果菜单处于隐藏状态
+if (enableeffect)				//如果允许渐变效果
+dropmenu.filters.revealTrans.apply()		//先初始化渐变滤镜，冻结当前状态
+dropmenu.style.visibility="visible"		//将菜单层设为可见
+if (enableeffect)				//如果允许渐变效果
+dropmenu.filters.revealTrans.play()		//开始播放渐变效果
+}
+else{						//如果菜单已经打开
+hidemenu()					//则将其隐藏
+}
+}
+}
+
+function hidemenu(){			//这个函数用于隐藏菜单
+if (enableeffect)			//若打开了渐变效果
+dropmenu.filters.revealTrans.stop()	//则无论状态如何，先停止渐变滤镜的播放。
+dropmenu.style.visibility="hidden"	//将菜单所在的层设为不可见
+}
+
+//以下初始化事件捕获程序
+if (document.all)		//如果是IE
+document.body.onclick=hidemenu	//当点击页面任何其它部分时隐藏菜单
+</script>
+
+<div id="dropmenu" style="position:absolute;left:0;top:0;layer-background-color:seashell;
+background-color:seashell;width:100;visibility:hidden;border:1px solid black;padding:0px">
+<script language="JavaScript1.2">	//以下程序用于写入菜单的各项
+if (document.all)
+dropmenu.style.padding='4px'		//设定顶距
+for (i=0;i<selection.length;i++)	//取每一个菜单项
+document.write(selection[i])		//写入当前层
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<html>
+<head>
+<style>
+<!--
+#glowtext{
+filter:glow(color=red,strength=2);
+width:100%;
+}
+-->
+</style>
+
+<script language="JavaScript1.2">
+
+function glowit(which){
+if (document.all.glowtext[which].filters[0].strength==2)
+document.all.glowtext[which].filters[0].strength=1
+else
+document.all.glowtext[which].filters[0].strength=2
+}
+
+function glowit2(which){
+if (document.all.glowtext.filters[0].strength==2)	//这里每次执行一次都将滤镜的作用强度在1和2之间进行切换
+document.all.glowtext.filters[0].strength=1
+else
+document.all.glowtext.filters[0].strength=2
+}
+
+function startglowing(){
+if (document.all.glowtext&&glowtext.length){		//如果存在名叫glowtext的对象，并且含有子对象
+for (i=0;i<glowtext.length;i++)				//则为每个子对象则增加一个计时器
+eval('setInterval("glowit('+i+')",150)')
+}
+else if (glowtext)					//如果glowtext本身就是需加效果的对象
+setInterval("glowit2(0)",150)				//则设定重复执行glowit2，产生效果循环
+}
+
+if (document.all)
+window.onload=startglowing				//在页面装入的时候开始运行燃烧效果
+</script>
+
+<title>燃烧的文字</title>
+</head>
+<body>
+<span id="glowtext">燃烧的文字</span>
+</body>
+</html>

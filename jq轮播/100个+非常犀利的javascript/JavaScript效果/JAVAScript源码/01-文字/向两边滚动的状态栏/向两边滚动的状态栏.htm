@@ -1,0 +1,39 @@
+<html>
+<head>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!-- hide script from old browsers
+var phrase = "欢迎光临，请多提出你的建议!!!"	//这里写消息的内容
+var lenPhrase = phrase.length;			//取消息文本的长度
+var phraseOut = "";
+var pause = 100;				//设定显示速度
+var i=0;
+var j=0;
+function explode() {
+    i++;					//计数器加一
+    phraseOut = "";				//初始化输出文本
+    for (j=1; j<=(lenPhrase/2)-i; j++) {	//计算并加入左边需要补充的空格
+      phraseOut += "  ";
+    } 
+    for (j=1; j<=i; j++) {			//加入左边需要显示的文本部分
+      phraseOut += phrase.charAt(j-1);
+    }
+    for (j=i; j>=1; j--) {			//加入右边需要显示的文本部分
+      phraseOut += phrase.charAt(lenPhrase-j);
+    }
+    for (j=1; j<=(lenPhrase/2)-i; j++) {	//计算并加入右边需要补充的空格
+      phraseOut += "  ";
+    }
+    window.status = phraseOut;			//显示计算好的字符串
+    if (i<lenPhrase/2) {			//如果字符串还没有显示完
+        setTimeout("explode()",pause);		//则设定下一次显示的延时
+    }
+}
+// end hiding contents --> 
+</SCRIPT>
+<title>向两边滚动的状态栏特效</title>
+</head>
+<body OnLoad="explode()">
+<b>请注意左下角的状态栏</b>
+</body>
+</html>

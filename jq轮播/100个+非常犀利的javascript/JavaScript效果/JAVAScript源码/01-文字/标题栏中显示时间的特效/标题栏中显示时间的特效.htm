@@ -1,0 +1,29 @@
+<html>
+<head>
+<title></title>
+
+<script language="JavaScript1.2">
+<!--hide
+//定义月份的描述
+var isnMonth = new Array("1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月");
+//定义星期的描述
+var isnDay = new Array("星期日","星期一","星期二","星期三","星期四","星期五","星期六","星期日");
+//取得当前日期
+today = new Date () ;
+Year=today.getYear();				//取得日期的年份部分
+Date=today.getDate();				//取得星期部分
+//定义需要显示的字符串
+titlestr="今天是: "+Year+"年"+isnMonth[today.getMonth()]+Date+"日"+isnDay[today.getDay()]
+if (document.all)				//检测浏览器兼容性，如果是IE则可以显示
+document.title=titlestr				//改变标题，显示日期。
+//--hide-->
+</script>
+
+</head>
+<body>
+<b>请注意上面标题栏的时间</b>
+</body>
+</html>
+
+
+

@@ -1,0 +1,27 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>闪烁的图片</title>
+</head>
+<body ONLOAD="soccerOnload()">
+<DIV ID="soccer" STYLE="position: absolute; left: 150; top: 54; width: 120; height: 42">
+<a href="#" target="_blank">
+<IMG SRC="images/move.gif" border="0" width="59" height="59"><IMG SRC="images/move.gif" border="0"></a>
+</DIV>
+
+<SCRIPT LANGUAGE="JavaScript">
+var msecs = 100;				//改变时间得到不同的闪烁间隔；
+
+function soccerOnload() {			//用于在页面启动的时候激发第一次闪烁效果
+setTimeout("blink()", msecs);
+}
+
+function blink() {						//这是闪烁程序的核心
+soccer.style.visibility =
+(soccer.style.visibility == "hidden") ? "visible" : "hidden";	//得到与当前状态相反的属性值
+setTimeout("blink()", msecs);					//设定下一次改变状态的时间
+}
+</SCRIPT>
+
+</body>
+</html>

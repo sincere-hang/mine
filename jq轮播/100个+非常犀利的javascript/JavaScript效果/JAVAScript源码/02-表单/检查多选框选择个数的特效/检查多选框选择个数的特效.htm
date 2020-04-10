@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>检查多选框选择个数的特效</title>
+</head>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Begin
+function numCheck(form) 		//检查表单
+{
+var total = 0;				//这个变量用来存放我们所要统计的个数值
+var max = form.ckbox.length;		//取得checkbox的总个数
+for (var idx = 0; idx < max; idx++) 	//遍历所有checkbox
+{
+if (eval("document.playlist.ckbox[" + idx + "].checked") == true){//如果已经被选定
+    total += 1;							  //计数器
+ }
+}
+alert("你选择了 " + total + " 个选项.");//弹出提示框，返回统计结果。
+}
+//  End -->
+</script>
+
+<form method="post" name=playlist>
+<body>
+
+1<input type=checkbox name=ckbox value="ON">
+2<input type=checkbox name=ckbox>   
+3<input type=checkbox name=ckbox>   
+4<input type=checkbox name=ckbox>   
+5<input type=checkbox name=ckbox>   
+6<input type=checkbox name=ckbox>   
+7<input type=checkbox name=ckbox>   
+8<input type=checkbox name=ckbox>   
+9<input type=checkbox name=ckbox>   
+<p>  
+<input type=button value="检测选择个数" onClick="numCheck(this.form)" style="background-color: #FFFFFF; border: 1 solid #000000">   
+</form>   
+</body>
+</html>
+

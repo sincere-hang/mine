@@ -1,0 +1,138 @@
+<html>
+<head>
+<style>
+<!--
+A	{text-decoration: NONE;color: menutext}
+A:hover	{color: ff0000}
+#slidemenubar, #slidemenubar2	{
+				position:absolute;
+				left:-155px;
+				width:160px;
+				top:20px;
+				border:1.5px outset THREEDDARKSHADOW;
+				background-color: MENU;
+				color: MENUTEXT;
+				layer-background-color:gray;
+				font:12px Verdana;
+				line-height:20px;
+}
+-->
+</style>
+
+<title>快捷键控制导航栏</title>
+</head>
+<body>
+
+<script language="JavaScript1.2">
+if (document.all)			//如果浏览器是IE就使用div层进行显示
+document.write('<div id="slidemenubar2" style="left:-150">')
+</script>
+<layer id="slidemenubar">
+<script language="JavaScript1.2">
+var menuitems=new Array()
+var menulinks=new Array()
+
+//显示的项目列在这里，可以根据需要随意增减
+menuitems[0]	= '　世纪学苑欢迎您'
+menuitems[1]	= '　我的世纪'
+menuitems[2]	= '　盛唐联谊'
+menuitems[3]	= '　第五空间'
+menuitems[4]	= '　这里填显示信息4'
+menuitems[5]	= '　这里填显示信息5'
+menuitems[6]	= '　这里填显示信息6'
+menuitems[7]	= '　这里填显示信息7'
+menuitems[8]	= '　这里填显示信息8'
+menuitems[9]	= '　这里填显示信息9'
+menuitems[10]	= '　这里填显示信息0'
+menuitems[11]	= '　'
+menuitems[12]	= '　'
+
+//这里写链接信息，每一条均与上面的显示信息相配合
+menulinks[0]	= 'http://century.scit.edu.cn'
+menulinks[1]	= 'http://www.5dcentury.com'
+menulinks[2]	= 'http://202.115.148.240'
+menulinks[3]	= 'http://the5.scit.edu.cn'
+menulinks[4]	= '这里填连接地址4'
+menulinks[5]	= '这里填连接地址5'
+menulinks[6]	= '这里填连接地址6'
+menulinks[7]	= '这里填连接地址7'
+menulinks[8]	= '这里填连接地址8'
+menulinks[9]	= '这里填连接地址9'
+menulinks[10]	= '这里填连接地址0'
+menulinks[11]	= ''
+menulinks[12]	= ''
+
+for (i=0;i<=menuitems.length-1;i++){		//根据需要显示的链接数目构成相应次数的循环
+if (menulinks[i]=='')				//若链接为空
+menulinks[i]='#'				//则补充一个空链接符号
+		/*下一行将链接的代码写入文本区显示。*/
+document.write('<a href='+menulinks[i]+'>'+menuitems[i]+'</a><br>')
+}
+</script>
+</layer>
+
+<script language="JavaScript1.2">
+if (document.all){
+document.write('</div>')			//如果是IE,就将前面的div标志写完
+themenu=document.all.slidemenubar2.style	//并且使用这个div作为实现效果的区域
+rightboundary=0
+leftboundary=-150
+}
+else{						//否则(不是IE)则用名叫slidemenubar的
+themenu=document.layers.slidemenubar		//那个layer层进行效果的实现区域
+rightboundary=150
+leftboundary=10
+}
+
+function pull(){				//弹出导航栏
+state='pull'					//设置当前状态标志为"pull"状态
+if (window.drawit)				//如果正在进行"收起"动作
+clearInterval(drawit)				//则停止这个动作
+pullit=setInterval('pullengine()',50)		//设置弹出动作计时器，每50毫秒导航栏右移一点，实现动态效果
+}
+function draw(){				//收起导航栏
+state='draw'					//设置当前状态标志为"draw"状态
+clearInterval(pullit)				//停止"弹出"动作计时器
+drawit=setInterval('drawengine()',50)		//设置收起动作计时器，每50毫秒导航栏左移一点，实现动态效果
+}
+
+function pullengine(){				//弹出导航栏的核心函数
+if (document.all&&themenu.pixelLeft<rightboundary)//如果浏览器是IE并且导航栏没有弹出完毕
+themenu.pixelLeft+=10				//则用pixelLeft属性改变div的左边距实现弹出的效果
+else if(document.layers&&themenu.left<rightboundary)//如果浏览器是NS并且导航栏没有弹出完毕
+themenu.left+=10				//则用left属性改变layer的左边距实现弹出的效果
+else if (window.pullit)				//如果已经弹出到位
+clearInterval(pullit)				//则清除计时器 (弹出动作结束)
+}
+function drawengine(){				//收起导航栏的核心函数
+if (document.all&&themenu.pixelLeft>leftboundary)//如果浏览器是IE并且导航栏没有收到底
+themenu.pixelLeft-=5				//则用pixelLeft属性改变div的左边距实现收起的效果
+else if(document.layers&&themenu.left>leftboundary)//如果浏览器是NS并且导航栏没有收到底
+themenu.left-=5					//则用left属性改变layer的左边距实现收起的效果
+else if (window.drawit)				//如果已经收到底
+clearInterval(drawit)				//则清除计时器 (收起动作结束)
+}
+
+if (document.layers)				//如果不是IE，则利用captureEvents
+document.captureEvents(Event.KEYPRESS)		//捕获按键事件以便做出响应
+function menuengine(e){				//捕获按键的函数
+if (document.layers){				//如果是NS
+if (e.which==32)				//则利用which得到键盘码，并判断其是否为“空格键”
+if (state!='pull')				//如果按空格键时导航栏不处于弹出状态
+pull()						//则改变其状态为弹出
+else						//否则
+draw()						//将其收起
+}
+else if (document.all){				//如果浏览器是IE
+if (event.keyCode==32)				//则用keyCode得到键盘码
+if (state!='pull')				//以下过程和上面类似
+pull()
+else
+draw()
+}
+}
+state=''					//初始化状态标志
+document.onkeypress=menuengine			//用onkeypress捕获按键事件(用于IE)
+</script>
+</body>
+</html>

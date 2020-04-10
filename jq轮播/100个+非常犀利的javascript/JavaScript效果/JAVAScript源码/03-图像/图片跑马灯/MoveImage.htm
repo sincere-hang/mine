@@ -1,0 +1,35 @@
+<html>
+<head>
+<script language="javascript">
+function moveIt() {
+if(document.layers) {
+document.redball.left += 5;
+if (document.redball.left>300) {
+    document.redball.left = 0;
+}
+} else if (document.all) {
+redball.style.left = parseInt(redball.style.left) + 5;
+if (parseInt(redball.style.left) > 1024) {
+    redball.style.left =-400;
+}
+}
+if ((document.layers) || (document.all)) {
+setTimeout('moveIt()', 50);
+} 
+
+}
+</script>
+
+</head>
+<body onload="moveIt()" background=bg.gif>
+<div id="redball" style="position:relative; left:0px; width:350px; height:45px;">
+<br><br><br>
+  <p align="left"> <img src="070.gif" alt="移动的广告条" WIDTH="140" HEIGHT="165"><br>
+</p>
+</div>
+<div align="center"><br>
+  <br>
+  <font size=20 color=#9999CC face=汉鼎繁特楷> <font color="#0000FF">这个效果不错吧！</font></font> 
+</div>
+</body>
+</html>

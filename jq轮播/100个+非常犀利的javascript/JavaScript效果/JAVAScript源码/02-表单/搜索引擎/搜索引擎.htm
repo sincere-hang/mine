@@ -1,0 +1,77 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+<SCRIPT language=JavaScript>
+function sch(form){
+e=document.sel.sq.selectedIndex;	//取选定选项的编号
+e=document.sel.sq[e].value;		//取选定选项的"value"特征值
+k=document.sel.k.value;			//取搜索关键字
+if(document.sel.k.value==""){		//如果没有填入关键字
+alert("请输入关键词！");		//则给出提示
+document.sel.k.focus();			//将光标移到输入框
+return
+}
+//以下根据选择的内容改变window.location属性,进行本窗口导航
+if(e=="yah1"){location="http://search.chinese.yahoo.com/search/gb?p="+k;}
+if(e=="yah"){location="http://search.yahoo.com/bin/search?p="+k;}
+if(e=="soh1"){location="http://search.sohu.com/cgi-bin/search_main.cgi?txt_keyword="+k+"&page_index=0&catagory=main"}
+if(e=="tonghua"){location="http://search.tonghua.com.cn/search?p="+k;}
+if(e=="yo1"){location="http://www.goyoyo.com.cn/gyy/guide/gquery%20GB%20"+k+"?"}
+if(e=="srsnet"){location="http://www.srsnet.com/cgi-bin/richina.cgi?query="+k;}
+if(e=="网易"){location="http://www.yeah.net/cgi-bin/search.cgi?key="+k;}
+if(e=="whatsite"){location="http://www.whatsite.com.tw/main/search.cgi?keyword="+k+"&start=0&REXP=OR&x=36&y=15"}
+if(e=="kimo"){location="http://search.kimo.com.tw/cgi-bin/srchfz.pl?srchcdn=B0&query="+k+"&x=22&y=9"}
+if(e=="yam"){location="http://www.yam.com.tw/b5/search?k="+k+"&x=9&y=18"}
+if(e=="excite"){location="http://search.excite.com/search.gw?search="+k;}
+if(e=="cei"){location="http://infonavi.cei.gov.cn/cgi-bin/searchs.dll?OptionSearchs?Key="+k;}
+if(e=="ztw"){location="http://search.bj.cninfo.net/go/infoseek?keyword="+k;}
+if(e=="xlw"){location="http://search.sina.com.cn/cgi-bin/search/search.cgi?_searchkey="+k;}
+if(e=="ssk"){location="http://www.cseek.com/cgi/srchengine.cgi?searchcgi=http%3A%2F%2Fwww.cseek.com%2Fhomepage%2Fcgi%2F&all=yes&sortby=1&searchkey="+k;} }
+</SCRIPT>
+
+<title>搜索引擎</title>
+</head>
+
+<body>
+<form action=javascript:sch(this.form) method=post name=sel>
+<table bgcolor=#c0c0c0 border=1 bordercolordark=#ffffff bordercolorlight=#000000 cellpadding=2 cellspacing=0 width="400" bordercolor="#FFFFFF" height="52">
+ <tbody> 
+  <tr> 
+   <td width="100%" colspan="3" height="16"> 
+    <font size="2">搜索引擎一网打尽——</font>
+   </td>
+  </tr>
+  <tr> 
+   <td width="34%" align="center" height="32"> 
+    <font style="FONT-SIZE: 9pt">
+    <select name=sq size=1 style="FONT-FAMILY: 宋体; FONT-SIZE: 9pt" tabindex=1>
+    <option selected value=yah1>中文Yahoo</option>
+    <option value=soh1>搜狐</option>
+    <option value=网易>网易搜索</option>
+    <option value=tonghua>常青藤</option>
+    <option value=xlw>新浪网</option>
+    <option value=ssk>搜索客</option>
+    <option value=ztw>中国多媒体</option>
+    <option value=yo1>悠游</option>
+    <option value=whatsite>哇塞big5</option>
+    <option value=kimo>奇摩big5</option>
+    <option value=yam>蕃薯藤big5</option>
+    <option value=yah>英文Yahoo</option>
+    <option value=excite>英文excite</option>
+    <option value=cei>CEI搜索器</option>
+    </select>
+    </font>
+   </td>
+   <td width="33%" align="center" height="32"> 
+    <input name=k size=14 style="font-family: 宋体; font-size: 9pt; border: 1 solid #000000" tabindex=2>
+   </td>
+   <td width="33%" align="center" height="32"> 
+    <input name=search style="font-family: 宋体; font-size: 9pt; background-color: #FFFFFF; border: 1 solid #000000" tabindex=3 type=submit value=' 开始搜索 '>
+   </td>
+  </tr>
+ </tbody>
+</table>
+</form>
+</body>
+</html>

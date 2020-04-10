@@ -1,0 +1,95 @@
+<html>
+<head>
+<script>
+var navigator;
+function navigatorCreate(objNavigator,id)
+{
+	navigator = objNavigator;
+
+	var item = objNavigator.createItem();
+	item.text = "Common";
+  item.image = "design/image/email.gif";
+	item.active = true;
+	item.url = "../evaluation/samples/p1.html";
+	objNavigator.add(item);
+
+	var item = objNavigator.createItem();
+	item.text = "Options";
+  item.image = "design/image/email.gif";
+	item.active = false;
+	item.url = "../evaluation/samples/p2.html";
+	objNavigator.add(item);
+
+	var item = objNavigator.createItem();
+	item.text = "Misc";
+  item.image = "design/image/email.gif";
+	item.active = false;
+	item.url = "../evaluation/samples/p3.html";
+	objNavigator.add(item);
+
+	objNavigator.create();
+}
+
+function getActiveNavigator()
+{
+	alert(navigator.getActiveNavigator());
+}
+
+function getActiveNavigatorItem()
+{
+	alert("URL of current tab: " + navigator.getActiveNavigatorItem().url);
+}
+
+function setActiveNavigator()
+{
+	navigator.setActiveNavigator(1);
+}
+
+function getActiveNavigatorDocument()
+{
+	var doc = navigator.getActiveNavigatorDocument();
+	doc.body.style.backgroundColor = "red";
+}
+
+function getItems()
+{
+	var items = navigator.getItems();
+	alert("Number of tab items: " + items.length);
+}
+
+function disableNavigator()
+{
+	var item = navigator.getItemByIndex(1);
+	item.setEnabled(false);
+}
+
+function unvisibleNavigator()
+{
+	var item = navigator.getItemByIndex(2);
+	item.setVisible(false);
+}
+
+function setUrl()
+{
+	var item = navigator.getActiveNavigatorItem();
+	item.setUrl("../evaluation/samples/p2.html");
+}
+
+
+</script>
+</head>
+	<body>
+		<div style="font-family: arial;font-size:12px;Z-INDEX: 102; LEFT: 30px; POSITION: absolute; TOP: 25px">Simple demo with "Image" (Windows XP) style:</div>
+		<iframe id="tab" style="Z-INDEX: 100; LEFT: 30px; WIDTH: 300px; POSITION: absolute; TOP: 50px; HEIGHT: 340px"
+			src="../../../navigator/pinNavigator.html?id=tab" frameBorder="0"></iframe>
+
+		<div style="font-family: arial;font-size:13px;Z-INDEX: 102; LEFT: 350px; POSITION: absolute; TOP: 30px">Client Functions:</div>
+		<div style="font-family: arial;font-size:13px;Z-INDEX: 102; LEFT: 350px; POSITION: absolute; TOP: 50px"><a href="javascript: getActiveNavigator()">Get active item</a></div>
+		<div style="font-family: arial;font-size:13px;Z-INDEX: 102; LEFT: 350px; POSITION: absolute; TOP: 70px"><a href="javascript: setActiveNavigator()">Set active item (1)</a></div>
+		<div style="font-family: arial;font-size:13px;Z-INDEX: 102; LEFT: 350px; POSITION: absolute; TOP: 90px"><a href="javascript: getActiveNavigatorItem()">Get active item</a></div>
+		<div style="font-family: arial;font-size:13px;Z-INDEX: 102; LEFT: 350px; POSITION: absolute; TOP: 110px"><a href="javascript: getActiveNavigatorDocument()">Get document of active item (set background color to red)</a></div>
+		<div style="font-family: arial;font-size:13px;Z-INDEX: 102; LEFT: 350px; POSITION: absolute; TOP: 130px"><a href="javascript: getItems()">Get items and alert count</a></div>
+		<div style="font-family: arial;font-size:13px;Z-INDEX: 102; LEFT: 350px; POSITION: absolute; TOP: 150px"><a href="javascript: disableNavigator()">Disable item 2</a></div>
+		<div style="font-family: arial;font-size:13px;Z-INDEX: 102; LEFT: 350px; POSITION: absolute; TOP: 170px"><a href="javascript: unvisibleNavigator()">Set item 3 invisible</a></div>
+	</body>
+</html>

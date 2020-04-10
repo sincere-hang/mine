@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>关于jquery插件jCarouselLite的问题</title>
+<script src="jquery-1.2.6.pack.js" type="text/javascript"></script>
+<script src="jcarousellite_1.0.1.js" type="text/javascript"></script>
+<script type="text/javascript">
+   $(document).ready(function(){
+    $(".carousel").jCarouselLite({
+        auto:800,
+        speed:1000
+    });  
+   });
+   
+</script>
+<style type="text/css">
+body {
+	color:#000000;
+	font-family:verdana,sans-serif;
+	font-size:80%;
+	font-size-adjust:none;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	letter-spacing:1px;
+	line-height:160%;
+}
+ul{
+	margin:0;
+	padding:0;
+	list-style-type:none;
+}
+
+.clear{
+	clear:both;
+}
+.carousel{
+	margin:0pt 0pt 20px 40px;
+	padding:10px 0pt 0pt;
+	position:relative;
+}
+.jCarouselLite{
+	background-color:#DFDFDF;
+	border:1px solid black;
+	float:left;
+	/* 官方有这段不知道有何用处,如果放进去就会显示不了图片了,js动态产生的值为何没有替换掉 */
+/*	left:-5000px;
+	position:relative;
+	visibility:hidden;*/
+}
+.jCarouselLite li img{
+	background-color: #fff;
+    width: 150px;
+	height: 118px;
+	margin: 10px;
+}
+/* jCarouselLite 动态计算产生的css如下(用firebug查看的值) start */
+/*.jCarouselLite{
+	overflow: hidden; visibility: visible; position: relative; z-index: 2; left: 0px; width: 510px;
+}
+.jCarouselLite ul{
+	margin: 0pt; padding: 0pt; position: relative; list-style-type: none; z-index: 1; width: 2890px; left: -510px;
+}
+.jCarouselLite li{
+	overflow: hidden; float: left; width: 170px; height: 144px;
+}
+.jCarouselLite li img{
+	overflow:hidden;
+}
+*//* end */
+
+/* 最终想要的结果是是左边按钮-中间图片-右边按钮,如果把插件的js去掉,把上面注释掉的css应用上去就是想要的结果 */
+</style>
+</head>
+<body>
+<div class="carousel">
+    
+    <div class="jCarouselLite">
+        <ul>
+            <li><img src="image/1.jpg" alt="" width="150" height="118" /></li>
+            <li><img src="image/2.jpg" alt="" width="150" height="118" /></li>
+            <li><img src="image/3.jpg" alt="" width="150" height="118" /></li>
+            <li><img src="image/4.jpg" alt="" width="150" height="118" /></li>
+            <li><img src="image/5.jpg" alt="" width="150" height="118" /></li>
+            <li><img src="image/6.jpg" alt="" width="150" height="118" /></li>
+        </ul>
+    </div>
+   
+    <div class="clear"></div>   
+</div>
+</body>
+</html>

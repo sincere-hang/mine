@@ -1,0 +1,39 @@
+<html>
+<head>
+<title>定时刷新的特效</title>
+</head>
+
+<body>
+<b>请注意页面左下角的状态栏</b>
+
+<script> 
+<!-- 
+var limit="0:10" 				//这里设定定时刷新的时间
+if (document.images){ 
+var parselimit=limit.split(":") 		//将前面设定的时间分成“分”和“秒”两部分
+parselimit=parselimit[0]*60+parselimit[1]*1 	//将两部分时间换算成总共需要计算的秒数
+}
+ 
+function begin(){
+if (!document.images) 				//如果浏览器不是IE
+return 						//则退出
+if (parselimit==1) 				//如果计时时间已到
+window.location.reload() 			//执行刷新动作
+else{ 						//否则
+parselimit-=1 					//计时器减一秒
+curmin=Math.floor(parselimit/60) 		//计算当前“分钟”数
+cursec=parselimit%60 				//计算当前“秒”数
+if (curmin!=0) 					//如果有“分钟”部分
+curtime=curmin+"分"+cursec+"秒后刷新本页！" 	//生成在状态栏显示剩余时间的内容
+else 						//否则(剩余时间小于一分钟)
+curtime=cursec+"秒后刷新本页！" 		//生成在状态栏显示剩余秒数的内容
+window.status=curtime 				//将显示内容写进状态栏
+setTimeout("begin()",1000) 			//设定下一秒钟的延时
+} 
+} 
+window.onload=begin 				//开始计时
+//--> 
+</script> 
+
+</body>
+</html>

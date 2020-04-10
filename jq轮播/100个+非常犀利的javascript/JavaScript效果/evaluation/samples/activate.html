@@ -1,0 +1,27 @@
+<html>
+<head>
+<script>
+function activate()
+{
+	var objNavigator = parent.navigatorGetObject();
+	//Get the items array 
+	var items = objNavigator .aItems
+	// set one of the items to active
+	for(var i=0;i<items.length;i++) {
+		var item = items[i];
+		if(item.text =="Item 2") {
+			item.active = true;
+			item.url = "http://www.pintexx.de";
+		} else {
+			item.active = false;
+		}
+	}
+	// create
+	objNavigator.create();
+}
+</script>
+</head>
+<body>
+<input type="button" value="Activate" onclick="activate()">
+</body>
+</html>

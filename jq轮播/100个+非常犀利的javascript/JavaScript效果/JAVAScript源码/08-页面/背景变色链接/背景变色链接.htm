@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>背景变色链接</title>
+</head>
+
+<body>
+
+<script language="javascript">
+<!--
+
+function rndbg(){					//random background
+	document.bgColor = getColor()			//调用getColor函数取得颜色值，并
+	}						//将其应用到文档的背景色属性上
+
+function getColor(){
+	currentdate = new Date()			//取得当前时间
+	backgroundcolor = currentdate.getSeconds()	//将时间的秒数部分分离出来
+	if (backgroundcolor > 44)			//以下几行将0到59的“秒数”限制在0到15之间
+		backgroundcolor = backgroundcolor - 45
+	else if (backgroundcolor > 29)
+		backgroundcolor = backgroundcolor - 30
+	else if (backgroundcolor > 15)
+		backgroundcolor = backgroundcolor - 16
+	if (backgroundcolor == 0 )			/*********************************/
+		return "olive";				/*这里的代码利用刚才得到的0到15的*/
+	else if (backgroundcolor == 1 )			/*“随机数”返回对应的16种颜色值 */
+		return "teal";				/*********************************/
+	else if (backgroundcolor == 2 )
+		return "red";
+	else if (backgroundcolor == 3 )
+		return "blue";
+	else if (backgroundcolor == 4 )
+		return "maroon";
+	else if (backgroundcolor == 5 )
+		return "navy";
+	else if (backgroundcolor == 6 )
+		return "lime";
+	else if (backgroundcolor == 7 )
+		return "fuschia";
+	else if (backgroundcolor == 8 )
+		return "green";
+	else if (backgroundcolor == 9 )
+		return "purple";
+	else if (backgroundcolor == 10 )
+		return "gray";
+	else if (backgroundcolor == 11 )
+		return "yellow";
+	else if (backgroundcolor == 12 )
+		return "aqua";
+	else if (backgroundcolor == 13 )
+		return "black";
+	else if (backgroundcolor == 14 )
+		return "white";
+	else if (backgroundcolor == 15 )
+		return "silver";
+	}
+// --> 
+</script>
+<a href="http://www.263.net.cn" onMouseOver=rndbg()><font size=2>首都在线263</font></a>
+</body>
+</html>

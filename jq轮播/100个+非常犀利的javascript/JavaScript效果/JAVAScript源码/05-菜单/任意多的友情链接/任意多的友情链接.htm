@@ -1,0 +1,92 @@
+<html>
+<head>
+</head>
+<body>
+
+<script language="JavaScript">
+<!--
+function go_to_station(){
+	if (document.stationform.stationselect.options[0].selected)		//判断哪个选项被选择
+	{	window.location.href = "http://community.activepower.net/model/login.asp?community_id=27249";}
+              else if (document.stationform.stationselect.options[1].selected)		
+ 	{	window.location.href = "http://wjl.scu.edu.cn";}		//改变窗口的URL地址，实现导航
+	else if (document.stationform.stationselect.options[2].selected)		
+	{	window.location.href = "http://mcushow.myrice.com";}
+	else if (document.stationform.stationselect.options[3].selected)		
+	{	window.location.href = "http://www.yuzi.net";}	
+	else if (document.stationform.stationselect.options[4].selected)		
+	{	window.location.href = "http://rqmp3.yeah.net";}
+              else if (document.stationform.stationselect.options[5].selected)		
+	{	window.location.href = "http://funsoft.myetang.com";}		
+             else if (document.stationform.stationselect.options[6].selected)		
+	{	window.location.href = "http://211.100.6.51";}		
+             else if (document.stationform.stationselect.options[7].selected)		
+	{	window.location.href = "http://kypanmyetang.com/main.htm";}	
+             return true;	
+	}
+
+//这里写各个链接的名称与描述
+function textValue(){	
+	if (document.stationform.stationselect.options[0].selected)			//如果某项选项被选择
+	{	document.stationform.disc.value = "大话迷的网上生活空间"		//写入站点说明
+		document.stationform.author.value = "【大话社区】";}			//显示站点名称
+	else if (document.stationform.stationselect.options[1].selected)		
+	{	document.stationform.disc.value = "集音乐，影视，学习为一体的网上大学"
+		document.stationform.author.value = "【虚拟高校-川大望江楼】";}	
+	else if (document.stationform.stationselect.options[2].selected)		
+	{	document.stationform.disc.value = "单片机编程交流空间"
+		document.stationform.author.value = "【单片机编程世界】";}
+	else if (document.stationform.stationselect.options[3].selected)		
+	{	document.stationform.disc.value = "提供CGI程序下载"
+		document.stationform.author.value = "【中文CGI专门店】";}	
+	else if (document.stationform.stationselect.options[4].selected)		
+	{	document.stationform.disc.value = "提供千首mp3音乐下载"
+		document.stationform.author.value = "【mp3下载基地】";}
+              else if (document.stationform.stationselect.options[5].selected)		
+	{	document.stationform.disc.value = "趣味小程序的下载基地"
+		document.stationform.author.value = "【趣味软件下载】";}	
+	else if (document.stationform.stationselect.options[6].selected)		
+	{	document.stationform.disc.value = "足球迷的世界"
+		document.stationform.author.value = "【欢迎访问足球王国】";}
+              else if (document.stationform.stationselect.options[7].selected)		
+	{	document.stationform.disc.value = "实况足球的世界"
+		document.stationform.author.value = "【Winning Eleven--实况基地】";}	
+	return true;	
+	}
+//-->
+</script>
+
+<div align="center"><font color="#ffffff" size="5">
+<p align="center">不错的友情连接脚本</font> </p>
+</div>
+<form name="stationform">
+<table>
+ <TBODY>
+  <tr>
+    <td>
+	<select class="yk9" multiple name="stationselect" onchange="textValue()" size="8">
+	<!--当选择改变时调用textValue函数改变右边相应说明-->
+	<option>大话社区</option>
+	<option>虚拟高校-川大望江楼</option>
+	<option>单片机编程世界</option>
+	<option>中文CGI专门店</option>
+	<option>mp3下载基地</option>
+	<option>趣味软件下载</option>
+	<option>欢迎访问足球王国</option>
+	<option>Winning Eleven--实况基地</option>
+	</select>
+    </td>
+    <td>
+	站点名称<br>
+	<textarea class="yk9" cols="40" name="author" rows="1"></textarea><br>
+	站点主题<br>
+	<textarea class="yk9" cols="40" name="disc" rows="3" wrap="physical"></textarea>
+    </td>
+   </tr>
+  </TBODY>
+</table>
+<input class="yk9" name="stationbutton" onclick="go_to_station()" type="button" value="look" style="background-color: #FFFFFF; border-style: solid; border-width: 1"> 
+<!--当点击按钮时，调用go_to_station()函数实现相应的导航。-->
+</form>
+</body>
+</html>

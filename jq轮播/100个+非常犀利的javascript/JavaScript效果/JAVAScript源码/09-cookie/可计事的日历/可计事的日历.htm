@@ -1,0 +1,263 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>可计事的日历</title>
+<style type="text/css">
+<!--
+a	{color: 000000; text-decoration:none; font-family: arial;}
+a:hover	{color: 808080; }
+-->
+</style>
+</head>
+<body>
+<SCRIPT language=JavaScript>
+<!--
+// 以下是可以被通用的写cookie程序
+// 浏览器限制cookie的容量在4KB以下，下面这个参数用来设定当cookie超过限制时是否发出警告
+var caution = false
+// name 	cookie的名称
+// value	cookie的值
+// [expires]	设定cookie的过期时间	(可选)
+// [path]	设定cookie的路径	(可选)
+// [domain]	设定cookie的域名	(可选)
+// [secure]	设定是否使用安全cookie	(可选)
+function setCookie(name, value, expires, path, domain, secure) {
+var curCookie = name + "=" + escape(value) +
+((expires) ? "; expires=" + expires.toGMTString() : "") +
+((path) ? "; path=" + path : "") +
+((domain) ? "; domain=" + domain : "") +
+((secure) ? "; secure" : "")
+if (!caution || (name + "=" + escape(value)).length <= 4000)
+document.cookie = curCookie
+else
+if (confirm("请注意：cookie大小已经超过4K,多出的部分会被忽略！"))
+document.cookie = curCookie
+}
+
+// 以下是可以被通用的读cookie程序
+function getCookie(name) {
+var prefix = name + "="
+var cookieStartIndex = document.cookie.indexOf(prefix)
+if (cookieStartIndex == -1)
+return null
+var cookieEndIndex = document.cookie.indexOf(";", cookieStartIndex + prefix.length)
+if (cookieEndIndex == -1)
+cookieEndIndex = document.cookie.length
+return unescape(document.cookie.substring(cookieStartIndex + prefix.length, cookieEndIndex))
+}
+
+// 以下是可以被通用的删除cookie程序
+function deleteCookie(name, path, domain) {
+if (getCookie(name)) {
+document.cookie = name + "=" + 
+((path) ? "; path=" + path : "") +
+((domain) ? "; domain=" + domain : "") +
+"; expires=Thu, 01-Jan-70 00:00:01 GMT"
+}
+}
+
+//
+function fixDate(date) {
+var base = new Date(0)
+var skew = base.getTime()
+if (skew > 0)
+date.setTime(date.getTime() - skew)
+}
+
+function initCookie(monthName) {		//初始化cookie
+//这个函数按照以下数据格式初始化cookie，作为存放消息的介质。
+// ^1^^2^^3^^4^...^30^^31^
+var text = ""
+for (var i = 1; i <= 31; ++i) {
+text += "^" + i + "^"
+}
+var now = new Date()	//取当前时间
+fixDate(now)
+//将时间设定到一月(按31天记)以后，以供设定cookie过期使用。
+now.setTime(now.getTime() + 1000 * 60 * 60 * 24 * 31)
+setCookie(monthName + "Calendar", text, now)	//写入初始的cookie
+}
+
+function getSpecificReminder(num, monthName) {		//取指定日期的提醒内容
+var prefix = "^" + num + "^"				//生成查询指定日期数据段的前缀
+var totalCookie = getCookie(monthName + "Calendar")	//根据月份取相应的cookie
+var startIndex = totalCookie.indexOf(prefix, 0)		//根据日前缀从取出的cookie里截取需要的那个日期部分的偏移值
+var startData = totalCookie.indexOf("^", startIndex + 1) + 1	//取相应日期的数据部分的偏移值
+if (num == 31)						//如果欲取数据的日期为31日(字符串最后部分)
+var endData = totalCookie.length			//则数据结束部分为整个字符串结束的地方
+else							//否则
+var endData = totalCookie.indexOf("^", startData)	//查找数据部分以后的第一个^符号，以其作为数据结束的偏移地址
+return totalCookie.substring(startData, endData)	//返回取得的数据
+}
+
+function setSpecificReminder(num, monthName, newValue) {//设定提醒内容
+var prefix = "^" + num + "^"				//生成查询指定日期数据段的前缀
+var totalCookie = getCookie(monthName + "Calendar")	//根据月份取相应的cookie
+var startIndex = totalCookie.indexOf(prefix, 0)		//根据日前缀从取出的cookie里截取需要的那个日期部分的偏移值
+var startData = totalCookie.indexOf("^", startIndex + 1) + 1	//取相应日期的数据部分的偏移值
+if (num == 31)						//如果欲取数据的日期为31日(字符串最后部分)
+var endData = totalCookie.length			//则数据结束部分为整个字符串结束的地方
+else							//否则
+var endData = totalCookie.indexOf("^", startData)	//查找数据部分以后的第一个^符号，以其作为数据结束的偏移地址
+//计算新的存储串，数据开始位置以前及结束位置以后的内容不变，其间的内容由新值替换
+var newValue = totalCookie.substring(0, startData) + newValue + totalCookie.substring(endData, totalCookie.length)
+var now = new Date()	//取当前时间
+fixDate(now)
+//将时间设定到一月(按31天记)以后，以供设定cookie过期使用。
+now.setTime(now.getTime() + 1000 * 60 * 60 * 24 * 31)
+setCookie(monthName + "Calendar",newValue, now)		//写入cookie数据
+}
+
+function getInput(num, monthName) {			//用户输入信息
+if (!getCookie(monthName + "Calendar")) 		//如果没有cookie数据(第一次使用)
+initCookie(monthName)					//则初始化cookie
+var newValue = prompt("请在这里输入你的留言信息:", getSpecificReminder(num, monthName))	//提示输入信息，如果以前有信息，则作为默认输入内容
+if (newValue) //如果用户按的是“确定”按钮
+setSpecificReminder(num, monthName, newValue)		//则将新输入的信息写入cookie
+}
+
+function getTime() {					//这个过程用来生成表述当前时间的串
+var now = new Date()					//取当前时间
+var hour = now.getHours()				//取“小时”部分
+var minute = now.getMinutes()				//取“分钟”部分
+now = null
+var ampm = "" 
+if (hour >= 12) {					//根据“小时”值判断当前时间是“上午”还是“下午”
+hour -= 12
+ampm = "下午"
+} else
+ampm = "上午"
+hour = (hour == 0) ? 12 : hour				//将“小时”值中出现的12点改为0点，符合显示规律
+if (minute < 10)					//将不满十位的数字前补“0”
+minute = "0" + minute
+return ampm+hour + ":" + minute + " "			//返回表述当前时间的字符串
+}
+
+function leapYear(year) {				//判断闰年
+if (year % 4 == 0)					//将年份除四取余数
+return true						//如果能整除则返回true,是闰年
+return false						//否则返回false,不是闰年
+}
+
+function getDays(month, year) {				//计算某年某月有多少天
+var ar = new Array(12)					//每月对应数组里的一个元素
+ar[0] = 31						//一月
+ar[1] = (leapYear(year)) ? 29 : 28			//二月(加了闰年判断的)
+ar[2] = 31						//三月
+ar[3] = 30						//四月
+ar[4] = 31						//五月
+ar[5] = 30						//六月
+ar[6] = 31						//七月
+ar[7] = 31						//八月
+ar[8] = 30						//九月
+ar[9] = 31						//十月
+ar[10] = 30						//十一月
+ar[11] = 31						//十二月
+return ar[month]					//返回指定月份的天数
+}
+
+function getMonthName(month) {				//这个函数用来取月份的名字
+var ar = new Array(12)					//每月对应数组里的一个元素
+ar[0] = "一月"
+ar[1] = "二月"
+ar[2] = "三月"
+ar[3] = "四月"
+ar[4] = "五月"
+ar[5] = "六月"
+ar[6] = "七月"
+ar[7] = "八月"
+ar[8] = "九月"
+ar[9] = "十月"
+ar[10] = "十一月"
+ar[11] = "十二月"
+return ar[month]					//返回月份的名字
+}
+
+function setCal() {
+var now = new Date()					//取当前时间
+var year = now.getYear()				//取“年”部分
+var month = now.getMonth()				//取“月”部分
+var monthName = getMonthName(month)			//将“月”的数值转换为描述
+var date = now.getDate()				//得到“日”部分
+now = null						//清除已经不需要的now变量
+var firstDayInstance = new Date(year, month, 1)		//构造本月一号的日期
+var firstDay = firstDayInstance.getDay()		//取一号的“星期”值
+firstDayInstance = null					//清除已经不需要的firstDayInstance变量
+var days = getDays(month, year)				//取本月的天数
+drawCal(firstDay + 1, days, date, monthName, 0 + year)	//开始绘制日历
+}
+//以下过程利用setCal得到的数值，利用表格绘制本月的日历。
+function drawCal(firstDay, lastDate, date, monthName, year) {
+//以下变量控制日历外观
+var headerHeight = 30					//标题栏高度
+var border = 1 						//边框宽度
+var cellspacing = 0					//单元格间距
+var headerColor = "000000" 				//标题栏字体颜色
+var headerSize = "+3"					//标题栏字体
+var colWidth = 60					//单元格宽度
+var dayCellHeight = 25					//“星期”单元格高度
+var dayColor = "000000"					//“星期”字体颜色
+var cellHeight = 40					//“日”单元格高度
+var todayColor = "red" 					//“日”字体颜色
+var timeColor = "purple"				//“当前时间”颜色
+//以下开始构建日历表格主体
+var text = ""
+text += '<CENTER>'
+text += '<TABLE BORDER=' + border + ' CELLSPACING=' + cellspacing + '>'		//表格属性
+text += '<TH COLSPAN=7 HEIGHT=' + headerHeight + '>'				//创建标题单元格
+text += '<FONT COLOR="' + headerColor + '" SIZE=' + headerSize + '>'		//这定标题栏字体属性
+text += monthName + ' ' + year 
+text += '</FONT>'
+text += '</TH>'
+var openCol = '<TD WIDTH=' + colWidth + ' HEIGHT=' + dayCellHeight + '>'
+openCol += '<FONT COLOR="' + dayColor + '">'
+var closeCol = '</FONT></TD>'
+var weekDay = new Array(7)
+weekDay[0] = "星期日"
+weekDay[1] = "星期一"
+weekDay[2] = "星期二"
+weekDay[3] = "星期三"
+weekDay[4] = "星期四"
+weekDay[5] = "星期五"
+weekDay[6] = "星期六" 
+text += '<TR ALIGN="center" VALIGN="center">'
+for (var dayNum = 0; dayNum < 7; ++dayNum) {
+text += openCol + weekDay[dayNum] + closeCol 
+}
+text += '</TR>' 
+var digit = 1
+var curCell = 1 
+for (var row = 1; row <= Math.ceil((lastDate + firstDay - 1) / 7); ++row) {
+text += '<TR ALIGN="center">'
+for (var col = 1; col <= 7; ++col) {
+if (digit > lastDate)
+break
+if (curCell < firstDay) {
+text += '<TD></TD>';
+curCell++
+} else {
+if (digit == date) {
+text += '<TD HEIGHT=' + cellHeight + '>'
+text += '<FONT COLOR="' + todayColor + '">'
+text += '<A HREF="javascript:getInput(' + digit + ', \'' + monthName + '\')" onMouseOver="window.status = \'Store or retrieve data for ' + monthName + ' ' + digit + '\'; return true"><FONT COLOR="' + todayColor + '">' + digit + '</FONT></A>'
+text += '<BR>'
+text += '<FONT COLOR="' + timeColor + '" SIZE=2>'
+text += '<CENTER>' + getTime() + '</CENTER>'
+text += '</FONT>'
+text += '</TD>'
+} else
+text += '<TD HEIGHT=' + cellHeight + '><A HREF="javascript:getInput(' + digit + ', \'' + monthName + '\')" onMouseOver="window.status = \'Store or retrieve data for ' + monthName + ' ' + digit + '\'; return true">' + digit + '</A></TD>'
+digit++
+}
+}
+text += '</TR>'
+}
+text += '</TABLE>'
+text += '</CENTER>'
+document.write(text)			//将生成的日历表格写进页面 
+}
+setCal()				//调用setCal，开始生成日历
+// -->
+</SCRIPT> 
+</body>
+</html>

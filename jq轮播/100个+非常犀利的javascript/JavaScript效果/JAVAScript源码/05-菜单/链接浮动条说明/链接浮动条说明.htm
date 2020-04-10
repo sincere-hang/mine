@@ -1,0 +1,81 @@
+<HTML>
+<HEAD>
+<TITLE>连接说明浮动条脚本</TITLE>
+<STYLE type=text/css>
+A	{COLOR: #000000; FONT-SIZE: 9pt; TEXT-DECORATION: none}
+A:hover	{COLOR: #00ff00; FONT-SIZE: 9pt;}
+</STYLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type>
+
+<SCRIPT language=JavaScript>
+<!--
+bname=navigator.appName;			//测试浏览器类型
+bversion=parseInt(navigator.appVersion)		//取浏览器版本
+if (bname=="Netscape")				//如果是NS
+brows=true					//浏览器标志置为true
+else						//否则
+brows=false					//标志设为false
+var x=0;					//
+var link=new Array();				//建立link数组用于存放每个说明条的内容
+
+function dspl(msg,bgcolor,dtop,delft){		//定义dspl数据结构，用于存放浮动说明条的内容，颜色以及坐标
+this.msg=msg;					//内容
+this.bgcolor=bgcolor;				//背景色
+this.dtop=dtop;					//顶距
+this.dleft=delft;				//左边距
+}
+//下面依次列出个说明条的内容以及特征数据
+link[0]=new dspl('<b>［内容1］</b><font size=2>内容1，写在这里……</font>','bisque',50,450)
+link[1]=new dspl('<b>［内容2］</b><font size=2>内容2，写在这里……</font>','bisque',75,450)
+link[2]=new dspl('<b>［内容3］</b><font size=2>内容3，写在这里……</font>','bisque',100,450)
+link[3]=new dspl('<b>［内容4］</b><font size=2>内容4，写在这里……</font>','bisque',135,450)
+
+//以下程序用于将提示条显示出来
+function show(x){
+if ((bname=="Netscape" && bversion>=4) || (bname=="Microsoft Internet Explorer" && bversion>=4)){
+if (brows){						//如果浏览器是NS
+with(link[x]){						
+document.layers['linkex'].bgColor=bgcolor;		//修改linkex这个layer的背景颜色
+document.layers['linkex'].document.writeln(msg);	//用writeln方法写入内容
+document.layers['linkex'].document.close();		//关闭文本流
+document.layers['linkex'].top=dtop;			//调整位置
+document.layers['linkex'].left=dleft;
+}
+document.layers['linkex'].visibility="show";		//显示这个层
+}
+else{							//否则(浏览器是IE)
+with(link[x]){						//取对应的提示信息
+linkex.innerHTML=msg;					//用修改innerHTML属性的方式显示提示内容
+linkex.style.top=dtop;					//调整上边距
+linkex.style.left=dleft;				//调整左边距
+linkex.style.background=bgcolor;			//改变背景颜色
+}
+linkex.style.visibility="visible";			//显示提示条
+}
+}
+}
+//这个程序用于隐藏提示条
+function hide(){
+if ((bname=="Netscape" && bversion>=4) || (bname=="Microsoft Internet Explorer" && bversion>=4)){
+if (brows)					//如果是NS
+document.layers['linkex'].visibility="hide";	//设定'hide'以隐藏层
+else						//否则(是IE)
+linkex.style.visibility="hidden";		//利用'hidden'隐藏层
+}
+}
+//-->
+</SCRIPT>
+
+</HEAD>
+<BODY>
+<!--以下的div层用于IE显示-->
+<DIV id=linkex style="POSITION: absolute; VISIBILITY: hidden; width=200"></DIV>
+<!--以下的layer层用于NS显示-->
+<LAYER name="linkex" visibility="hide"></LAYER>
+	<P align=center>
+	<A href="#" onmouseout=hide() onmouseover=show(0) target=main>［本站宗旨］</A><BR><BR>
+	<A href="#" onmouseout=hide() onmouseover=show(1) target=main>［本站论坛］</A><BR><BR>
+	<A href="#" onmouseout=hide() onmouseover=show(2) target=main>［本站栏目］</A><BR><BR>
+	<A href="#" onmouseout=hide() onmouseover=show(3) target=main>［关于本站］</A>
+</BODY>
+</HTML>

@@ -1,0 +1,56 @@
+<HTML>
+<HEAD>
+<script>
+var navigator;
+
+// this function is called if navigator is ready
+function navigatorCreate(objNavigator,id)
+{
+	// we need it for expand/collapse
+	navigator = objNavigator;
+	
+  // now build the navigator
+  var item = objNavigator.createItem();
+  item.text = "Item 1";
+  item.image = "design/image/email.gif";
+  item.active = true;
+  item.visible = true;
+  item.url = "../evaluation/samples/p1.html"; 
+  objNavigator.add(item);
+
+  var item = objNavigator.createItem();
+  item.text = "Item 2";
+  item.image = "design/image/email.gif";
+  item.active = false;
+  item.visible = true;
+  item.url = "../evaluation/samples/p2.html"; 
+  objNavigator.add(item);
+
+  var item = objNavigator.createItem();
+  item.text = "Item 3";
+  item.image = "design/image/email.gif";
+  item.active = false;
+  item.visible = false;
+  item.url = "../evaluation/samples/p3.html"; 
+  objNavigator.add(item);
+ 
+  objNavigator.create();
+}
+
+function expcol()
+{
+	if(navigator.expanded)
+		navigator.collapse();
+	else
+		navigator.expand();
+}
+
+</script>
+
+</HEAD>
+	<body>
+			<iframe id="navigatorFrame" src="../../../navigator/pinNavigator.html" style="Z-INDEX: 101; LEFT: 23px; POSITION: absolute; TOP: 57px;Width:232px;Height:367px"  frameborder=0></iframe>
+			<div id="Label1" style="Z-INDEX: 102; LEFT: 21px; POSITION: absolute; TOP: 30px" Width="564px" Height="21px">Expand/Collapse navigator items by double clicking navigator split bar or pressing button</div>
+			<input type="button" style="Z-INDEX: 102; LEFT: 300px; POSITION: absolute; TOP: 57px" Width="564px" Height="21px" value="Expand/Collapse" onclick="expcol()" >
+	</body>
+</HTML>

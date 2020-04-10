@@ -1,0 +1,148 @@
+<HTML>
+<HEAD>
+<TITLE>彩虹链接</TITLE>
+<style type="text/css">
+<!--
+a {COLOR:000000;text-decoration:none}
+-->
+</style>
+<script language=javascript>
+//这个参数用户可根据需要自行修改
+var rainbowrate = 15;		// 调整这里设定颜色变化速度
+//以下为系统变量，请勿随意修改。
+var rainbowboj;			// 触发时间的对象
+var rainbowact = 0;		// 状态标志
+var elmH = 0;			// 色调
+var elmS = 128;			// 饱和度
+var elmV = 255;			// 亮度
+var clrOrg;			// 改变颜色之前的初始颜色值，用于停止改变颜色后恢复其原色
+var TimerID;			// 时钟ID
+if (navigator.appName.indexOf("Microsoft",0) != -1 && parseInt(navigator.appVersion) >= 4) {	//测试浏览器是否符合要求
+Browser = true;
+}
+else {
+Browser = false;
+}
+if (Browser) {					//如果符合要求，则开始捕获鼠标动作以控制颜色变化。
+document.onmouseover = doRainbowAnchor;
+document.onmouseout = stopRainbowAnchor;
+}
+//=============================================================================
+// doRainbowAnchor
+// 这个函数使变色开始
+//=============================================================================
+function doRainbowAnchor()
+{
+if (Browser && rainbowact != 1) {
+rainbowboj = event.srcElement;						//取鼠标下的对象
+while (rainbowboj.tagName != 'A' && rainbowboj.tagName != 'BODY') {	//判断对象是否为链接或是包含在链接中的其他对象
+rainbowboj = rainbowboj.parentElement;
+if (rainbowboj.tagName == 'A' || rainbowboj.tagName == 'BODY')
+break;									//如果两者都不是，则退出
+}
+if (rainbowboj.tagName == 'A' && rainbowboj.href != '') {		//如果是非空链接
+rainbowact = 1;								//置活动标志
+clrOrg = rainbowboj.style.color;					//取字符颜色的属性
+TimerID = setInterval("ChangeColor()",100);				//开始改变颜色
+}
+}
+}
+//=============================================================================
+// stopRainbowAnchor
+// 这个函数使变色停止
+//=============================================================================
+function stopRainbowAnchor()
+{
+if (Browser && rainbowact != 0) {					//如果目前变色正在进行中
+if (rainbowboj.tagName == 'A') {
+clearInterval(TimerID);							//取消变色计时器
+rainbowboj.style.color = clrOrg;					//恢复链接原来的颜色
+rainbowact = 0;								//设定标志
+}
+}
+}
+//=============================================================================
+// Change Color
+// 这个函数调用makeColor生成颜色值，并将其应用到相应的对象上
+//=============================================================================
+function ChangeColor()
+{
+rainbowboj.style.color = makeColor();
+}
+//=============================================================================
+// makeColor
+// 这个函数用于产生彩虹般的变化颜色
+//=============================================================================
+function makeColor()
+{
+// HSVtoRGB
+if (elmS == 0) {
+elmR = elmV;
+elmG = elmV;
+elmB = elmV;
+}
+else {
+t1 = elmV;
+t2 = (255 - elmS) * elmV / 255;
+t3 = elmH % 60;
+t3 = (t1 - t2) * t3 / 60;
+if (elmH < 60) {
+elmR = t1;
+elmB = t2;
+elmG = t2 + t3;
+}
+else
+if (elmH < 120) {
+elmG = t1;
+elmB = t2;
+elmR = t1 - t3;
+}
+else
+if (elmH < 180) {
+elmG = t1;
+elmR = t2;
+elmB = t2 + t3;
+}
+else
+if (elmH < 240) {
+elmB = t1;
+elmR = t2;
+elmG = t1 - t3;
+}
+else
+if (elmH < 300) {
+elmB = t1;
+elmG = t2;
+elmR = t2 + t3;
+}
+else
+if (elmH < 360) {
+elmR = t1;
+elmG = t2;
+elmB = t1 - t3;
+}
+else {
+elmR = 0;
+elmG = 0;
+elmB = 0;
+  }
+}
+elmR = Math.floor(elmR);
+elmG = Math.floor(elmG);
+elmB = Math.floor(elmB);
+clrRGB = '#' + elmR.toString(16) + elmG.toString(16) + elmB.toString(16);
+elmH = elmH + rainbowrate;
+if (elmH >= 360)
+elmH = 0;
+return clrRGB;
+}
+</script>
+
+</HEAD>
+<BODY>
+<P><A id=a href="http://www.5dcentury.com"><B>我的世纪！</B></A></P>
+<P><marquee><A id=a href="http://www.5dcentury.com"><B>欢迎光临世纪学苑！</B></A></marquee></P>
+</BODY>
+</HTML>
+
+

@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>网页加密</title>
+<style>
+textarea	{width:90%;height:30%}
+</style>
+</head>
+<body bgcolor="#C0C0C0">
+<p align="center">
+<textarea id=s rows="1" cols="20" style="border: 1 solid #000000;overflow:auto" name="s"><script>
+<!--
+document.write(unescape("%3Cscript%3E%0D%0A%3C%21--%0D%0Adocument.write%28unescape%28%22%253Cstyle%253E%250D%250Atextarea%257Bwidth%253A90%2525%253Bheight%253A30%2525%257D%250D%250A%253C/style%253E%250D%250A%250D%250A%253Ctextarea%2520id%253Ds%253E%25u5BC6%25u6587%25u653E%25u8FD9%25u8FB9%253C/textarea%253E%250D%250A%250D%250A%253Chr%253E%250D%250A%253Cinput%2520type%253Dbutton%2520onclick%253Ddecode%2528%2529%2520value%253D%25u89E3%25u5BC6%253E%250D%250A%253Cinput%2520type%253Dbutton%2520onclick%253Dredecode%2528%2529%2520value%253D%25u518D%25u89E3%253E%250D%250A%257C%250D%250A%253Cinput%2520type%253Dbutton%2520onclick%253Dencode%2528%2529%2520value%253D%25u52A0%25u5BC6%253E%250D%250A%253Cinput%2520type%253Dbutton%2520onclick%253Dreencode%2528%2529%2520value%253D%25u518D%25u52A0%253E%250D%250A%253Chr%253E%250D%250A%253Ctextarea%2520id%253Dd%253E%25u660E%25u6587%25u5728%25u8FD9%25u91CC%2520%253C/textarea%253E%250D%250A%253Cscript%253E%250D%250Afunction%2520decode%2528%2529%257B%250D%250Ad.value%253Dunescape%2528s.value%2529%250D%250A%257D%250D%250A%250D%250Afunction%2520redecode%2528%2529%257B%250D%250Ad.value%253Dunescape%2528d.value%2529%250D%250A%257D%250D%250Afunction%2520encode%2528%2529%257B%250D%250As.value%253Descape%2528d.value%2529%250D%250A%257D%250D%250Afunction%2520reencode%2528%2529%257B%250D%250As.value%253Descape%2528s.value%2529%250D%250A%257D%250D%250A%253C/script%253E%250D%250A%22%29%29%3B%0D%0A//--%3E%0D%0A%3C/script%3E"));
+//-->
+</script>
+</textarea>
+<hr size="1" color="#000000">
+<p align=center>
+<input type=button onclick=decode() value=解密 style="background-color: #FFFFFF; border-style: solid; border-width: 1">
+<input type=button onclick=redecode() value=再解 style="background-color: #FFFFFF; border: 1 solid #000000">    |    
+<input type=button onclick=encode() value=加密 style="background-color: #FFFFFF; border: 1 solid #000000">    
+<input type=button onclick=reencode() value=再加 style="background-color: #FFFFFF; border: 1 solid #000000"> <br>&nbsp
+<hr size="1" color="#000000">    
+<p align="center">   
+<textarea id=d rows="1" cols="20" style="border: 1 solid #000000;overflow:auto" name="d">明文在这里 </textarea>   
+<p align="center">   
+将上面文本框中的密文连续解密两次就可以得到本特效的原文。   
+</body>   
+</html>   
+   
+<script language=javascript>
+function decode(){   		//解密的过程
+d.value=unescape(s.value)   	//利用unescape方法对“密文”框里的内容进行解码
+}
+function redecode(){   		//再次解密的过程
+d.value=unescape(d.value)   	//源文本来自“明文”框
+}   
+function encode(){   		//加密的过程
+s.value=escape(d.value)   	//利用escape方法对“明文”框里的内容进行编码
+s.value='<script>\r<!--\rdocument.write(unescape("' + s.value + '"))\r-->\r</script' + '>'
+}   
+function reencode(){   		//再加密的过程
+s.value=escape(s.value)   	//源文本来自“密文”框
+s.value='<script>\r<!--\rdocument.write(unescape("' + s.value + '"))\r-->\r</script' + '>'
+}   
+</script>  

@@ -1,0 +1,21 @@
+<html>
+<head>
+<title>状态栏时钟</title>
+</head>
+
+<body onLoad="statusClock()">				<!--当页面装入的时候触发第一次显示-->
+
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Begin
+function statusClock() {
+thisclock = window.setTimeout("statusClock()", 1000);	//设定下一次显示的时钟
+var today = new Date();					//取当前时间
+var display= today.toLocaleString();			//将时间转换为字符串
+status=display;						//将时间信息显示到status状态栏上
+}
+// End -->
+</SCRIPT>
+
+<b>请注意左下角的状态栏</b>
+</body>
+</html>

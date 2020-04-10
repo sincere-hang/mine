@@ -1,0 +1,35 @@
+<html>
+<head>
+<title>可选页面信息1</title>
+</head>
+<body>
+<script>
+function ask()
+{	//利用prompt提示用户输入选择，存放在enter变量里
+      var enter=prompt("你已经选择离开梦幻都市，请在这里选择你的目的地。输入“1”退出，输入“2”进入听月阁，输入“3”进入西岭壁。");
+        var yes = 1 
+            if (enter == 1)		//如果用户输入的是1
+             {				//进行第一种选择所需的操作
+              alert('感谢你光临梦幻都市。本网站在你的支持下会做得更好！！');
+	      parent.location.href = "可选页面信息3.htm"
+             }
+            else if (enter == 2)	//如果用户输入的是2
+             {
+              parent.location.href = "可选页面信息2.htm"
+             }
+            else if (enter == 3)	//如果用户输入的是3
+             {
+              parent.location.href = "mailto:chenwushuang@263.net"
+             }
+      else						//如果输入内容不合要求
+             {						
+              alert('进行下一步操作，需要你的选择。');	//则提示用户需选择正确选项
+              ask()					//重新向用户询问选择。
+             }
+                 
+}
+ask()					//当页面装入的时候自动像用户发问。
+</script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<html>
+<head>
+<script language="JavaScript">
+//以下几条可以根据需要改变
+var msg  = "欢迎光临，请多多提出你的建议!!!    " ;	//需要显示的内容
+var interval = 120					//显示每个字的时间间隔(毫秒)
+//以下内容不需更改
+var seq=0;
+
+function typetext() {
+len = msg.length;					//取得信息的总长度
+window.status = msg.substring(0, seq+1);		//取得需显示的部分
+seq++;							//将长度加一(为下一次显示做准备)
+if ( seq >= len ) { 					//如果已经内容全部显示出来
+seq = 0; 						//则恢复初始状态，准备再次显示
+window.status = '';
+window.setTimeout("typetext();", interval );		//设定下一次显示的间隔
+}
+else							//如果信息还没有显示完整
+window.setTimeout("typetext();", interval );		//则设定下一次显示的时间间隔
+} 
+typetext();						//当页面装入的时候开始第一次显示
+</script>
+
+</head>
+<body>
+<b>请注意页面左下角的状态栏</b>
+</body>
+</html>
+
+
+

@@ -1,0 +1,121 @@
+<html>
+<head>
+<style type="text/css">
+#plane1		{position:absolute; left:90; top:70; width:121; z-index:0}
+#plane2		{position:absolute; left:50; top:50; width:118; z-index:0}
+</style>
+<title>可以拖动的图片</title>
+</head>
+
+<body onLoad="init()">
+
+<SCRIPT LANGUAGE="JavaScript">
+var isNav, isIE			//检测浏览器版本
+if (parseInt(navigator.appVersion) >= 4) {
+	if (navigator.appName == "Netscape") {
+		isNav = true
+	} else {
+		isIE = true
+	}
+}
+
+//设定对象z-Index属性的实用函数
+function setZIndex(obj, zOrder) {
+	obj.zIndex = zOrder
+}
+//这个函数将指定物体定位到指定坐标处。
+function shiftTo(obj, x, y) {
+	if (isNav) {
+		obj.moveTo(x,y)
+	} else {
+		obj.pixelLeft = x
+		obj.pixelTop = y
+	}
+}
+
+var selectedObj
+var offsetX, offsetY
+
+//寻找被点击的对象
+function setSelectedElem(evt) {
+	if (isNav) {									//NS浏览器的处理
+		var testObj
+		var clickX = evt.pageX
+		var clickY = evt.pageY
+		for (var i = document.layers.length - 1; i >= 0; i--) {			//遍历页面中的对象
+			testObj = document.layers[i]					//当前对象
+			if ((clickX > testObj.left) && 					//如果鼠标在当前对象范围内
+				(clickX < testObj.left + testObj.clip.width) && 
+				(clickY > testObj.top) && 
+				(clickY < testObj.top + testObj.clip.height)) {
+					selectedObj = testObj				//则记录这个对象
+					setZIndex(selectedObj, 100)			//将其置于最前
+					return						//返回
+			}
+		}
+	} else {									//IE浏览器的处理
+		var imgObj = window.event.srcElement					//触发事件的对象
+		if (imgObj.parentElement.id.indexOf("plane") != -1) {			//判断这个对象是不是预先定义需要被拖动的那个
+			selectedObj = imgObj.parentElement.style			//记录这个对象
+			setZIndex(selectedObj,100)					//将其调整到最上层
+			return								//返回
+		}
+	}
+	//如果点击的对象不是需要拖动的，则会执行到这里
+	selectedObj = null								//记录一个空对象
+	return
+}
+//拖动一个对象
+function dragIt(evt) {
+	if (selectedObj) {			//如果有被操作对象
+		if (isNav) {			//如果浏览器是NS
+			shiftTo(selectedObj, (evt.pageX - offsetX), (evt.pageY - offsetY))	//将对象移动到鼠标的位置
+		} else {			//如果是IE
+			shiftTo(selectedObj, (window.event.clientX - offsetX), (window.event.clientY - offsetY))
+			return false	//返回false值，阻止接下来的其他处理点击的过程。
+		}
+	}
+}
+//鼠标按下时的处理
+function engage(evt) {	/*记录鼠标坐标*/
+	setSelectedElem(evt)
+	if (selectedObj) {
+		if (isNav) {
+			offsetX = evt.pageX - selectedObj.left
+			offsetY = evt.pageY - selectedObj.top
+		} else {
+			offsetX = window.event.offsetX
+			offsetY = window.event.offsetY
+		}
+	}
+	return false
+}
+//处理鼠标释放
+function release(evt) {
+	if (selectedObj) {
+		setZIndex(selectedObj, 0)	//将被拖动对象置后
+		selectedObj = null		//清除记录的对象
+	}
+}
+//为NS设定事件捕获列表
+function setNavEventCapture() {
+	if (isNav) {
+		document.captureEvents(Event.MOUSEDOWN | Event.MOUSEMOVE | Event.MOUSEUP)
+	}
+}
+//在页面装入的时候初始化事件捕获过程
+function init() {
+	if (isNav) {
+		setNavEventCapture()
+	}
+	document.onmousedown = engage
+	document.onmousemove = dragIt
+	document.onmouseup = release
+}
+</SCRIPT> 
+
+<DIV ID=plane1><IMG NAME="planePic1" SRC="images/move.gif" BORDER=0></DIV>
+<DIV ID=plane2><IMG NAME="planePic1" SRC="images/move.gif" BORDER=0></DIV>
+<p><b>页面中的这两颗星星可以用鼠标拖动。</b></p>
+</body>
+</html>

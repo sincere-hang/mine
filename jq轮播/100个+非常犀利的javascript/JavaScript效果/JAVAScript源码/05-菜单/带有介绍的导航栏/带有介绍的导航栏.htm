@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>带有说明的导航栏</title>
+</head>
+
+<body>
+
+<script language="JavaScript">
+<!--
+function herfto(){
+        if (document.stationform.refsel.options[0].selected){		//根据用户选定的项目
+                window.location.href = "http://www.263.net";} 		//改变本窗口的地址
+        else if (document.stationform.refsel.options[1].selected)
+        {       window.location.href = "http://www.sina.com.cn";}
+        else if (document.stationform.refsel.options[2].selected)                
+        {       window.location.href = "http://www.sohu.com";}   
+        else if (document.stationform.refsel.options[3].selected)                
+        {       window.location.href = "http://www.163.com";}    
+        else if (document.stationform.refsel.options[4].selected)                
+        {       window.location.href = "http://www.5dcentury.com";}   
+        else if (document.stationform.refsel.options[5].selected)                
+        {       window.location.href = "http://www.chinaren.com";}     
+        else if (document.stationform.refsel.options[6].selected)                
+        {       window.location.href = "http://cn.yahoo.com";}   
+	//根据可选条目，这里应该相应的增减。
+        return true;    
+        }
+function textValue(){   
+        var stationInteger, stationString       
+        stationInteger=document.stationform.refsel.selectedIndex 		//取得选定项目的编号
+        stationString=document.stationform.refsel.options[stationInteger].title	//根据编号取得相应说明
+        document.stationform.stationtext.value = stationString }		//将说明显示出来
+//-->
+</script>
+
+<form name="stationform">
+<select name="refsel" onChange="textValue()" multiple size="5">
+<option title="提供多项在线服务,免费邮箱尤其好用">首都在线263
+<option title="相当不错的虚拟社区">新浪sina
+<option title="不用说，要搜索来这里就对了">搜狐
+<option title="提供免费个人主页空间">网易163
+<option title="一个优秀的学生网站">世纪学苑
+<option title="首创同学录，中国学生的聚会场所">中国人
+<option title="世界闻名的搜索巨头">雅虎yahoo
+</select>
+<p>
+<input type="button" name="stationbutton" value="Go!" onClick="herfto()" style="background-color: #FFFFFF; border: 1 solid #000000">
+<p><input type="text" name="stationtext" value="" size="30" maxlength="35" style="border: 1 solid #000000">
+</form>
+</body>
+</html>
+
+
+

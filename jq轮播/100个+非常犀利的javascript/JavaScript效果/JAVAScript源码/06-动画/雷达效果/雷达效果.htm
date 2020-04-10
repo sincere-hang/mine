@@ -1,0 +1,39 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script>
+<!--
+       var Light_X=20								//光源目标坐标的初始x值
+       var Light_Y=20								//光源目标坐标的初始y值
+       var Light_Z=40								//光源目标坐标的z值
+       var r=125;								//光源半径
+       var deg=0;								//当前光束角度
+       var conversion=(2*3.1415926)/360
+
+function movefilt(){
+	Light_X=r+r*Math.cos(deg*conversion);					//计算x坐标值
+	Light_Y=r+r*Math.sin(deg*conversion);					//计算y坐标值
+	Body1.filters[0].moveLight(0,Light_X,Light_Y,Light_Z,1);		//移动聚光灯的目标
+	deg+=10;								//角度加十
+	if(deg==360)								//如果角度到了360
+	deg=0;									//则强制将其改为0
+	mytimeout=setTimeout('movefilt()',100);					//设定下一次转动角度的延时
+}
+
+function go(){
+ 	Body1.filters.light.addCone(136,136,0,Light_X,Light_Y,0,255,0,150,20);	//增加一个绿色聚光光源
+	Body1.filters.light.addAmbient(0,255,0,20)				//增加一个绿色环境光
+	var x=0;
+	movefilt();								//开始转动投射光源方向
+}
+</script>
+
+<title>雷达效果</title>
+</head>
+<body bgcolor=000000 onload=go()>
+<img src="images/leida.gif" id="Body1" style="filter:light()">
+<p>
+<b><font color=00ff00>　　这种效果怎么样？</font></b>
+</body>
+</html>
+
